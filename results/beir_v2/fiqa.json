@@ -1,0 +1,245 @@
+{
+  "dataset": "fiqa",
+  "num_queries": 648,
+  "num_docs": 57638,
+  "model": "BAAI/bge-small-en-v1.5",
+  "baseline": {
+    "ndcg": {
+      "NDCG@1": 0.38426,
+      "NDCG@5": 0.36374,
+      "NDCG@10": 0.38483
+    },
+    "map": {
+      "MAP@1": 0.19798,
+      "MAP@5": 0.29746,
+      "MAP@10": 0.31328
+    },
+    "recall": {
+      "Recall@1": 0.19798,
+      "Recall@5": 0.37087,
+      "Recall@10": 0.43963
+    },
+    "precision": {
+      "P@1": 0.38426,
+      "P@5": 0.17407,
+      "P@10": 0.10525
+    }
+  },
+  "prf": {
+    "ndcg": {
+      "NDCG@1": 0.37346,
+      "NDCG@5": 0.35336,
+      "NDCG@10": 0.37601
+    },
+    "map": {
+      "MAP@1": 0.18643,
+      "MAP@5": 0.28958,
+      "MAP@10": 0.3069
+    },
+    "recall": {
+      "Recall@1": 0.18643,
+      "Recall@5": 0.3595,
+      "Recall@10": 0.4316
+    },
+    "precision": {
+      "P@1": 0.37346,
+      "P@5": 0.16944,
+      "P@10": 0.10448
+    }
+  },
+  "subtraction": {
+    "cryptocurrency": {
+      "ndcg": {
+        "NDCG@1": 0.34722,
+        "NDCG@5": 0.32838,
+        "NDCG@10": 0.35261
+      },
+      "map": {
+        "MAP@1": 0.17709,
+        "MAP@5": 0.26556,
+        "MAP@10": 0.28214
+      },
+      "recall": {
+        "Recall@1": 0.17709,
+        "Recall@5": 0.33851,
+        "Recall@10": 0.41387
+      },
+      "precision": {
+        "P@1": 0.34722,
+        "P@5": 0.15525,
+        "P@10": 0.09707
+      },
+      "projection_stats": {
+        "mean": 0.5110540986061096,
+        "std": 0.05103980377316475,
+        "min": 0.37668710947036743,
+        "max": 0.6826459169387817,
+        "pct_above_0.1": 1.0
+      }
+    },
+    "real estate investment": {
+      "ndcg": {
+        "NDCG@1": 0.31327,
+        "NDCG@5": 0.3101,
+        "NDCG@10": 0.32847
+      },
+      "map": {
+        "MAP@1": 0.16117,
+        "MAP@5": 0.24666,
+        "MAP@10": 0.25973
+      },
+      "recall": {
+        "Recall@1": 0.16117,
+        "Recall@5": 0.32741,
+        "Recall@10": 0.38416
+      },
+      "precision": {
+        "P@1": 0.31327,
+        "P@5": 0.14938,
+        "P@10": 0.09151
+      },
+      "projection_stats": {
+        "mean": 0.5743030905723572,
+        "std": 0.06260765343904495,
+        "min": 0.4047193229198456,
+        "max": 0.7777122259140015,
+        "pct_above_0.1": 1.0
+      }
+    },
+    "retirement planning": {
+      "ndcg": {
+        "NDCG@1": 0.3287,
+        "NDCG@5": 0.31481,
+        "NDCG@10": 0.3356
+      },
+      "map": {
+        "MAP@1": 0.16783,
+        "MAP@5": 0.25385,
+        "MAP@10": 0.26823
+      },
+      "recall": {
+        "Recall@1": 0.16783,
+        "Recall@5": 0.32495,
+        "Recall@10": 0.38744
+      },
+      "precision": {
+        "P@1": 0.3287,
+        "P@5": 0.14846,
+        "P@10": 0.09275
+      },
+      "projection_stats": {
+        "mean": 0.5675448179244995,
+        "std": 0.0677594467997551,
+        "min": 0.38190358877182007,
+        "max": 0.7982441782951355,
+        "pct_above_0.1": 1.0
+      }
+    },
+    "tax optimization": {
+      "ndcg": {
+        "NDCG@1": 0.35031,
+        "NDCG@5": 0.32835,
+        "NDCG@10": 0.3489
+      },
+      "map": {
+        "MAP@1": 0.17721,
+        "MAP@5": 0.26565,
+        "MAP@10": 0.28036
+      },
+      "recall": {
+        "Recall@1": 0.17721,
+        "Recall@5": 0.3371,
+        "Recall@10": 0.40245
+      },
+      "precision": {
+        "P@1": 0.35031,
+        "P@5": 0.15556,
+        "P@10": 0.09645
+      },
+      "projection_stats": {
+        "mean": 0.5739750862121582,
+        "std": 0.05955609306693077,
+        "min": 0.39972472190856934,
+        "max": 0.7460445761680603,
+        "pct_above_0.1": 1.0
+      }
+    }
+  },
+  "rotation_analysis": {
+    "target": "macroeconomics and monetary policy",
+    "data": {
+      "alpha=0.05": {
+        "mean_jaccard@10": 0.8990726351837464,
+        "mean_new_docs": 0.5648148148148148,
+        "mean_sim_shift": 0.00681693289934853,
+        "pct_queries_with_change": 0.5077160493827161
+      },
+      "alpha=0.1": {
+        "mean_jaccard@10": 0.8131236047902717,
+        "mean_new_docs": 1.0833333333333333,
+        "mean_sim_shift": 0.012603293267297155,
+        "pct_queries_with_change": 0.7808641975308642
+      },
+      "alpha=0.15": {
+        "mean_jaccard@10": 0.7289411976911978,
+        "mean_new_docs": 1.6496913580246915,
+        "mean_sim_shift": 0.01719186458690667,
+        "pct_queries_with_change": 0.8996913580246914
+      },
+      "alpha=0.2": {
+        "mean_jaccard@10": 0.6325485214374104,
+        "mean_new_docs": 2.365740740740741,
+        "mean_sim_shift": 0.020487250424461603,
+        "pct_queries_with_change": 0.9645061728395061
+      },
+      "alpha=0.3": {
+        "mean_jaccard@10": 0.44376517267742466,
+        "mean_new_docs": 4.032407407407407,
+        "mean_sim_shift": 0.022957173596929625,
+        "pct_queries_with_change": 0.9969135802469136
+      },
+      "alpha=0.4": {
+        "mean_jaccard@10": 0.24859531964508455,
+        "mean_new_docs": 6.217592592592593,
+        "mean_sim_shift": 0.020758283874134965,
+        "pct_queries_with_change": 1.0
+      },
+      "alpha=0.5": {
+        "mean_jaccard@10": 0.07682306815863749,
+        "mean_new_docs": 8.669753086419753,
+        "mean_sim_shift": 0.01838149843208584,
+        "pct_queries_with_change": 1.0
+      }
+    }
+  },
+  "rotation_ndcg": {
+    "alpha=0.05": {
+      "ndcg@10": 0.38432,
+      "recall@10": 0.43659
+    },
+    "alpha=0.1": {
+      "ndcg@10": 0.38123,
+      "recall@10": 0.43526
+    },
+    "alpha=0.15": {
+      "ndcg@10": 0.37445,
+      "recall@10": 0.43262
+    },
+    "alpha=0.2": {
+      "ndcg@10": 0.36389,
+      "recall@10": 0.42383
+    },
+    "alpha=0.3": {
+      "ndcg@10": 0.32708,
+      "recall@10": 0.39145
+    },
+    "alpha=0.4": {
+      "ndcg@10": 0.25181,
+      "recall@10": 0.3024
+    },
+    "alpha=0.5": {
+      "ndcg@10": 0.10867,
+      "recall@10": 0.14728
+    }
+  }
+}

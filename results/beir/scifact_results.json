@@ -1,0 +1,560 @@
+{
+  "baseline": {
+    "ndcg": {
+      "NDCG@1": 0.72,
+      "NDCG@5": 0.77958,
+      "NDCG@10": 0.80246
+    },
+    "map": {
+      "MAP@1": 0.669,
+      "MAP@5": 0.75353,
+      "MAP@10": 0.76556
+    },
+    "recall": {
+      "Recall@1": 0.669,
+      "Recall@5": 0.841,
+      "Recall@10": 0.906
+    },
+    "precision": {
+      "P@1": 0.72,
+      "P@5": 0.2,
+      "P@10": 0.108
+    },
+    "time_seconds": 0.020919084548950195
+  },
+  "rotation|clinical medicine|alpha=0.1": {
+    "ndcg": {
+      "NDCG@1": 0.72,
+      "NDCG@5": 0.77392,
+      "NDCG@10": 0.80117
+    },
+    "map": {
+      "MAP@1": 0.669,
+      "MAP@5": 0.75087,
+      "MAP@10": 0.76456
+    },
+    "recall": {
+      "Recall@1": 0.669,
+      "Recall@5": 0.831,
+      "Recall@10": 0.906
+    },
+    "precision": {
+      "P@1": 0.72,
+      "P@5": 0.196,
+      "P@10": 0.108
+    },
+    "time_seconds": 0.01866602897644043,
+    "alpha": 0.1,
+    "target": "clinical medicine"
+  },
+  "rotation|clinical medicine|alpha=0.2": {
+    "ndcg": {
+      "NDCG@1": 0.72,
+      "NDCG@5": 0.77429,
+      "NDCG@10": 0.78747
+    },
+    "map": {
+      "MAP@1": 0.669,
+      "MAP@5": 0.74453,
+      "MAP@10": 0.7518
+    },
+    "recall": {
+      "Recall@1": 0.669,
+      "Recall@5": 0.851,
+      "Recall@10": 0.886
+    },
+    "precision": {
+      "P@1": 0.72,
+      "P@5": 0.2,
+      "P@10": 0.106
+    },
+    "time_seconds": 0.01806497573852539,
+    "alpha": 0.2,
+    "target": "clinical medicine"
+  },
+  "rotation|clinical medicine|alpha=0.3": {
+    "ndcg": {
+      "NDCG@1": 0.7,
+      "NDCG@5": 0.75832,
+      "NDCG@10": 0.77794
+    },
+    "map": {
+      "MAP@1": 0.649,
+      "MAP@5": 0.72887,
+      "MAP@10": 0.73887
+    },
+    "recall": {
+      "Recall@1": 0.649,
+      "Recall@5": 0.831,
+      "Recall@10": 0.886
+    },
+    "precision": {
+      "P@1": 0.7,
+      "P@5": 0.196,
+      "P@10": 0.106
+    },
+    "time_seconds": 0.018484115600585938,
+    "alpha": 0.3,
+    "target": "clinical medicine"
+  },
+  "rotation|clinical medicine|alpha=0.4": {
+    "ndcg": {
+      "NDCG@1": 0.66,
+      "NDCG@5": 0.69109,
+      "NDCG@10": 0.73102
+    },
+    "map": {
+      "MAP@1": 0.609,
+      "MAP@5": 0.6712,
+      "MAP@10": 0.69014
+    },
+    "recall": {
+      "Recall@1": 0.609,
+      "Recall@5": 0.731,
+      "Recall@10": 0.846
+    },
+    "precision": {
+      "P@1": 0.66,
+      "P@5": 0.176,
+      "P@10": 0.102
+    },
+    "time_seconds": 0.018024921417236328,
+    "alpha": 0.4,
+    "target": "clinical medicine"
+  },
+  "rotation|clinical medicine|alpha=0.5": {
+    "ndcg": {
+      "NDCG@1": 0.66,
+      "NDCG@5": 0.67545,
+      "NDCG@10": 0.69864
+    },
+    "map": {
+      "MAP@1": 0.609,
+      "MAP@5": 0.65887,
+      "MAP@10": 0.67116
+    },
+    "recall": {
+      "Recall@1": 0.609,
+      "Recall@5": 0.701,
+      "Recall@10": 0.766
+    },
+    "precision": {
+      "P@1": 0.66,
+      "P@5": 0.168,
+      "P@10": 0.094
+    },
+    "time_seconds": 0.01809406280517578,
+    "alpha": 0.5,
+    "target": "clinical medicine"
+  },
+  "rotation|clinical medicine|alpha=0.6": {
+    "ndcg": {
+      "NDCG@1": 0.42,
+      "NDCG@5": 0.46892,
+      "NDCG@10": 0.50297
+    },
+    "map": {
+      "MAP@1": 0.379,
+      "MAP@5": 0.44587,
+      "MAP@10": 0.46186
+    },
+    "recall": {
+      "Recall@1": 0.379,
+      "Recall@5": 0.516,
+      "Recall@10": 0.611
+    },
+    "precision": {
+      "P@1": 0.42,
+      "P@5": 0.128,
+      "P@10": 0.076
+    },
+    "time_seconds": 0.017964839935302734,
+    "alpha": 0.6,
+    "target": "clinical medicine"
+  },
+  "rotation|pharmacology and drug development|alpha=0.1": {
+    "ndcg": {
+      "NDCG@1": 0.66,
+      "NDCG@5": 0.76305,
+      "NDCG@10": 0.78317
+    },
+    "map": {
+      "MAP@1": 0.609,
+      "MAP@5": 0.72887,
+      "MAP@10": 0.73922
+    },
+    "recall": {
+      "Recall@1": 0.609,
+      "Recall@5": 0.851,
+      "Recall@10": 0.906
+    },
+    "precision": {
+      "P@1": 0.66,
+      "P@5": 0.2,
+      "P@10": 0.108
+    },
+    "time_seconds": 0.018456697463989258,
+    "alpha": 0.1,
+    "target": "pharmacology and drug development"
+  },
+  "rotation|pharmacology and drug development|alpha=0.2": {
+    "ndcg": {
+      "NDCG@1": 0.64,
+      "NDCG@5": 0.73678,
+      "NDCG@10": 0.76353
+    },
+    "map": {
+      "MAP@1": 0.589,
+      "MAP@5": 0.7012,
+      "MAP@10": 0.71447
+    },
+    "recall": {
+      "Recall@1": 0.589,
+      "Recall@5": 0.831,
+      "Recall@10": 0.906
+    },
+    "precision": {
+      "P@1": 0.64,
+      "P@5": 0.196,
+      "P@10": 0.108
+    },
+    "time_seconds": 0.018128156661987305,
+    "alpha": 0.2,
+    "target": "pharmacology and drug development"
+  },
+  "rotation|pharmacology and drug development|alpha=0.3": {
+    "ndcg": {
+      "NDCG@1": 0.64,
+      "NDCG@5": 0.70919,
+      "NDCG@10": 0.74838
+    },
+    "map": {
+      "MAP@1": 0.589,
+      "MAP@5": 0.68387,
+      "MAP@10": 0.70206
+    },
+    "recall": {
+      "Recall@1": 0.589,
+      "Recall@5": 0.771,
+      "Recall@10": 0.886
+    },
+    "precision": {
+      "P@1": 0.64,
+      "P@5": 0.184,
+      "P@10": 0.106
+    },
+    "time_seconds": 0.018159151077270508,
+    "alpha": 0.3,
+    "target": "pharmacology and drug development"
+  },
+  "rotation|pharmacology and drug development|alpha=0.4": {
+    "ndcg": {
+      "NDCG@1": 0.64,
+      "NDCG@5": 0.69731,
+      "NDCG@10": 0.71333
+    },
+    "map": {
+      "MAP@1": 0.589,
+      "MAP@5": 0.67428,
+      "MAP@10": 0.68012
+    },
+    "recall": {
+      "Recall@1": 0.589,
+      "Recall@5": 0.756,
+      "Recall@10": 0.806
+    },
+    "precision": {
+      "P@1": 0.64,
+      "P@5": 0.184,
+      "P@10": 0.098
+    },
+    "time_seconds": 0.01816415786743164,
+    "alpha": 0.4,
+    "target": "pharmacology and drug development"
+  },
+  "rotation|pharmacology and drug development|alpha=0.5": {
+    "ndcg": {
+      "NDCG@1": 0.6,
+      "NDCG@5": 0.62908,
+      "NDCG@10": 0.66212
+    },
+    "map": {
+      "MAP@1": 0.559,
+      "MAP@5": 0.61208,
+      "MAP@10": 0.62875
+    },
+    "recall": {
+      "Recall@1": 0.559,
+      "Recall@5": 0.662,
+      "Recall@10": 0.756
+    },
+    "precision": {
+      "P@1": 0.6,
+      "P@5": 0.16,
+      "P@10": 0.092
+    },
+    "time_seconds": 0.018114089965820312,
+    "alpha": 0.5,
+    "target": "pharmacology and drug development"
+  },
+  "rotation|pharmacology and drug development|alpha=0.6": {
+    "ndcg": {
+      "NDCG@1": 0.32,
+      "NDCG@5": 0.42848,
+      "NDCG@10": 0.43979
+    },
+    "map": {
+      "MAP@1": 0.289,
+      "MAP@5": 0.37917,
+      "MAP@10": 0.38621
+    },
+    "recall": {
+      "Recall@1": 0.289,
+      "Recall@5": 0.553,
+      "Recall@10": 0.582
+    },
+    "precision": {
+      "P@1": 0.32,
+      "P@5": 0.128,
+      "P@10": 0.07
+    },
+    "time_seconds": 0.01851487159729004,
+    "alpha": 0.6,
+    "target": "pharmacology and drug development"
+  },
+  "rotation|public health and epidemiology|alpha=0.1": {
+    "ndcg": {
+      "NDCG@1": 0.7,
+      "NDCG@5": 0.76792,
+      "NDCG@10": 0.79467
+    },
+    "map": {
+      "MAP@1": 0.649,
+      "MAP@5": 0.74253,
+      "MAP@10": 0.75581
+    },
+    "recall": {
+      "Recall@1": 0.649,
+      "Recall@5": 0.831,
+      "Recall@10": 0.906
+    },
+    "precision": {
+      "P@1": 0.7,
+      "P@5": 0.196,
+      "P@10": 0.108
+    },
+    "time_seconds": 0.018270015716552734,
+    "alpha": 0.1,
+    "target": "public health and epidemiology"
+  },
+  "rotation|public health and epidemiology|alpha=0.2": {
+    "ndcg": {
+      "NDCG@1": 0.72,
+      "NDCG@5": 0.76345,
+      "NDCG@10": 0.78679
+    },
+    "map": {
+      "MAP@1": 0.669,
+      "MAP@5": 0.7432,
+      "MAP@10": 0.7557
+    },
+    "recall": {
+      "Recall@1": 0.669,
+      "Recall@5": 0.811,
+      "Recall@10": 0.876
+    },
+    "precision": {
+      "P@1": 0.72,
+      "P@5": 0.192,
+      "P@10": 0.104
+    },
+    "time_seconds": 0.018095970153808594,
+    "alpha": 0.2,
+    "target": "public health and epidemiology"
+  },
+  "rotation|public health and epidemiology|alpha=0.3": {
+    "ndcg": {
+      "NDCG@1": 0.7,
+      "NDCG@5": 0.75291,
+      "NDCG@10": 0.77658
+    },
+    "map": {
+      "MAP@1": 0.649,
+      "MAP@5": 0.72862,
+      "MAP@10": 0.74181
+    },
+    "recall": {
+      "Recall@1": 0.649,
+      "Recall@5": 0.811,
+      "Recall@10": 0.88
+    },
+    "precision": {
+      "P@1": 0.7,
+      "P@5": 0.192,
+      "P@10": 0.106
+    },
+    "time_seconds": 0.01846599578857422,
+    "alpha": 0.3,
+    "target": "public health and epidemiology"
+  },
+  "rotation|public health and epidemiology|alpha=0.4": {
+    "ndcg": {
+      "NDCG@1": 0.62,
+      "NDCG@5": 0.70814,
+      "NDCG@10": 0.71985
+    },
+    "map": {
+      "MAP@1": 0.569,
+      "MAP@5": 0.67528,
+      "MAP@10": 0.68433
+    },
+    "recall": {
+      "Recall@1": 0.569,
+      "Recall@5": 0.791,
+      "Recall@10": 0.82
+    },
+    "precision": {
+      "P@1": 0.62,
+      "P@5": 0.188,
+      "P@10": 0.1
+    },
+    "time_seconds": 0.018195390701293945,
+    "alpha": 0.4,
+    "target": "public health and epidemiology"
+  },
+  "rotation|public health and epidemiology|alpha=0.5": {
+    "ndcg": {
+      "NDCG@1": 0.54,
+      "NDCG@5": 0.57502,
+      "NDCG@10": 0.60834
+    },
+    "map": {
+      "MAP@1": 0.489,
+      "MAP@5": 0.54407,
+      "MAP@10": 0.56242
+    },
+    "recall": {
+      "Recall@1": 0.489,
+      "Recall@5": 0.632,
+      "Recall@10": 0.726
+    },
+    "precision": {
+      "P@1": 0.54,
+      "P@5": 0.148,
+      "P@10": 0.088
+    },
+    "time_seconds": 0.01804065704345703,
+    "alpha": 0.5,
+    "target": "public health and epidemiology"
+  },
+  "rotation|public health and epidemiology|alpha=0.6": {
+    "ndcg": {
+      "NDCG@1": 0.18,
+      "NDCG@5": 0.26657,
+      "NDCG@10": 0.2911
+    },
+    "map": {
+      "MAP@1": 0.165,
+      "MAP@5": 0.23413,
+      "MAP@10": 0.24669
+    },
+    "recall": {
+      "Recall@1": 0.165,
+      "Recall@5": 0.344,
+      "Recall@10": 0.414
+    },
+    "precision": {
+      "P@1": 0.18,
+      "P@5": 0.08,
+      "P@10": 0.05
+    },
+    "time_seconds": 0.018072128295898438,
+    "alpha": 0.6,
+    "target": "public health and epidemiology"
+  },
+  "subtraction|methodology and statistical analysis": {
+    "ndcg": {
+      "NDCG@1": 0.66,
+      "NDCG@5": 0.74472,
+      "NDCG@10": 0.76823
+    },
+    "map": {
+      "MAP@1": 0.619,
+      "MAP@5": 0.7182,
+      "MAP@10": 0.72891
+    },
+    "recall": {
+      "Recall@1": 0.619,
+      "Recall@5": 0.806,
+      "Recall@10": 0.876
+    },
+    "precision": {
+      "P@1": 0.66,
+      "P@5": 0.196,
+      "P@10": 0.106
+    },
+    "time_seconds": 0.018256187438964844,
+    "concept": "methodology and statistical analysis",
+    "projection_stats": {
+      "mean_proj_norm": 0.5103194117546082,
+      "std_proj_norm": 0.036672063171863556,
+      "min_proj_norm": 0.4416324198246002,
+      "max_proj_norm": 0.6113489866256714,
+      "pct_above_0.05": 1.0
+    }
+  },
+  "subtraction|animal studies": {
+    "ndcg": {
+      "NDCG@1": 0.72,
+      "NDCG@5": 0.74759,
+      "NDCG@10": 0.78216
+    },
+    "map": {
+      "MAP@1": 0.659,
+      "MAP@5": 0.72853,
+      "MAP@10": 0.74464
+    },
+    "recall": {
+      "Recall@1": 0.659,
+      "Recall@5": 0.781,
+      "Recall@10": 0.886
+    },
+    "precision": {
+      "P@1": 0.72,
+      "P@5": 0.188,
+      "P@10": 0.106
+    },
+    "time_seconds": 0.018812894821166992,
+    "concept": "animal studies",
+    "projection_stats": {
+      "mean_proj_norm": 0.5279975533485413,
+      "std_proj_norm": 0.03673461452126503,
+      "min_proj_norm": 0.407560259103775,
+      "max_proj_norm": 0.6015950441360474,
+      "pct_above_0.05": 1.0
+    }
+  },
+  "prf_baseline": {
+    "ndcg": {
+      "NDCG@1": 0.7,
+      "NDCG@5": 0.77225,
+      "NDCG@10": 0.79915
+    },
+    "map": {
+      "MAP@1": 0.649,
+      "MAP@5": 0.74337,
+      "MAP@10": 0.75845
+    },
+    "recall": {
+      "Recall@1": 0.649,
+      "Recall@5": 0.846,
+      "Recall@10": 0.92
+    },
+    "precision": {
+      "P@1": 0.7,
+      "P@5": 0.204,
+      "P@10": 0.112
+    },
+    "time_seconds": 0.03773999214172363
+  }
+}

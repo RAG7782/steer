@@ -1,0 +1,245 @@
+{
+  "dataset": "nfcorpus",
+  "num_queries": 323,
+  "num_docs": 3633,
+  "model": "BAAI/bge-small-en-v1.5",
+  "baseline": {
+    "ndcg": {
+      "NDCG@1": 0.41796,
+      "NDCG@5": 0.37242,
+      "NDCG@10": 0.33708
+    },
+    "map": {
+      "MAP@1": 0.05749,
+      "MAP@5": 0.10686,
+      "MAP@10": 0.12356
+    },
+    "recall": {
+      "Recall@1": 0.05749,
+      "Recall@5": 0.12795,
+      "Recall@10": 0.15822
+    },
+    "precision": {
+      "P@1": 0.43034,
+      "P@5": 0.32384,
+      "P@10": 0.25046
+    }
+  },
+  "prf": {
+    "ndcg": {
+      "NDCG@1": 0.41022,
+      "NDCG@5": 0.37852,
+      "NDCG@10": 0.3477
+    },
+    "map": {
+      "MAP@1": 0.05244,
+      "MAP@5": 0.10722,
+      "MAP@10": 0.1266
+    },
+    "recall": {
+      "Recall@1": 0.05244,
+      "Recall@5": 0.13,
+      "Recall@10": 0.16377
+    },
+    "precision": {
+      "P@1": 0.42105,
+      "P@5": 0.33622,
+      "P@10": 0.26811
+    }
+  },
+  "subtraction": {
+    "dietary supplements": {
+      "ndcg": {
+        "NDCG@1": 0.40093,
+        "NDCG@5": 0.33578,
+        "NDCG@10": 0.30912
+      },
+      "map": {
+        "MAP@1": 0.0483,
+        "MAP@5": 0.09218,
+        "MAP@10": 0.10924
+      },
+      "recall": {
+        "Recall@1": 0.0483,
+        "Recall@5": 0.11434,
+        "Recall@10": 0.14655
+      },
+      "precision": {
+        "P@1": 0.41796,
+        "P@5": 0.29288,
+        "P@10": 0.23498
+      },
+      "projection_stats": {
+        "mean": 0.5941793322563171,
+        "std": 0.06915083527565002,
+        "min": 0.4070571959018707,
+        "max": 0.7891755700111389,
+        "pct_above_0.1": 1.0
+      }
+    },
+    "weight loss and obesity": {
+      "ndcg": {
+        "NDCG@1": 0.39474,
+        "NDCG@5": 0.33915,
+        "NDCG@10": 0.31738
+      },
+      "map": {
+        "MAP@1": 0.04705,
+        "MAP@5": 0.09403,
+        "MAP@10": 0.11221
+      },
+      "recall": {
+        "Recall@1": 0.04705,
+        "Recall@5": 0.11601,
+        "Recall@10": 0.16028
+      },
+      "precision": {
+        "P@1": 0.41176,
+        "P@5": 0.29536,
+        "P@10": 0.23839
+      },
+      "projection_stats": {
+        "mean": 0.5595159530639648,
+        "std": 0.06397896260023117,
+        "min": 0.402962327003479,
+        "max": 0.7475367784500122,
+        "pct_above_0.1": 1.0
+      }
+    },
+    "cancer treatment": {
+      "ndcg": {
+        "NDCG@1": 0.39164,
+        "NDCG@5": 0.3506,
+        "NDCG@10": 0.31844
+      },
+      "map": {
+        "MAP@1": 0.04644,
+        "MAP@5": 0.09307,
+        "MAP@10": 0.10925
+      },
+      "recall": {
+        "Recall@1": 0.04644,
+        "Recall@5": 0.11503,
+        "Recall@10": 0.15006
+      },
+      "precision": {
+        "P@1": 0.40248,
+        "P@5": 0.3096,
+        "P@10": 0.23839
+      },
+      "projection_stats": {
+        "mean": 0.5427556037902832,
+        "std": 0.057099923491477966,
+        "min": 0.37486255168914795,
+        "max": 0.7924853563308716,
+        "pct_above_0.1": 1.0
+      }
+    },
+    "pediatric nutrition": {
+      "ndcg": {
+        "NDCG@1": 0.38545,
+        "NDCG@5": 0.34145,
+        "NDCG@10": 0.31912
+      },
+      "map": {
+        "MAP@1": 0.04872,
+        "MAP@5": 0.09495,
+        "MAP@10": 0.11442
+      },
+      "recall": {
+        "Recall@1": 0.04872,
+        "Recall@5": 0.11657,
+        "Recall@10": 0.15645
+      },
+      "precision": {
+        "P@1": 0.40248,
+        "P@5": 0.30093,
+        "P@10": 0.24613
+      },
+      "projection_stats": {
+        "mean": 0.5608649849891663,
+        "std": 0.0599190853536129,
+        "min": 0.38029640913009644,
+        "max": 0.7298292517662048,
+        "pct_above_0.1": 1.0
+      }
+    }
+  },
+  "rotation_analysis": {
+    "target": "clinical medicine and disease treatment",
+    "data": {
+      "alpha=0.05": {
+        "mean_jaccard@10": 0.9214748100197017,
+        "mean_new_docs": 0.43962848297213625,
+        "mean_sim_shift": 0.009368810915725518,
+        "pct_queries_with_change": 0.3931888544891641
+      },
+      "alpha=0.1": {
+        "mean_jaccard@10": 0.8462105489969268,
+        "mean_new_docs": 0.8854489164086687,
+        "mean_sim_shift": 0.01791660686026417,
+        "pct_queries_with_change": 0.6687306501547987
+      },
+      "alpha=0.15": {
+        "mean_jaccard@10": 0.7756080348959608,
+        "mean_new_docs": 1.3436532507739938,
+        "mean_sim_shift": 0.025463998317718506,
+        "pct_queries_with_change": 0.8111455108359134
+      },
+      "alpha=0.2": {
+        "mean_jaccard@10": 0.7076635954344933,
+        "mean_new_docs": 1.826625386996904,
+        "mean_sim_shift": 0.031832151331768685,
+        "pct_queries_with_change": 0.8823529411764706
+      },
+      "alpha=0.3": {
+        "mean_jaccard@10": 0.5689961104275436,
+        "mean_new_docs": 2.9411764705882355,
+        "mean_sim_shift": 0.04041717598681849,
+        "pct_queries_with_change": 0.9628482972136223
+      },
+      "alpha=0.4": {
+        "mean_jaccard@10": 0.41776180582265177,
+        "mean_new_docs": 4.38390092879257,
+        "mean_sim_shift": 0.04303994420512172,
+        "pct_queries_with_change": 0.9907120743034056
+      },
+      "alpha=0.5": {
+        "mean_jaccard@10": 0.26188965683976656,
+        "mean_new_docs": 6.136222910216718,
+        "mean_sim_shift": 0.040315393988193005,
+        "pct_queries_with_change": 1.0
+      }
+    }
+  },
+  "rotation_ndcg": {
+    "alpha=0.05": {
+      "ndcg@10": 0.33739,
+      "recall@10": 0.16121
+    },
+    "alpha=0.1": {
+      "ndcg@10": 0.3359,
+      "recall@10": 0.1613
+    },
+    "alpha=0.15": {
+      "ndcg@10": 0.3354,
+      "recall@10": 0.16127
+    },
+    "alpha=0.2": {
+      "ndcg@10": 0.33232,
+      "recall@10": 0.15893
+    },
+    "alpha=0.3": {
+      "ndcg@10": 0.31747,
+      "recall@10": 0.15305
+    },
+    "alpha=0.4": {
+      "ndcg@10": 0.29229,
+      "recall@10": 0.13717
+    },
+    "alpha=0.5": {
+      "ndcg@10": 0.24232,
+      "recall@10": 0.11375
+    }
+  }
+}

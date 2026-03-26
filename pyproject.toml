@@ -1,0 +1,15 @@
+[project]
+name = "a2rag"
+version = "0.1.0"
+description = "Algebraic Retrieval for RAG — embedding rotation and orthogonal concept exclusion"
+requires-python = ">=3.10"
+dependencies = ["numpy>=1.24"]
+license = {text = "MIT"}
+authors = [{name = "Renato Aparecido Gomes", email = "renatoapgomes@gmail.com"}]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[build-system]
+requires = ["setuptools>=65.0"]
+build-backend = "setuptools.build_meta"

@@ -1,0 +1,982 @@
+{
+  "scifact": {
+    "dataset": "scifact",
+    "num_queries": 300,
+    "num_docs": 5183,
+    "model": "BAAI/bge-small-en-v1.5",
+    "baseline": {
+      "ndcg": {
+        "NDCG@1": 0.60333,
+        "NDCG@5": 0.69221,
+        "NDCG@10": 0.72
+      },
+      "map": {
+        "MAP@1": 0.57872,
+        "MAP@5": 0.66291,
+        "MAP@10": 0.67636
+      },
+      "recall": {
+        "Recall@1": 0.57872,
+        "Recall@5": 0.76528,
+        "Recall@10": 0.84522
+      },
+      "precision": {
+        "P@1": 0.60333,
+        "P@5": 0.17,
+        "P@10": 0.09533
+      }
+    },
+    "prf": {
+      "ndcg": {
+        "NDCG@1": 0.59,
+        "NDCG@5": 0.69095,
+        "NDCG@10": 0.71232
+      },
+      "map": {
+        "MAP@1": 0.56539,
+        "MAP@5": 0.65769,
+        "MAP@10": 0.6683
+      },
+      "recall": {
+        "Recall@1": 0.56539,
+        "Recall@5": 0.77861,
+        "Recall@10": 0.83922
+      },
+      "precision": {
+        "P@1": 0.59,
+        "P@5": 0.174,
+        "P@10": 0.095
+      }
+    },
+    "subtraction": {
+      "methodology and statistical analysis": {
+        "ndcg": {
+          "NDCG@1": 0.58667,
+          "NDCG@5": 0.66148,
+          "NDCG@10": 0.68821
+        },
+        "map": {
+          "MAP@1": 0.55928,
+          "MAP@5": 0.63294,
+          "MAP@10": 0.64535
+        },
+        "recall": {
+          "Recall@1": 0.55928,
+          "Recall@5": 0.7325,
+          "Recall@10": 0.81111
+        },
+        "precision": {
+          "P@1": 0.58667,
+          "P@5": 0.164,
+          "P@10": 0.09133
+        },
+        "projection_stats": {
+          "mean": 0.5078262090682983,
+          "std": 0.03749549761414528,
+          "min": 0.397214412689209,
+          "max": 0.6681948900222778,
+          "pct_above_0.1": 1.0
+        }
+      },
+      "animal model studies": {
+        "ndcg": {
+          "NDCG@1": 0.56333,
+          "NDCG@5": 0.64981,
+          "NDCG@10": 0.67735
+        },
+        "map": {
+          "MAP@1": 0.53483,
+          "MAP@5": 0.61808,
+          "MAP@10": 0.63095
+        },
+        "recall": {
+          "Recall@1": 0.53483,
+          "Recall@5": 0.72694,
+          "Recall@10": 0.809
+        },
+        "precision": {
+          "P@1": 0.56333,
+          "P@5": 0.16267,
+          "P@10": 0.09133
+        },
+        "projection_stats": {
+          "mean": 0.5704309344291687,
+          "std": 0.04403822124004364,
+          "min": 0.39058709144592285,
+          "max": 0.7412415146827698,
+          "pct_above_0.1": 1.0
+        }
+      },
+      "genetic analysis": {
+        "ndcg": {
+          "NDCG@1": 0.57333,
+          "NDCG@5": 0.65575,
+          "NDCG@10": 0.67082
+        },
+        "map": {
+          "MAP@1": 0.54817,
+          "MAP@5": 0.62605,
+          "MAP@10": 0.63386
+        },
+        "recall": {
+          "Recall@1": 0.54817,
+          "Recall@5": 0.72906,
+          "Recall@10": 0.77211
+        },
+        "precision": {
+          "P@1": 0.57333,
+          "P@5": 0.16133,
+          "P@10": 0.08667
+        },
+        "projection_stats": {
+          "mean": 0.5267184376716614,
+          "std": 0.057512328028678894,
+          "min": 0.339826375246048,
+          "max": 0.7102352380752563,
+          "pct_above_0.1": 1.0
+        }
+      },
+      "clinical trials": {
+        "ndcg": {
+          "NDCG@1": 0.55667,
+          "NDCG@5": 0.65295,
+          "NDCG@10": 0.6816
+        },
+        "map": {
+          "MAP@1": 0.5315,
+          "MAP@5": 0.61865,
+          "MAP@10": 0.63263
+        },
+        "recall": {
+          "Recall@1": 0.5315,
+          "Recall@5": 0.73678,
+          "Recall@10": 0.82022
+        },
+        "precision": {
+          "P@1": 0.55667,
+          "P@5": 0.164,
+          "P@10": 0.09267
+        },
+        "projection_stats": {
+          "mean": 0.5548295378684998,
+          "std": 0.042121972888708115,
+          "min": 0.4165486693382263,
+          "max": 0.6737840175628662,
+          "pct_above_0.1": 1.0
+        }
+      }
+    },
+    "rotation_analysis": {
+      "target": "clinical medicine and patient outcomes",
+      "data": {
+        "alpha=0.05": {
+          "mean_jaccard@10": 0.9213908313908314,
+          "mean_new_docs": 0.44,
+          "mean_sim_shift": 0.006787221769491836,
+          "pct_queries_with_change": 0.39666666666666667
+        },
+        "alpha=0.1": {
+          "mean_jaccard@10": 0.8520590520590521,
+          "mean_new_docs": 0.8466666666666667,
+          "mean_sim_shift": 0.012538481970628106,
+          "pct_queries_with_change": 0.6666666666666666
+        },
+        "alpha=0.15": {
+          "mean_jaccard@10": 0.7816661116661118,
+          "mean_new_docs": 1.3,
+          "mean_sim_shift": 0.017094203730424248,
+          "pct_queries_with_change": 0.8166666666666667
+        },
+        "alpha=0.2": {
+          "mean_jaccard@10": 0.7102772227772228,
+          "mean_new_docs": 1.8,
+          "mean_sim_shift": 0.020293226540088652,
+          "pct_queries_with_change": 0.9
+        },
+        "alpha=0.3": {
+          "mean_jaccard@10": 0.5605175706646295,
+          "mean_new_docs": 2.98,
+          "mean_sim_shift": 0.02212425392866135,
+          "pct_queries_with_change": 0.9566666666666667
+        },
+        "alpha=0.4": {
+          "mean_jaccard@10": 0.40590606532557,
+          "mean_new_docs": 4.453333333333333,
+          "mean_sim_shift": 0.017712240060170494,
+          "pct_queries_with_change": 0.99
+        },
+        "alpha=0.5": {
+          "mean_jaccard@10": 0.22189983792150975,
+          "mean_new_docs": 6.59,
+          "mean_sim_shift": 0.008890674054622653,
+          "pct_queries_with_change": 1.0
+        }
+      }
+    },
+    "rotation_ndcg": {
+      "alpha=0.05": {
+        "ndcg@10": 0.71763,
+        "recall@10": 0.84356
+      },
+      "alpha=0.1": {
+        "ndcg@10": 0.71221,
+        "recall@10": 0.83689
+      },
+      "alpha=0.15": {
+        "ndcg@10": 0.70468,
+        "recall@10": 0.81856
+      },
+      "alpha=0.2": {
+        "ndcg@10": 0.69391,
+        "recall@10": 0.81289
+      },
+      "alpha=0.3": {
+        "ndcg@10": 0.67743,
+        "recall@10": 0.79456
+      },
+      "alpha=0.4": {
+        "ndcg@10": 0.6285,
+        "recall@10": 0.74622
+      },
+      "alpha=0.5": {
+        "ndcg@10": 0.5226,
+        "recall@10": 0.60278
+      }
+    }
+  },
+  "fiqa": {
+    "dataset": "fiqa",
+    "num_queries": 648,
+    "num_docs": 57638,
+    "model": "BAAI/bge-small-en-v1.5",
+    "baseline": {
+      "ndcg": {
+        "NDCG@1": 0.38426,
+        "NDCG@5": 0.36374,
+        "NDCG@10": 0.38483
+      },
+      "map": {
+        "MAP@1": 0.19798,
+        "MAP@5": 0.29746,
+        "MAP@10": 0.31328
+      },
+      "recall": {
+        "Recall@1": 0.19798,
+        "Recall@5": 0.37087,
+        "Recall@10": 0.43963
+      },
+      "precision": {
+        "P@1": 0.38426,
+        "P@5": 0.17407,
+        "P@10": 0.10525
+      }
+    },
+    "prf": {
+      "ndcg": {
+        "NDCG@1": 0.37346,
+        "NDCG@5": 0.35336,
+        "NDCG@10": 0.37601
+      },
+      "map": {
+        "MAP@1": 0.18643,
+        "MAP@5": 0.28958,
+        "MAP@10": 0.3069
+      },
+      "recall": {
+        "Recall@1": 0.18643,
+        "Recall@5": 0.3595,
+        "Recall@10": 0.4316
+      },
+      "precision": {
+        "P@1": 0.37346,
+        "P@5": 0.16944,
+        "P@10": 0.10448
+      }
+    },
+    "subtraction": {
+      "cryptocurrency": {
+        "ndcg": {
+          "NDCG@1": 0.34722,
+          "NDCG@5": 0.32838,
+          "NDCG@10": 0.35261
+        },
+        "map": {
+          "MAP@1": 0.17709,
+          "MAP@5": 0.26556,
+          "MAP@10": 0.28214
+        },
+        "recall": {
+          "Recall@1": 0.17709,
+          "Recall@5": 0.33851,
+          "Recall@10": 0.41387
+        },
+        "precision": {
+          "P@1": 0.34722,
+          "P@5": 0.15525,
+          "P@10": 0.09707
+        },
+        "projection_stats": {
+          "mean": 0.5110540986061096,
+          "std": 0.05103980377316475,
+          "min": 0.37668710947036743,
+          "max": 0.6826459169387817,
+          "pct_above_0.1": 1.0
+        }
+      },
+      "real estate investment": {
+        "ndcg": {
+          "NDCG@1": 0.31327,
+          "NDCG@5": 0.3101,
+          "NDCG@10": 0.32847
+        },
+        "map": {
+          "MAP@1": 0.16117,
+          "MAP@5": 0.24666,
+          "MAP@10": 0.25973
+        },
+        "recall": {
+          "Recall@1": 0.16117,
+          "Recall@5": 0.32741,
+          "Recall@10": 0.38416
+        },
+        "precision": {
+          "P@1": 0.31327,
+          "P@5": 0.14938,
+          "P@10": 0.09151
+        },
+        "projection_stats": {
+          "mean": 0.5743030905723572,
+          "std": 0.06260765343904495,
+          "min": 0.4047193229198456,
+          "max": 0.7777122259140015,
+          "pct_above_0.1": 1.0
+        }
+      },
+      "retirement planning": {
+        "ndcg": {
+          "NDCG@1": 0.3287,
+          "NDCG@5": 0.31481,
+          "NDCG@10": 0.3356
+        },
+        "map": {
+          "MAP@1": 0.16783,
+          "MAP@5": 0.25385,
+          "MAP@10": 0.26823
+        },
+        "recall": {
+          "Recall@1": 0.16783,
+          "Recall@5": 0.32495,
+          "Recall@10": 0.38744
+        },
+        "precision": {
+          "P@1": 0.3287,
+          "P@5": 0.14846,
+          "P@10": 0.09275
+        },
+        "projection_stats": {
+          "mean": 0.5675448179244995,
+          "std": 0.0677594467997551,
+          "min": 0.38190358877182007,
+          "max": 0.7982441782951355,
+          "pct_above_0.1": 1.0
+        }
+      },
+      "tax optimization": {
+        "ndcg": {
+          "NDCG@1": 0.35031,
+          "NDCG@5": 0.32835,
+          "NDCG@10": 0.3489
+        },
+        "map": {
+          "MAP@1": 0.17721,
+          "MAP@5": 0.26565,
+          "MAP@10": 0.28036
+        },
+        "recall": {
+          "Recall@1": 0.17721,
+          "Recall@5": 0.3371,
+          "Recall@10": 0.40245
+        },
+        "precision": {
+          "P@1": 0.35031,
+          "P@5": 0.15556,
+          "P@10": 0.09645
+        },
+        "projection_stats": {
+          "mean": 0.5739750862121582,
+          "std": 0.05955609306693077,
+          "min": 0.39972472190856934,
+          "max": 0.7460445761680603,
+          "pct_above_0.1": 1.0
+        }
+      }
+    },
+    "rotation_analysis": {
+      "target": "macroeconomics and monetary policy",
+      "data": {
+        "alpha=0.05": {
+          "mean_jaccard@10": 0.8990726351837464,
+          "mean_new_docs": 0.5648148148148148,
+          "mean_sim_shift": 0.00681693289934853,
+          "pct_queries_with_change": 0.5077160493827161
+        },
+        "alpha=0.1": {
+          "mean_jaccard@10": 0.8131236047902717,
+          "mean_new_docs": 1.0833333333333333,
+          "mean_sim_shift": 0.012603293267297155,
+          "pct_queries_with_change": 0.7808641975308642
+        },
+        "alpha=0.15": {
+          "mean_jaccard@10": 0.7289411976911978,
+          "mean_new_docs": 1.6496913580246915,
+          "mean_sim_shift": 0.01719186458690667,
+          "pct_queries_with_change": 0.8996913580246914
+        },
+        "alpha=0.2": {
+          "mean_jaccard@10": 0.6325485214374104,
+          "mean_new_docs": 2.365740740740741,
+          "mean_sim_shift": 0.020487250424461603,
+          "pct_queries_with_change": 0.9645061728395061
+        },
+        "alpha=0.3": {
+          "mean_jaccard@10": 0.44376517267742466,
+          "mean_new_docs": 4.032407407407407,
+          "mean_sim_shift": 0.022957173596929625,
+          "pct_queries_with_change": 0.9969135802469136
+        },
+        "alpha=0.4": {
+          "mean_jaccard@10": 0.24859531964508455,
+          "mean_new_docs": 6.217592592592593,
+          "mean_sim_shift": 0.020758283874134965,
+          "pct_queries_with_change": 1.0
+        },
+        "alpha=0.5": {
+          "mean_jaccard@10": 0.07682306815863749,
+          "mean_new_docs": 8.669753086419753,
+          "mean_sim_shift": 0.01838149843208584,
+          "pct_queries_with_change": 1.0
+        }
+      }
+    },
+    "rotation_ndcg": {
+      "alpha=0.05": {
+        "ndcg@10": 0.38432,
+        "recall@10": 0.43659
+      },
+      "alpha=0.1": {
+        "ndcg@10": 0.38123,
+        "recall@10": 0.43526
+      },
+      "alpha=0.15": {
+        "ndcg@10": 0.37445,
+        "recall@10": 0.43262
+      },
+      "alpha=0.2": {
+        "ndcg@10": 0.36389,
+        "recall@10": 0.42383
+      },
+      "alpha=0.3": {
+        "ndcg@10": 0.32708,
+        "recall@10": 0.39145
+      },
+      "alpha=0.4": {
+        "ndcg@10": 0.25181,
+        "recall@10": 0.3024
+      },
+      "alpha=0.5": {
+        "ndcg@10": 0.10867,
+        "recall@10": 0.14728
+      }
+    }
+  },
+  "nfcorpus": {
+    "dataset": "nfcorpus",
+    "num_queries": 323,
+    "num_docs": 3633,
+    "model": "BAAI/bge-small-en-v1.5",
+    "baseline": {
+      "ndcg": {
+        "NDCG@1": 0.41796,
+        "NDCG@5": 0.37242,
+        "NDCG@10": 0.33708
+      },
+      "map": {
+        "MAP@1": 0.05749,
+        "MAP@5": 0.10686,
+        "MAP@10": 0.12356
+      },
+      "recall": {
+        "Recall@1": 0.05749,
+        "Recall@5": 0.12795,
+        "Recall@10": 0.15822
+      },
+      "precision": {
+        "P@1": 0.43034,
+        "P@5": 0.32384,
+        "P@10": 0.25046
+      }
+    },
+    "prf": {
+      "ndcg": {
+        "NDCG@1": 0.41022,
+        "NDCG@5": 0.37852,
+        "NDCG@10": 0.3477
+      },
+      "map": {
+        "MAP@1": 0.05244,
+        "MAP@5": 0.10722,
+        "MAP@10": 0.1266
+      },
+      "recall": {
+        "Recall@1": 0.05244,
+        "Recall@5": 0.13,
+        "Recall@10": 0.16377
+      },
+      "precision": {
+        "P@1": 0.42105,
+        "P@5": 0.33622,
+        "P@10": 0.26811
+      }
+    },
+    "subtraction": {
+      "dietary supplements": {
+        "ndcg": {
+          "NDCG@1": 0.40093,
+          "NDCG@5": 0.33578,
+          "NDCG@10": 0.30912
+        },
+        "map": {
+          "MAP@1": 0.0483,
+          "MAP@5": 0.09218,
+          "MAP@10": 0.10924
+        },
+        "recall": {
+          "Recall@1": 0.0483,
+          "Recall@5": 0.11434,
+          "Recall@10": 0.14655
+        },
+        "precision": {
+          "P@1": 0.41796,
+          "P@5": 0.29288,
+          "P@10": 0.23498
+        },
+        "projection_stats": {
+          "mean": 0.5941793322563171,
+          "std": 0.06915083527565002,
+          "min": 0.4070571959018707,
+          "max": 0.7891755700111389,
+          "pct_above_0.1": 1.0
+        }
+      },
+      "weight loss and obesity": {
+        "ndcg": {
+          "NDCG@1": 0.39474,
+          "NDCG@5": 0.33915,
+          "NDCG@10": 0.31738
+        },
+        "map": {
+          "MAP@1": 0.04705,
+          "MAP@5": 0.09403,
+          "MAP@10": 0.11221
+        },
+        "recall": {
+          "Recall@1": 0.04705,
+          "Recall@5": 0.11601,
+          "Recall@10": 0.16028
+        },
+        "precision": {
+          "P@1": 0.41176,
+          "P@5": 0.29536,
+          "P@10": 0.23839
+        },
+        "projection_stats": {
+          "mean": 0.5595159530639648,
+          "std": 0.06397896260023117,
+          "min": 0.402962327003479,
+          "max": 0.7475367784500122,
+          "pct_above_0.1": 1.0
+        }
+      },
+      "cancer treatment": {
+        "ndcg": {
+          "NDCG@1": 0.39164,
+          "NDCG@5": 0.3506,
+          "NDCG@10": 0.31844
+        },
+        "map": {
+          "MAP@1": 0.04644,
+          "MAP@5": 0.09307,
+          "MAP@10": 0.10925
+        },
+        "recall": {
+          "Recall@1": 0.04644,
+          "Recall@5": 0.11503,
+          "Recall@10": 0.15006
+        },
+        "precision": {
+          "P@1": 0.40248,
+          "P@5": 0.3096,
+          "P@10": 0.23839
+        },
+        "projection_stats": {
+          "mean": 0.5427556037902832,
+          "std": 0.057099923491477966,
+          "min": 0.37486255168914795,
+          "max": 0.7924853563308716,
+          "pct_above_0.1": 1.0
+        }
+      },
+      "pediatric nutrition": {
+        "ndcg": {
+          "NDCG@1": 0.38545,
+          "NDCG@5": 0.34145,
+          "NDCG@10": 0.31912
+        },
+        "map": {
+          "MAP@1": 0.04872,
+          "MAP@5": 0.09495,
+          "MAP@10": 0.11442
+        },
+        "recall": {
+          "Recall@1": 0.04872,
+          "Recall@5": 0.11657,
+          "Recall@10": 0.15645
+        },
+        "precision": {
+          "P@1": 0.40248,
+          "P@5": 0.30093,
+          "P@10": 0.24613
+        },
+        "projection_stats": {
+          "mean": 0.5608649849891663,
+          "std": 0.0599190853536129,
+          "min": 0.38029640913009644,
+          "max": 0.7298292517662048,
+          "pct_above_0.1": 1.0
+        }
+      }
+    },
+    "rotation_analysis": {
+      "target": "clinical medicine and disease treatment",
+      "data": {
+        "alpha=0.05": {
+          "mean_jaccard@10": 0.9214748100197017,
+          "mean_new_docs": 0.43962848297213625,
+          "mean_sim_shift": 0.009368810915725518,
+          "pct_queries_with_change": 0.3931888544891641
+        },
+        "alpha=0.1": {
+          "mean_jaccard@10": 0.8462105489969268,
+          "mean_new_docs": 0.8854489164086687,
+          "mean_sim_shift": 0.01791660686026417,
+          "pct_queries_with_change": 0.6687306501547987
+        },
+        "alpha=0.15": {
+          "mean_jaccard@10": 0.7756080348959608,
+          "mean_new_docs": 1.3436532507739938,
+          "mean_sim_shift": 0.025463998317718506,
+          "pct_queries_with_change": 0.8111455108359134
+        },
+        "alpha=0.2": {
+          "mean_jaccard@10": 0.7076635954344933,
+          "mean_new_docs": 1.826625386996904,
+          "mean_sim_shift": 0.031832151331768685,
+          "pct_queries_with_change": 0.8823529411764706
+        },
+        "alpha=0.3": {
+          "mean_jaccard@10": 0.5689961104275436,
+          "mean_new_docs": 2.9411764705882355,
+          "mean_sim_shift": 0.04041717598681849,
+          "pct_queries_with_change": 0.9628482972136223
+        },
+        "alpha=0.4": {
+          "mean_jaccard@10": 0.41776180582265177,
+          "mean_new_docs": 4.38390092879257,
+          "mean_sim_shift": 0.04303994420512172,
+          "pct_queries_with_change": 0.9907120743034056
+        },
+        "alpha=0.5": {
+          "mean_jaccard@10": 0.26188965683976656,
+          "mean_new_docs": 6.136222910216718,
+          "mean_sim_shift": 0.040315393988193005,
+          "pct_queries_with_change": 1.0
+        }
+      }
+    },
+    "rotation_ndcg": {
+      "alpha=0.05": {
+        "ndcg@10": 0.33739,
+        "recall@10": 0.16121
+      },
+      "alpha=0.1": {
+        "ndcg@10": 0.3359,
+        "recall@10": 0.1613
+      },
+      "alpha=0.15": {
+        "ndcg@10": 0.3354,
+        "recall@10": 0.16127
+      },
+      "alpha=0.2": {
+        "ndcg@10": 0.33232,
+        "recall@10": 0.15893
+      },
+      "alpha=0.3": {
+        "ndcg@10": 0.31747,
+        "recall@10": 0.15305
+      },
+      "alpha=0.4": {
+        "ndcg@10": 0.29229,
+        "recall@10": 0.13717
+      },
+      "alpha=0.5": {
+        "ndcg@10": 0.24232,
+        "recall@10": 0.11375
+      }
+    }
+  },
+  "arguana": {
+    "dataset": "arguana",
+    "num_queries": 1406,
+    "num_docs": 8674,
+    "model": "BAAI/bge-small-en-v1.5",
+    "baseline": {
+      "ndcg": {
+        "NDCG@1": 0.35775,
+        "NDCG@5": 0.55176,
+        "NDCG@10": 0.59499
+      },
+      "map": {
+        "MAP@1": 0.35775,
+        "MAP@5": 0.49513,
+        "MAP@10": 0.51322
+      },
+      "recall": {
+        "Recall@1": 0.35775,
+        "Recall@5": 0.72191,
+        "Recall@10": 0.8542
+      },
+      "precision": {
+        "P@1": 0.35775,
+        "P@5": 0.14438,
+        "P@10": 0.08542
+      }
+    },
+    "prf": {
+      "ndcg": {
+        "NDCG@1": 0.37269,
+        "NDCG@5": 0.55923,
+        "NDCG@10": 0.60213
+      },
+      "map": {
+        "MAP@1": 0.37269,
+        "MAP@5": 0.50365,
+        "MAP@10": 0.52155
+      },
+      "recall": {
+        "Recall@1": 0.37269,
+        "Recall@5": 0.72688,
+        "Recall@10": 0.85846
+      },
+      "precision": {
+        "P@1": 0.37269,
+        "P@5": 0.14538,
+        "P@10": 0.08585
+      }
+    },
+    "subtraction": {
+      "economic arguments": {
+        "ndcg": {
+          "NDCG@1": 0.28947,
+          "NDCG@5": 0.49535,
+          "NDCG@10": 0.54234
+        },
+        "map": {
+          "MAP@1": 0.28947,
+          "MAP@5": 0.43468,
+          "MAP@10": 0.45399
+        },
+        "recall": {
+          "Recall@1": 0.28947,
+          "Recall@5": 0.67781,
+          "Recall@10": 0.82361
+        },
+        "precision": {
+          "P@1": 0.28947,
+          "P@5": 0.13556,
+          "P@10": 0.08236
+        },
+        "projection_stats": {
+          "mean": 0.5456405878067017,
+          "std": 0.048211719840765,
+          "min": 0.4100239872932434,
+          "max": 0.710954487323761,
+          "pct_above_0.1": 1.0
+        }
+      },
+      "moral and ethical reasoning": {
+        "ndcg": {
+          "NDCG@1": 0.3165,
+          "NDCG@5": 0.51216,
+          "NDCG@10": 0.55653
+        },
+        "map": {
+          "MAP@1": 0.3165,
+          "MAP@5": 0.45171,
+          "MAP@10": 0.47001
+        },
+        "recall": {
+          "Recall@1": 0.3165,
+          "Recall@5": 0.69559,
+          "Recall@10": 0.83286
+        },
+        "precision": {
+          "P@1": 0.3165,
+          "P@5": 0.13912,
+          "P@10": 0.08329
+        },
+        "projection_stats": {
+          "mean": 0.470473051071167,
+          "std": 0.060979269444942474,
+          "min": 0.2877316176891327,
+          "max": 0.6878763437271118,
+          "pct_above_0.1": 1.0
+        }
+      },
+      "legal precedent": {
+        "ndcg": {
+          "NDCG@1": 0.31366,
+          "NDCG@5": 0.51535,
+          "NDCG@10": 0.55947
+        },
+        "map": {
+          "MAP@1": 0.31366,
+          "MAP@5": 0.45548,
+          "MAP@10": 0.47408
+        },
+        "recall": {
+          "Recall@1": 0.31366,
+          "Recall@5": 0.69559,
+          "Recall@10": 0.83001
+        },
+        "precision": {
+          "P@1": 0.31366,
+          "P@5": 0.13912,
+          "P@10": 0.083
+        },
+        "projection_stats": {
+          "mean": 0.5169638395309448,
+          "std": 0.05293915048241615,
+          "min": 0.34623944759368896,
+          "max": 0.7030519843101501,
+          "pct_above_0.1": 1.0
+        }
+      },
+      "environmental impact": {
+        "ndcg": {
+          "NDCG@1": 0.33144,
+          "NDCG@5": 0.53237,
+          "NDCG@10": 0.5778
+        },
+        "map": {
+          "MAP@1": 0.33144,
+          "MAP@5": 0.47335,
+          "MAP@10": 0.49244
+        },
+        "recall": {
+          "Recall@1": 0.33144,
+          "Recall@5": 0.70982,
+          "Recall@10": 0.84851
+        },
+        "precision": {
+          "P@1": 0.33144,
+          "P@5": 0.14196,
+          "P@10": 0.08485
+        },
+        "projection_stats": {
+          "mean": 0.47500571608543396,
+          "std": 0.04636825993657112,
+          "min": 0.3563116490840912,
+          "max": 0.7063198089599609,
+          "pct_above_0.1": 1.0
+        }
+      }
+    },
+    "rotation_analysis": {
+      "target": "legal reasoning and jurisprudence",
+      "data": {
+        "alpha=0.05": {
+          "mean_jaccard@10": 0.8098092045460467,
+          "mean_new_docs": 1.066145092460882,
+          "mean_sim_shift": 0.02403131900606929,
+          "pct_queries_with_change": 0.9509246088193457
+        },
+        "alpha=0.1": {
+          "mean_jaccard@10": 0.7734006155058787,
+          "mean_new_docs": 1.3108108108108107,
+          "mean_sim_shift": 0.02737227978017897,
+          "pct_queries_with_change": 0.965149359886202
+        },
+        "alpha=0.15": {
+          "mean_jaccard@10": 0.7245385008542904,
+          "mean_new_docs": 1.6557610241820768,
+          "mean_sim_shift": 0.029152392739082975,
+          "pct_queries_with_change": 0.9751066856330014
+        },
+        "alpha=0.2": {
+          "mean_jaccard@10": 0.6724955204057371,
+          "mean_new_docs": 2.0440967283072546,
+          "mean_sim_shift": 0.02917779628531862,
+          "pct_queries_with_change": 0.984352773826458
+        },
+        "alpha=0.3": {
+          "mean_jaccard@10": 0.5355975508533762,
+          "mean_new_docs": 3.189189189189189,
+          "mean_sim_shift": 0.023448429800368643,
+          "pct_queries_with_change": 0.9921763869132291
+        },
+        "alpha=0.4": {
+          "mean_jaccard@10": 0.3818234700995007,
+          "mean_new_docs": 4.7105263157894735,
+          "mean_sim_shift": 0.010057945513453966,
+          "pct_queries_with_change": 0.9978662873399715
+        },
+        "alpha=0.5": {
+          "mean_jaccard@10": 0.20869856713917329,
+          "mean_new_docs": 6.7980085348506405,
+          "mean_sim_shift": -0.00880954811617117,
+          "pct_queries_with_change": 1.0
+        }
+      }
+    },
+    "rotation_ndcg": {
+      "alpha=0.05": {
+        "ndcg@10": 0.59334,
+        "recall@10": 0.85206
+      },
+      "alpha=0.1": {
+        "ndcg@10": 0.59129,
+        "recall@10": 0.84424
+      },
+      "alpha=0.15": {
+        "ndcg@10": 0.58815,
+        "recall@10": 0.83926
+      },
+      "alpha=0.2": {
+        "ndcg@10": 0.57566,
+        "recall@10": 0.82006
+      },
+      "alpha=0.3": {
+        "ndcg@10": 0.54482,
+        "recall@10": 0.78094
+      },
+      "alpha=0.4": {
+        "ndcg@10": 0.473,
+        "recall@10": 0.70057
+      },
+      "alpha=0.5": {
+        "ndcg@10": 0.31663,
+        "recall@10": 0.50213
+      }
+    }
+  }
+}
