@@ -1,0 +1,36 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+
+======================================================================
+  MODEL: all-MiniLM-L6-v2 (22M, distilled)
+======================================================================
+Loading weights:   0%|          | 0/103 [00:00<?, ?it/s]Loading weights: 100%|██████████| 103/103 [00:00<00:00, 4304.77it/s]
+[1mBertModel LOAD REPORT[0m from: sentence-transformers/all-MiniLM-L6-v2
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+
+  Dataset: scifact
+  0%|          | 0/5183 [00:00<?, ?it/s]100%|██████████| 5183/5183 [00:00<00:00, 171953.72it/s]
+    Baseline: 0.6451 | Rot α=0.1: 0.6478 (+0.0027) | Sub: 0.6488 (+0.0037) | Isotropy: 0.1295
+
+  Dataset: arguana
+  0%|          | 0/8674 [00:00<?, ?it/s]100%|██████████| 8674/8674 [00:00<00:00, 132549.02it/s]
+    Baseline: 0.5017 | Rot α=0.1: 0.5017 (-0.0000) | Sub: 0.4982 (-0.0034) | Isotropy: 0.1282
+
+======================================================================
+  MODEL: BAAI/bge-small-en-v1.5 (33M, contrastive)
+======================================================================
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 5825.50it/s]
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-en-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+
+  Dataset: scifact
+  0%|          | 0/5183 [00:00<?, ?it/s] 92%|█████████▏| 4792/5183 [00:00<00:00, 47717.20it/s]100%|██████████| 5183/5183 [00:00<00:00, 47814.45it/s]

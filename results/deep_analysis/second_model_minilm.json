@@ -1,0 +1,19 @@
+{
+  "model": "all-MiniLM-L6-v2",
+  "results": {
+    "scifact": {
+      "baseline": 0.64508,
+      "rot_a0.1": 0.64776,
+      "rot_a0.2": 0.64981,
+      "rot_a0.3": 0.63946,
+      "subtraction": 0.64875
+    },
+    "arguana": {
+      "baseline": 0.50167,
+      "rot_a0.1": 0.50166,
+      "rot_a0.2": 0.49851,
+      "rot_a0.3": 0.48521,
+      "subtraction": 0.49824
+    }
+  }
+}

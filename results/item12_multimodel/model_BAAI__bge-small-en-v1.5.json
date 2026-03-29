@@ -1,0 +1,23 @@
+{
+  "_model_name": "BAAI/bge-small-en-v1.5",
+  "params_M": 33,
+  "family": "contrastive",
+  "scifact": {
+    "model": "BAAI/bge-small-en-v1.5",
+    "dataset": "scifact",
+    "baseline": {"ndcg@10": 0.7200},
+    "rotation_0.1": {"ndcg@10": 0.7122, "delta": -0.0078, "delta_pct": -1.08},
+    "rotation_0.2": {"ndcg@10": null, "delta": null, "delta_pct": null},
+    "subtraction": {"ndcg@10": 0.6882, "delta": -0.0318, "delta_pct": -4.42},
+    "isotropy": {"mean_cosine": 0.6286}
+  },
+  "arguana": {
+    "model": "BAAI/bge-small-en-v1.5",
+    "dataset": "arguana",
+    "baseline": {"ndcg@10": 0.5950},
+    "rotation_0.1": {"ndcg@10": 0.5913, "delta": -0.0037, "delta_pct": -0.62},
+    "rotation_0.2": {"ndcg@10": null, "delta": null, "delta_pct": null},
+    "subtraction": {"ndcg@10": 0.5423, "delta": -0.0526, "delta_pct": -8.86},
+    "isotropy": {"mean_cosine": 0.5487}
+  }
+}

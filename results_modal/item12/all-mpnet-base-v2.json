@@ -1,0 +1,83 @@
+{
+  "model": "all-mpnet-base-v2",
+  "params_M": 109,
+  "family": "trained-1B-pairs",
+  "scifact": {
+    "model": "all-mpnet-base-v2",
+    "dataset": "scifact",
+    "num_docs": 5183,
+    "num_queries": 300,
+    "embedding_dim": 768,
+    "encode_time_s": 101.1,
+    "isotropy": {
+      "mean_cosine": 0.12790223956108093,
+      "std_cosine": 0.12682820856571198,
+      "median_cosine": 0.1128983348608017
+    },
+    "baseline": {
+      "ndcg@10": 0.6557,
+      "ndcg@5": 0.62803,
+      "map@10": 0.60827,
+      "recall@10": 0.79011
+    },
+    "rotation_0.1": {
+      "ndcg@10": 0.6528,
+      "delta": -0.0029,
+      "delta_pct": -0.44
+    },
+    "rotation_0.2": {
+      "ndcg@10": 0.6528,
+      "delta": -0.0029,
+      "delta_pct": -0.44
+    },
+    "subtraction": {
+      "ndcg@10": 0.65293,
+      "delta": -0.0028,
+      "delta_pct": -0.42
+    },
+    "projection_stats": {
+      "mean": 0.05676029250025749,
+      "std": 0.04253028333187103,
+      "pct_above_0.2": 0.01
+    }
+  },
+  "arguana": {
+    "model": "all-mpnet-base-v2",
+    "dataset": "arguana",
+    "num_docs": 8674,
+    "num_queries": 1406,
+    "embedding_dim": 768,
+    "encode_time_s": 129.6,
+    "isotropy": {
+      "mean_cosine": 0.1531020849943161,
+      "std_cosine": 0.1150854229927063,
+      "median_cosine": 0.13417136669158936
+    },
+    "baseline": {
+      "ndcg@10": 0.46521,
+      "ndcg@5": 0.4012,
+      "map@10": 0.37692,
+      "recall@10": 0.75107
+    },
+    "rotation_0.1": {
+      "ndcg@10": 0.46821,
+      "delta": 0.003,
+      "delta_pct": 0.64
+    },
+    "rotation_0.2": {
+      "ndcg@10": 0.46804,
+      "delta": 0.0028,
+      "delta_pct": 0.61
+    },
+    "subtraction": {
+      "ndcg@10": 0.45929,
+      "delta": -0.0059,
+      "delta_pct": -1.27
+    },
+    "projection_stats": {
+      "mean": 0.20902514457702637,
+      "std": 0.08063910156488419,
+      "pct_above_0.2": 0.5227596017069701
+    }
+  }
+}

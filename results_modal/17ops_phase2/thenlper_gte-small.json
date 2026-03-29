@@ -1,0 +1,181 @@
+{
+  "model": "thenlper/gte-small",
+  "params_M": 33,
+  "family": "general-text",
+  "scifact": {
+    "baseline_ndcg10": 0.72696,
+    "mobius_c0.5": {
+      "ndcg10": 0.71672,
+      "delta": -0.0102,
+      "jaccard": 0.7722821622821624
+    },
+    "mobius_c1.0": {
+      "ndcg10": 0.72685,
+      "delta": -0.0001,
+      "jaccard": 0.9830303030303029
+    },
+    "mobius_c2.0": {
+      "ndcg10": 0.72685,
+      "delta": -0.0001,
+      "jaccard": 0.9830303030303029
+    },
+    "gyroscalar_r0.1": {
+      "ndcg10": 0.69265,
+      "delta": -0.0343,
+      "jaccard": 0.5058927891280832
+    },
+    "gyroscalar_r0.5": {
+      "ndcg10": 0.72232,
+      "delta": -0.0046,
+      "jaccard": 0.7109376734376736
+    },
+    "gyroscalar_r1.0": {
+      "ndcg10": 0.72573,
+      "delta": -0.0012,
+      "jaccard": 0.9890909090909091
+    },
+    "gyroscalar_r2.0": {
+      "ndcg10": 0.71715,
+      "delta": -0.0098,
+      "jaccard": 0.7795071595071597
+    },
+    "wasserstein_w0.3": {
+      "ndcg10": 0.67142,
+      "delta": -0.0555,
+      "jaccard": 0.46465278185866427
+    },
+    "wasserstein_w0.5": {
+      "ndcg10": 0.67996,
+      "delta": -0.047,
+      "jaccard": 0.5102313917019801
+    },
+    "wasserstein_w0.7": {
+      "ndcg10": 0.68565,
+      "delta": -0.0413,
+      "jaccard": 0.5228587411327349
+    },
+    "rotor_a0.1": {
+      "ndcg10": 0.72132,
+      "delta": -0.0056,
+      "jaccard": 0.797927627927628
+    },
+    "rotor_a0.2": {
+      "ndcg10": 0.71676,
+      "delta": -0.0102,
+      "jaccard": 0.6548031217148864
+    },
+    "rotor_a0.3": {
+      "ndcg10": 0.70952,
+      "delta": -0.0174,
+      "jaccard": 0.5366942643413232
+    },
+    "kronecker_r2": {
+      "ndcg10": 0.72985,
+      "delta": 0.0029,
+      "jaccard": 0.9261616161616161
+    },
+    "kronecker_r4": {
+      "ndcg10": 0.72796,
+      "delta": 0.001,
+      "jaccard": 0.937070707070707
+    },
+    "kronecker_r8": {
+      "ndcg10": 0.72298,
+      "delta": -0.004,
+      "jaccard": 0.9247241647241647
+    },
+    "kronecker_r16": {
+      "ndcg10": 0.72226,
+      "delta": -0.0047,
+      "jaccard": 0.9125252525252525
+    }
+  },
+  "arguana": {
+    "baseline_ndcg10": 0.55271,
+    "mobius_c0.5": {
+      "ndcg10": 0.54816,
+      "delta": -0.0046,
+      "jaccard": 0.851739950424161
+    },
+    "mobius_c1.0": {
+      "ndcg10": 0.55407,
+      "delta": 0.0014,
+      "jaccard": 0.9887710677184361
+    },
+    "mobius_c2.0": {
+      "ndcg10": 0.55407,
+      "delta": 0.0014,
+      "jaccard": 0.9895469632311739
+    },
+    "gyroscalar_r0.1": {
+      "ndcg10": 0.48074,
+      "delta": -0.072,
+      "jaccard": 0.6435059213696985
+    },
+    "gyroscalar_r0.5": {
+      "ndcg10": 0.53691,
+      "delta": -0.0158,
+      "jaccard": 0.8154770054924853
+    },
+    "gyroscalar_r1.0": {
+      "ndcg10": 0.55207,
+      "delta": -0.0006,
+      "jaccard": 0.991853097116255
+    },
+    "gyroscalar_r2.0": {
+      "ndcg10": 0.54893,
+      "delta": -0.0038,
+      "jaccard": 0.8653259376943588
+    },
+    "wasserstein_w0.3": {
+      "ndcg10": 0.51323,
+      "delta": -0.0395,
+      "jaccard": 0.6830094810785702
+    },
+    "wasserstein_w0.5": {
+      "ndcg10": 0.51785,
+      "delta": -0.0349,
+      "jaccard": 0.6857354136765902
+    },
+    "wasserstein_w0.7": {
+      "ndcg10": 0.51363,
+      "delta": -0.0391,
+      "jaccard": 0.6657715947271104
+    },
+    "rotor_a0.1": {
+      "ndcg10": 0.53673,
+      "delta": -0.016,
+      "jaccard": 0.840164103321998
+    },
+    "rotor_a0.2": {
+      "ndcg10": 0.51217,
+      "delta": -0.0405,
+      "jaccard": 0.7254231499587537
+    },
+    "rotor_a0.3": {
+      "ndcg10": 0.47157,
+      "delta": -0.0811,
+      "jaccard": 0.6227895474880972
+    },
+    "kronecker_r2": {
+      "ndcg10": 0.55124,
+      "delta": -0.0015,
+      "jaccard": 0.9590930643562222
+    },
+    "kronecker_r4": {
+      "ndcg10": 0.55343,
+      "delta": 0.0007,
+      "jaccard": 0.9560110349584034
+    },
+    "kronecker_r8": {
+      "ndcg10": 0.5554,
+      "delta": 0.0027,
+      "jaccard": 0.953268874321506
+    },
+    "kronecker_r16": {
+      "ndcg10": 0.55232,
+      "delta": -0.0004,
+      "jaccard": 0.9428804955120746
+    }
+  }
+}

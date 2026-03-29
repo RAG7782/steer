@@ -1,0 +1,65 @@
+{
+  "model": "BAAI/bge-small-en-v1.5",
+  "scifact": {
+    "whitened_d384": {
+      "isotropy_before": 0.6290421485900879,
+      "isotropy_after": 0.0018562076147645712,
+      "baseline_before": 0.72,
+      "baseline_after": 0.64073,
+      "rotation_delta_before": -0.0078,
+      "rotation_delta_after": -0.0036
+    },
+    "whitened_d256": {
+      "isotropy_before": 0.6290421485900879,
+      "isotropy_after": 0.0019527593394741416,
+      "baseline_before": 0.72,
+      "baseline_after": 0.65286,
+      "rotation_delta_before": -0.0078,
+      "rotation_delta_after": -0.0039
+    },
+    "whitened_d128": {
+      "isotropy_before": 0.6290421485900879,
+      "isotropy_after": 0.004237346351146698,
+      "baseline_before": 0.72,
+      "baseline_after": 0.6473,
+      "rotation_delta_before": -0.0078,
+      "rotation_delta_after": -0.0061
+    },
+    "original": {
+      "isotropy": 0.6290421485900879,
+      "baseline": 0.72,
+      "rotation_delta": -0.0078
+    }
+  },
+  "arguana": {
+    "whitened_d384": {
+      "isotropy_before": 0.5519019961357117,
+      "isotropy_after": 0.0032756226137280464,
+      "baseline_before": 0.59499,
+      "baseline_after": 0.55885,
+      "rotation_delta_before": -0.0051,
+      "rotation_delta_after": -0.0026
+    },
+    "whitened_d256": {
+      "isotropy_before": 0.5519019961357117,
+      "isotropy_after": 0.0036837055813521147,
+      "baseline_before": 0.59499,
+      "baseline_after": 0.56996,
+      "rotation_delta_before": -0.0051,
+      "rotation_delta_after": -0.0022
+    },
+    "whitened_d128": {
+      "isotropy_before": 0.5519019961357117,
+      "isotropy_after": 0.003908488899469376,
+      "baseline_before": 0.59499,
+      "baseline_after": 0.54714,
+      "rotation_delta_before": -0.0051,
+      "rotation_delta_after": -0.0038
+    },
+    "original": {
+      "isotropy": 0.5519019961357117,
+      "baseline": 0.59499,
+      "rotation_delta": -0.0051
+    }
+  }
+}

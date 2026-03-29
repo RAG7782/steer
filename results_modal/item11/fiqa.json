@@ -1,0 +1,331 @@
+{
+  "dataset": "fiqa",
+  "concepts": {
+    "cryptocurrency": {
+      "projection_distribution": {
+        "mean": 0.5110540986061096,
+        "std": 0.05103980004787445,
+        "min": 0.3766871690750122,
+        "max": 0.6826459169387817,
+        "percentiles": {
+          "p10": 0.4429363012313843,
+          "p25": 0.4767730236053467,
+          "p50": 0.5105749368667603,
+          "p75": 0.5462273955345154,
+          "p90": 0.5751152634620667
+        }
+      },
+      "bins": {
+        "very_low": {
+          "range": [
+            0.0,
+            0.1
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "low": {
+          "range": [
+            0.1,
+            0.2
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "medium": {
+          "range": [
+            0.2,
+            0.3
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "high": {
+          "range": [
+            0.3,
+            0.5
+          ],
+          "n_queries": 255,
+          "base_ndcg_mean": 0.4055810640935897,
+          "sub_ndcg_mean": 0.3788216722023169,
+          "delta_mean": -0.02675939189127274,
+          "delta_std": 0.144603003599914,
+          "t_pvalue": 0.003482184982485355,
+          "pct_improved": 0.16862745098039217,
+          "pct_degraded": 0.30980392156862746,
+          "pct_unchanged": 0.5215686274509804
+        },
+        "very_high": {
+          "range": [
+            0.5,
+            1.0
+          ],
+          "n_queries": 393,
+          "base_ndcg_mean": 0.3713699561754468,
+          "sub_ndcg_mean": 0.3356086463006953,
+          "delta_mean": -0.03576130987475157,
+          "delta_std": 0.17005547459239204,
+          "t_pvalue": 3.855159301297926e-05,
+          "pct_improved": 0.13740458015267176,
+          "pct_degraded": 0.27989821882951654,
+          "pct_unchanged": 0.5826972010178118
+        }
+      }
+    },
+    "real estate investment": {
+      "projection_distribution": {
+        "mean": 0.574303150177002,
+        "std": 0.06260765343904495,
+        "min": 0.40471944212913513,
+        "max": 0.7777122259140015,
+        "percentiles": {
+          "p10": 0.4931284487247467,
+          "p25": 0.5313530564308167,
+          "p50": 0.5752087831497192,
+          "p75": 0.6139559745788574,
+          "p90": 0.6572158336639404
+        }
+      },
+      "bins": {
+        "very_low": {
+          "range": [
+            0.0,
+            0.1
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "low": {
+          "range": [
+            0.1,
+            0.2
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "medium": {
+          "range": [
+            0.2,
+            0.3
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "high": {
+          "range": [
+            0.3,
+            0.5
+          ],
+          "n_queries": 80,
+          "base_ndcg_mean": 0.4895153379702428,
+          "sub_ndcg_mean": 0.44401493401770803,
+          "delta_mean": -0.04550040395253489,
+          "delta_std": 0.12909007156671687,
+          "t_pvalue": 0.002428966119310449,
+          "pct_improved": 0.1,
+          "pct_degraded": 0.3125,
+          "pct_unchanged": 0.5875
+        },
+        "very_high": {
+          "range": [
+            0.5,
+            1.0
+          ],
+          "n_queries": 568,
+          "base_ndcg_mean": 0.370088621625346,
+          "sub_ndcg_mean": 0.3121932272253345,
+          "delta_mean": -0.057895394400011534,
+          "delta_std": 0.17766258503308838,
+          "t_pvalue": 3.988821376773658e-14,
+          "pct_improved": 0.13556338028169015,
+          "pct_degraded": 0.31690140845070425,
+          "pct_unchanged": 0.5475352112676056
+        }
+      }
+    },
+    "retirement planning": {
+      "projection_distribution": {
+        "mean": 0.5675448179244995,
+        "std": 0.0677594542503357,
+        "min": 0.38190358877182007,
+        "max": 0.7982442378997803,
+        "percentiles": {
+          "p10": 0.4820692837238312,
+          "p25": 0.5249249935150146,
+          "p50": 0.5653682947158813,
+          "p75": 0.6102272272109985,
+          "p90": 0.656098484992981
+        }
+      },
+      "bins": {
+        "very_low": {
+          "range": [
+            0.0,
+            0.1
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "low": {
+          "range": [
+            0.1,
+            0.2
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "medium": {
+          "range": [
+            0.2,
+            0.3
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "high": {
+          "range": [
+            0.3,
+            0.5
+          ],
+          "n_queries": 101,
+          "base_ndcg_mean": 0.45321975410427184,
+          "sub_ndcg_mean": 0.42371980390773906,
+          "delta_mean": -0.029499950196532853,
+          "delta_std": 0.17045619312360702,
+          "t_pvalue": 0.08659935105665077,
+          "pct_improved": 0.15841584158415842,
+          "pct_degraded": 0.2871287128712871,
+          "pct_unchanged": 0.5544554455445545
+        },
+        "very_high": {
+          "range": [
+            0.5,
+            1.0
+          ],
+          "n_queries": 547,
+          "base_ndcg_mean": 0.3722054277080155,
+          "sub_ndcg_mean": 0.31932986353575715,
+          "delta_mean": -0.05287556417225843,
+          "delta_std": 0.1975032109023648,
+          "t_pvalue": 7.997380729582514e-10,
+          "pct_improved": 0.13528336380255943,
+          "pct_degraded": 0.33089579524680074,
+          "pct_unchanged": 0.5338208409506399
+        }
+      }
+    },
+    "tax optimization": {
+      "projection_distribution": {
+        "mean": 0.5739750862121582,
+        "std": 0.05955608934164047,
+        "min": 0.3997247815132141,
+        "max": 0.7460446357727051,
+        "percentiles": {
+          "p10": 0.5003284215927124,
+          "p25": 0.5338026881217957,
+          "p50": 0.5729086995124817,
+          "p75": 0.6137390732765198,
+          "p90": 0.6503081321716309
+        }
+      },
+      "bins": {
+        "very_low": {
+          "range": [
+            0.0,
+            0.1
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "low": {
+          "range": [
+            0.1,
+            0.2
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "medium": {
+          "range": [
+            0.2,
+            0.3
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "high": {
+          "range": [
+            0.3,
+            0.5
+          ],
+          "n_queries": 65,
+          "base_ndcg_mean": 0.4448177639004767,
+          "sub_ndcg_mean": 0.42709547208842186,
+          "delta_mean": -0.017722291812054893,
+          "delta_std": 0.108021173646808,
+          "t_pvalue": 0.19403731532617344,
+          "pct_improved": 0.16923076923076924,
+          "pct_degraded": 0.18461538461538463,
+          "pct_unchanged": 0.6461538461538462
+        },
+        "very_high": {
+          "range": [
+            0.5,
+            1.0
+          ],
+          "n_queries": 583,
+          "base_ndcg_mean": 0.3781447846780188,
+          "sub_ndcg_mean": 0.340184842921605,
+          "delta_mean": -0.03795994175641386,
+          "delta_std": 0.1699065403947826,
+          "t_pvalue": 1.0258922897390433e-07,
+          "pct_improved": 0.137221269296741,
+          "pct_degraded": 0.30874785591766724,
+          "pct_unchanged": 0.5540308747855918
+        }
+      }
+    }
+  },
+  "control_orthogonal": [
+    {
+      "trial": 0,
+      "proj_to_centroid": 0.0,
+      "mean_proj_to_queries": 0.0250539667904377,
+      "delta_mean": -0.0005864382550052467,
+      "delta_std": 0.021952230320651196,
+      "pct_changed": 0.06944444444444445
+    },
+    {
+      "trial": 1,
+      "proj_to_centroid": 1.862645149230957e-09,
+      "mean_proj_to_queries": 0.02330669015645981,
+      "delta_mean": -0.0006247381563395488,
+      "delta_std": 0.018090597217303658,
+      "pct_changed": 0.06790123456790123
+    },
+    {
+      "trial": 2,
+      "proj_to_centroid": 1.862645149230957e-09,
+      "mean_proj_to_queries": 0.02483983151614666,
+      "delta_mean": -0.0019397397931603885,
+      "delta_std": 0.026919742718069038,
+      "pct_changed": 0.06790123456790123
+    },
+    {
+      "trial": 3,
+      "proj_to_centroid": 7.450580596923828e-09,
+      "mean_proj_to_queries": 0.02807118557393551,
+      "delta_mean": 0.00012477356602773188,
+      "delta_std": 0.021155726115045244,
+      "pct_changed": 0.07098765432098765
+    },
+    {
+      "trial": 4,
+      "proj_to_centroid": 4.6566128730773926e-09,
+      "mean_proj_to_queries": 0.02799568697810173,
+      "delta_mean": -0.0006974148299961127,
+      "delta_std": 0.02507402812334445,
+      "pct_changed": 0.06635802469135803
+    }
+  ]
+}

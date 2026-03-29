@@ -1,0 +1,331 @@
+{
+  "dataset": "nfcorpus",
+  "concepts": {
+    "dietary supplements": {
+      "projection_distribution": {
+        "mean": 0.5941793918609619,
+        "std": 0.06915083527565002,
+        "min": 0.4070571959018707,
+        "max": 0.7891756892204285,
+        "percentiles": {
+          "p10": 0.5012312531471252,
+          "p25": 0.542266845703125,
+          "p50": 0.5954604744911194,
+          "p75": 0.6382535696029663,
+          "p90": 0.6919775605201721
+        }
+      },
+      "bins": {
+        "very_low": {
+          "range": [
+            0.0,
+            0.1
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "low": {
+          "range": [
+            0.1,
+            0.2
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "medium": {
+          "range": [
+            0.2,
+            0.3
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "high": {
+          "range": [
+            0.3,
+            0.5
+          ],
+          "n_queries": 32,
+          "base_ndcg_mean": 0.22235381693610776,
+          "sub_ndcg_mean": 0.17499412287417213,
+          "delta_mean": -0.0473596940619356,
+          "delta_std": 0.15896100771774538,
+          "t_pvalue": 0.10723781308613495,
+          "pct_improved": 0.0625,
+          "pct_degraded": 0.28125,
+          "pct_unchanged": 0.65625
+        },
+        "very_high": {
+          "range": [
+            0.5,
+            1.0
+          ],
+          "n_queries": 291,
+          "base_ndcg_mean": 0.34970105103349525,
+          "sub_ndcg_mean": 0.3238720579741797,
+          "delta_mean": -0.02582899305931565,
+          "delta_std": 0.11543784374265997,
+          "t_pvalue": 0.00016948979052725717,
+          "pct_improved": 0.21649484536082475,
+          "pct_degraded": 0.4020618556701031,
+          "pct_unchanged": 0.38144329896907214
+        }
+      }
+    },
+    "weight loss and obesity": {
+      "projection_distribution": {
+        "mean": 0.5595160126686096,
+        "std": 0.06397894769906998,
+        "min": 0.40296247601509094,
+        "max": 0.7475368976593018,
+        "percentiles": {
+          "p10": 0.48376888036727905,
+          "p25": 0.5148534178733826,
+          "p50": 0.5520585775375366,
+          "p75": 0.600529670715332,
+          "p90": 0.6475924253463745
+        }
+      },
+      "bins": {
+        "very_low": {
+          "range": [
+            0.0,
+            0.1
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "low": {
+          "range": [
+            0.1,
+            0.2
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "medium": {
+          "range": [
+            0.2,
+            0.3
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "high": {
+          "range": [
+            0.3,
+            0.5
+          ],
+          "n_queries": 66,
+          "base_ndcg_mean": 0.25486828700345776,
+          "sub_ndcg_mean": 0.23213460112955087,
+          "delta_mean": -0.022733685873906926,
+          "delta_std": 0.10849426103827498,
+          "t_pvalue": 0.09594398069721966,
+          "pct_improved": 0.13636363636363635,
+          "pct_degraded": 0.30303030303030304,
+          "pct_unchanged": 0.5606060606060606
+        },
+        "very_high": {
+          "range": [
+            0.5,
+            1.0
+          ],
+          "n_queries": 257,
+          "base_ndcg_mean": 0.35819852548822706,
+          "sub_ndcg_mean": 0.3392684831165692,
+          "delta_mean": -0.018930042371657834,
+          "delta_std": 0.11829836934930432,
+          "t_pvalue": 0.01103252384376376,
+          "pct_improved": 0.2801556420233463,
+          "pct_degraded": 0.38910505836575876,
+          "pct_unchanged": 0.33073929961089493
+        }
+      }
+    },
+    "cancer treatment": {
+      "projection_distribution": {
+        "mean": 0.5427557229995728,
+        "std": 0.05709991231560707,
+        "min": 0.3748626708984375,
+        "max": 0.7924854159355164,
+        "percentiles": {
+          "p10": 0.47380581498146057,
+          "p25": 0.5027945041656494,
+          "p50": 0.5390061140060425,
+          "p75": 0.574504554271698,
+          "p90": 0.614956796169281
+        }
+      },
+      "bins": {
+        "very_low": {
+          "range": [
+            0.0,
+            0.1
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "low": {
+          "range": [
+            0.1,
+            0.2
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "medium": {
+          "range": [
+            0.2,
+            0.3
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "high": {
+          "range": [
+            0.3,
+            0.5
+          ],
+          "n_queries": 74,
+          "base_ndcg_mean": 0.24081117263061871,
+          "sub_ndcg_mean": 0.20791947440333952,
+          "delta_mean": -0.03289169822727915,
+          "delta_std": 0.15590096632469058,
+          "t_pvalue": 0.07557889882446849,
+          "pct_improved": 0.16216216216216217,
+          "pct_degraded": 0.28378378378378377,
+          "pct_unchanged": 0.5540540540540541
+        },
+        "very_high": {
+          "range": [
+            0.5,
+            1.0
+          ],
+          "n_queries": 249,
+          "base_ndcg_mean": 0.3656959888274569,
+          "sub_ndcg_mean": 0.3512871440312135,
+          "delta_mean": -0.014408844796243492,
+          "delta_std": 0.09940751044867822,
+          "t_pvalue": 0.023299191594940503,
+          "pct_improved": 0.26104417670682734,
+          "pct_degraded": 0.357429718875502,
+          "pct_unchanged": 0.3815261044176707
+        }
+      }
+    },
+    "pediatric nutrition": {
+      "projection_distribution": {
+        "mean": 0.560865044593811,
+        "std": 0.0599190853536129,
+        "min": 0.3802964389324188,
+        "max": 0.7298293113708496,
+        "percentiles": {
+          "p10": 0.48487094044685364,
+          "p25": 0.5234588980674744,
+          "p50": 0.5608722567558289,
+          "p75": 0.599536120891571,
+          "p90": 0.6368916034698486
+        }
+      },
+      "bins": {
+        "very_low": {
+          "range": [
+            0.0,
+            0.1
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "low": {
+          "range": [
+            0.1,
+            0.2
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "medium": {
+          "range": [
+            0.2,
+            0.3
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "high": {
+          "range": [
+            0.3,
+            0.5
+          ],
+          "n_queries": 46,
+          "base_ndcg_mean": 0.21593469118286646,
+          "sub_ndcg_mean": 0.16877704676273977,
+          "delta_mean": -0.04715764442012669,
+          "delta_std": 0.07835492733051537,
+          "t_pvalue": 0.0002076600985462025,
+          "pct_improved": 0.021739130434782608,
+          "pct_degraded": 0.41304347826086957,
+          "pct_unchanged": 0.5652173913043478
+        },
+        "very_high": {
+          "range": [
+            0.5,
+            1.0
+          ],
+          "n_queries": 277,
+          "base_ndcg_mean": 0.35720336533678954,
+          "sub_ndcg_mean": 0.3440878083267617,
+          "delta_mean": -0.013115557010027857,
+          "delta_std": 0.11809368924483687,
+          "t_pvalue": 0.06609749634100154,
+          "pct_improved": 0.26353790613718414,
+          "pct_degraded": 0.34657039711191334,
+          "pct_unchanged": 0.3898916967509025
+        }
+      }
+    }
+  },
+  "control_orthogonal": [
+    {
+      "trial": 0,
+      "proj_to_centroid": 0.0,
+      "mean_proj_to_queries": 0.029380539432168007,
+      "delta_mean": 0.000740521994734248,
+      "delta_std": 0.019256391254990204,
+      "pct_changed": 0.1021671826625387
+    },
+    {
+      "trial": 1,
+      "proj_to_centroid": 1.862645149230957e-09,
+      "mean_proj_to_queries": 0.02702784538269043,
+      "delta_mean": 0.0017547019489908724,
+      "delta_std": 0.017023992797812897,
+      "pct_changed": 0.13003095975232198
+    },
+    {
+      "trial": 2,
+      "proj_to_centroid": 7.450580596923828e-09,
+      "mean_proj_to_queries": 0.029274601489305496,
+      "delta_mean": 0.00019414470865695646,
+      "delta_std": 0.01923029034010139,
+      "pct_changed": 0.14241486068111456
+    },
+    {
+      "trial": 3,
+      "proj_to_centroid": 1.862645149230957e-09,
+      "mean_proj_to_queries": 0.028400350362062454,
+      "delta_mean": 0.00021293429069600364,
+      "delta_std": 0.016274940082345195,
+      "pct_changed": 0.10526315789473684
+    },
+    {
+      "trial": 4,
+      "proj_to_centroid": 9.313225746154785e-10,
+      "mean_proj_to_queries": 0.025777826085686684,
+      "delta_mean": -0.0003147376032587755,
+      "delta_std": 0.016961809515380746,
+      "pct_changed": 0.15479876160990713
+    }
+  ]
+}

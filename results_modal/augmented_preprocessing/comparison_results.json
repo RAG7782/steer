@@ -1,0 +1,70 @@
+{
+  "config": {
+    "model": "Qwen/Qwen2.5-7B-Instruct",
+    "eval_model": "BAAI/bge-small-en-v1.5",
+    "n_docs": 100
+  },
+  "similarity": {
+    "augmented_mean": 0.9844464063644409,
+    "augmented_std": 0.008832271210849285,
+    "destructive_mean": 0.8629248142242432,
+    "destructive_std": 0.0398130863904953
+  },
+  "lengths": {
+    "original_mean": 1526.91,
+    "augmented_mean": 2509.62,
+    "destructive_mean": 1475.36,
+    "augmented_ratio": 1.6435939249857554,
+    "destructive_ratio": 0.9662390055733474
+  },
+  "projections": {
+    "methodology": {
+      "original": 0.5231932401657104,
+      "augmented": 0.5310561060905457,
+      "aug_delta_pct": 1.5,
+      "destructive": 0.48738524317741394,
+      "dest_delta_pct": -6.8
+    },
+    "animal_studies": {
+      "original": 0.604088544845581,
+      "augmented": 0.6118314266204834,
+      "aug_delta_pct": 1.3,
+      "destructive": 0.5805990099906921,
+      "dest_delta_pct": -3.9
+    },
+    "genetics": {
+      "original": 0.5536220669746399,
+      "augmented": 0.5629051327705383,
+      "aug_delta_pct": 1.7,
+      "destructive": 0.5195703506469727,
+      "dest_delta_pct": -6.2
+    },
+    "clinical": {
+      "original": 0.5531026721000671,
+      "augmented": 0.561486005783081,
+      "aug_delta_pct": 1.5,
+      "destructive": 0.5227136015892029,
+      "dest_delta_pct": -5.5
+    }
+  },
+  "retrieval": {
+    "baseline": 0.72,
+    "augmented": 0.71878,
+    "aug_delta": -0.0012,
+    "destructive": 0.59298,
+    "dest_delta": -0.127
+  },
+  "rotation_addition_0.1": {
+    "on_baseline": 0.71232,
+    "rot_delta_base": -0.0077,
+    "on_augmented": 0.70926,
+    "rot_delta_aug": -0.0107,
+    "on_destructive": 0.5773,
+    "rot_delta_dest": -0.1427
+  },
+  "isotropy": {
+    "original": 0.6495871543884277,
+    "augmented": 0.6682146191596985,
+    "destructive": 0.6340616941452026
+  }
+}

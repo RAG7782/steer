@@ -1,0 +1,887 @@
+{
+  "9A_drug_repurposing": {
+    "label": "drug_repurposing",
+    "targets": {
+      "alzheimers": {
+        "target": "Alzheimer's disease amyloid beta tau protein neurodegeneration dementia",
+        "alphas": {
+          "alpha=0.1": {
+            "mean_jaccard": 0.8178321678321678,
+            "mean_new_docs": 1.05,
+            "pct_queries_shifted": 0.8,
+            "examples": [
+              {
+                "query": "dopamine receptor agonists for motor symptom treatment",
+                "baseline_titles": [
+                  "Up-regulation of neuronal calcium sensor-1 (NCS-1) in the prefrontal cortex of schizophrenic and bip",
+                  "Varenicline, an alpha4beta2 nicotinic acetylcholine receptor partial agonist, selectively decreases ",
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease"
+                ],
+                "new_titles": [
+                  "Intrahippocampal administration of an androgen receptor antagonist, flutamide, can increase anxiety-",
+                  "Beta-band oscillations--signalling the status quo?",
+                  "Dissociation of \u03b21- and \u03b22-adrenergic receptor subtypes in the retrieval of cocaine-associated memor"
+                ]
+              },
+              {
+                "query": "levodopa therapy and dyskinesia side effects",
+                "baseline_titles": [
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease",
+                  "Immediate effects of droperidol",
+                  "Surgical therapy for dystonia."
+                ],
+                "new_titles": [
+                  "Antidepressant use and risk of adverse outcomes in older people: population based cohort study"
+                ]
+              },
+              {
+                "query": "deep brain stimulation for movement disorders",
+                "baseline_titles": [
+                  "High-performance neuroprosthetic control by an individual with tetraplegia.",
+                  "Registration and real-time visualization of transcranial magnetic stimulation with 3-D MR images",
+                  "Beta-band oscillations--signalling the status quo?"
+                ],
+                "new_titles": [
+                  "A Functional Neuroimaging Study of Sound Localization: Visual Cortex Activity Predicts Performance i",
+                  "Optogenetics reveal delayed afferent synaptogenesis on grafted human-induced pluripotent stem cell-d"
+                ]
+              }
+            ]
+          },
+          "alpha=0.2": {
+            "mean_jaccard": 0.6787712287712288,
+            "mean_new_docs": 2.05,
+            "pct_queries_shifted": 0.85,
+            "examples": [
+              {
+                "query": "dopamine receptor agonists for motor symptom treatment",
+                "baseline_titles": [
+                  "Up-regulation of neuronal calcium sensor-1 (NCS-1) in the prefrontal cortex of schizophrenic and bip",
+                  "Varenicline, an alpha4beta2 nicotinic acetylcholine receptor partial agonist, selectively decreases ",
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease"
+                ],
+                "new_titles": [
+                  "Intrahippocampal administration of an androgen receptor antagonist, flutamide, can increase anxiety-",
+                  "Beta-band oscillations--signalling the status quo?",
+                  "Lithium Therapy Improves Neurological Function and Hippocampal Dendritic Arborization in a Spinocere"
+                ]
+              },
+              {
+                "query": "levodopa therapy and dyskinesia side effects",
+                "baseline_titles": [
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease",
+                  "Immediate effects of droperidol",
+                  "Surgical therapy for dystonia."
+                ],
+                "new_titles": [
+                  "Long-term inhibition of dipeptidyl peptidase-4 in Alzheimer's prone mice.",
+                  "Applicability of current staging/categorization of \u03b1-synuclein pathology and their clinical relevanc"
+                ]
+              },
+              {
+                "query": "deep brain stimulation for movement disorders",
+                "baseline_titles": [
+                  "High-performance neuroprosthetic control by an individual with tetraplegia.",
+                  "Registration and real-time visualization of transcranial magnetic stimulation with 3-D MR images",
+                  "Beta-band oscillations--signalling the status quo?"
+                ],
+                "new_titles": [
+                  "A Functional Neuroimaging Study of Sound Localization: Visual Cortex Activity Predicts Performance i",
+                  "Optogenetics reveal delayed afferent synaptogenesis on grafted human-induced pluripotent stem cell-d"
+                ]
+              }
+            ]
+          },
+          "alpha=0.3": {
+            "mean_jaccard": 0.48234804411275,
+            "mean_new_docs": 3.8,
+            "pct_queries_shifted": 0.95,
+            "examples": [
+              {
+                "query": "dopamine receptor agonists for motor symptom treatment",
+                "baseline_titles": [
+                  "Up-regulation of neuronal calcium sensor-1 (NCS-1) in the prefrontal cortex of schizophrenic and bip",
+                  "Varenicline, an alpha4beta2 nicotinic acetylcholine receptor partial agonist, selectively decreases ",
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease"
+                ],
+                "new_titles": [
+                  "Applicability of current staging/categorization of \u03b1-synuclein pathology and their clinical relevanc",
+                  "Beta-band oscillations--signalling the status quo?",
+                  "Dissociation of \u03b21- and \u03b22-adrenergic receptor subtypes in the retrieval of cocaine-associated memor"
+                ]
+              },
+              {
+                "query": "levodopa therapy and dyskinesia side effects",
+                "baseline_titles": [
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease",
+                  "Immediate effects of droperidol",
+                  "Surgical therapy for dystonia."
+                ],
+                "new_titles": [
+                  "Applicability of current staging/categorization of \u03b1-synuclein pathology and their clinical relevanc",
+                  "Long-term inhibition of dipeptidyl peptidase-4 in Alzheimer's prone mice.",
+                  "Rapamycin treatment augments motor neuron degeneration in SOD1(G93A) mouse model of amyotrophic late"
+                ]
+              },
+              {
+                "query": "alpha-synuclein aggregation and neurodegeneration",
+                "baseline_titles": [
+                  "Alpha-Synuclein Induces Lysosomal Rupture and Cathepsin Dependent Reactive Oxygen Species Following ",
+                  "Applicability of current staging/categorization of \u03b1-synuclein pathology and their clinical relevanc",
+                  "Prion-like activity of Cu/Zn superoxide dismutase: implications for amyotrophic lateral sclerosis."
+                ],
+                "new_titles": [
+                  "Stages of the pathologic process in Alzheimer disease: age categories from 1 to 100 years."
+                ]
+              }
+            ]
+          },
+          "alpha=0.5": {
+            "mean_jaccard": 0.12102106699629918,
+            "mean_new_docs": 8.05,
+            "pct_queries_shifted": 1.0,
+            "examples": [
+              {
+                "query": "dopamine receptor agonists for motor symptom treatment",
+                "baseline_titles": [
+                  "Up-regulation of neuronal calcium sensor-1 (NCS-1) in the prefrontal cortex of schizophrenic and bip",
+                  "Varenicline, an alpha4beta2 nicotinic acetylcholine receptor partial agonist, selectively decreases ",
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease"
+                ],
+                "new_titles": [
+                  "Applicability of current staging/categorization of \u03b1-synuclein pathology and their clinical relevanc",
+                  "A three-dimensional human neural cell culture model of Alzheimer\u2019s disease",
+                  "Long-term inhibition of dipeptidyl peptidase-4 in Alzheimer's prone mice."
+                ]
+              },
+              {
+                "query": "levodopa therapy and dyskinesia side effects",
+                "baseline_titles": [
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease",
+                  "Immediate effects of droperidol",
+                  "Surgical therapy for dystonia."
+                ],
+                "new_titles": [
+                  "Applicability of current staging/categorization of \u03b1-synuclein pathology and their clinical relevanc",
+                  "A three-dimensional human neural cell culture model of Alzheimer\u2019s disease",
+                  "Long-term inhibition of dipeptidyl peptidase-4 in Alzheimer's prone mice."
+                ]
+              },
+              {
+                "query": "alpha-synuclein aggregation and neurodegeneration",
+                "baseline_titles": [
+                  "Alpha-Synuclein Induces Lysosomal Rupture and Cathepsin Dependent Reactive Oxygen Species Following ",
+                  "Applicability of current staging/categorization of \u03b1-synuclein pathology and their clinical relevanc",
+                  "Prion-like activity of Cu/Zn superoxide dismutase: implications for amyotrophic lateral sclerosis."
+                ],
+                "new_titles": [
+                  "White matter hyperintensities are a core feature of Alzheimer's disease: Evidence from the dominantl",
+                  "Genetic diagnosis and prognosis of Alzheimer's disease: challenges and opportunities.",
+                  "Stages of the pathologic process in Alzheimer disease: age categories from 1 to 100 years."
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "diabetes": {
+        "target": "diabetes mellitus type 2 insulin resistance glucose metabolism",
+        "alphas": {
+          "alpha=0.1": {
+            "mean_jaccard": 0.8651515151515152,
+            "mean_new_docs": 0.75,
+            "pct_queries_shifted": 0.7,
+            "examples": [
+              {
+                "query": "dopamine receptor agonists for motor symptom treatment",
+                "baseline_titles": [
+                  "Up-regulation of neuronal calcium sensor-1 (NCS-1) in the prefrontal cortex of schizophrenic and bip",
+                  "Varenicline, an alpha4beta2 nicotinic acetylcholine receptor partial agonist, selectively decreases ",
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease"
+                ],
+                "new_titles": [
+                  "Long term pharmacotherapy for obesity and overweight: updated meta-analysis."
+                ]
+              },
+              {
+                "query": "deep brain stimulation for movement disorders",
+                "baseline_titles": [
+                  "High-performance neuroprosthetic control by an individual with tetraplegia.",
+                  "Registration and real-time visualization of transcranial magnetic stimulation with 3-D MR images",
+                  "Beta-band oscillations--signalling the status quo?"
+                ],
+                "new_titles": [
+                  "Optogenetics reveal delayed afferent synaptogenesis on grafted human-induced pluripotent stem cell-d"
+                ]
+              },
+              {
+                "query": "mitochondrial dysfunction in dopaminergic neurons",
+                "baseline_titles": [
+                  "Up-regulation of neuronal calcium sensor-1 (NCS-1) in the prefrontal cortex of schizophrenic and bip",
+                  "The Inhibition of TDP-43 Mitochondrial Localization Blocks Its Neuronal Toxicity",
+                  "Metabolic rescue in pluripotent cells from patients with mtDNA disease"
+                ],
+                "new_titles": [
+                  "Modulation of mitochondrial function and morphology by interaction of Omi/HtrA2 with the mitochondri"
+                ]
+              }
+            ]
+          },
+          "alpha=0.2": {
+            "mean_jaccard": 0.6954045954045954,
+            "mean_new_docs": 1.9,
+            "pct_queries_shifted": 0.95,
+            "examples": [
+              {
+                "query": "dopamine receptor agonists for motor symptom treatment",
+                "baseline_titles": [
+                  "Up-regulation of neuronal calcium sensor-1 (NCS-1) in the prefrontal cortex of schizophrenic and bip",
+                  "Varenicline, an alpha4beta2 nicotinic acetylcholine receptor partial agonist, selectively decreases ",
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease"
+                ],
+                "new_titles": [
+                  "Role for insulin signaling in catecholaminergic neurons in control of energy homeostasis.",
+                  "Dissociation of \u03b21- and \u03b22-adrenergic receptor subtypes in the retrieval of cocaine-associated memor",
+                  "Long term pharmacotherapy for obesity and overweight: updated meta-analysis."
+                ]
+              },
+              {
+                "query": "levodopa therapy and dyskinesia side effects",
+                "baseline_titles": [
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease",
+                  "Immediate effects of droperidol",
+                  "Surgical therapy for dystonia."
+                ],
+                "new_titles": [
+                  "Protection from olanzapine-induced metabolic toxicity in mice by acetaminophen and tetrahydroindenoi"
+                ]
+              },
+              {
+                "query": "alpha-synuclein aggregation and neurodegeneration",
+                "baseline_titles": [
+                  "Alpha-Synuclein Induces Lysosomal Rupture and Cathepsin Dependent Reactive Oxygen Species Following ",
+                  "Applicability of current staging/categorization of \u03b1-synuclein pathology and their clinical relevanc",
+                  "Prion-like activity of Cu/Zn superoxide dismutase: implications for amyotrophic lateral sclerosis."
+                ],
+                "new_titles": [
+                  "Increased in vivo amyloid-\u03b242 production, exchange, and loss in presenilin mutation carriers."
+                ]
+              }
+            ]
+          },
+          "alpha=0.3": {
+            "mean_jaccard": 0.5394896769896769,
+            "mean_new_docs": 3.15,
+            "pct_queries_shifted": 0.95,
+            "examples": [
+              {
+                "query": "dopamine receptor agonists for motor symptom treatment",
+                "baseline_titles": [
+                  "Up-regulation of neuronal calcium sensor-1 (NCS-1) in the prefrontal cortex of schizophrenic and bip",
+                  "Varenicline, an alpha4beta2 nicotinic acetylcholine receptor partial agonist, selectively decreases ",
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease"
+                ],
+                "new_titles": [
+                  "Peroxisome proliferator-activated receptor ligand bezafibrate for prevention of type 2 diabetes mell",
+                  "Effects of Thiazolidinediones on Stroke Recovery: A Case-Matched Controlled Study",
+                  "Role for insulin signaling in catecholaminergic neurons in control of energy homeostasis."
+                ]
+              },
+              {
+                "query": "levodopa therapy and dyskinesia side effects",
+                "baseline_titles": [
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease",
+                  "Immediate effects of droperidol",
+                  "Surgical therapy for dystonia."
+                ],
+                "new_titles": [
+                  "Liraglutide improves hippocampal synaptic plasticity associated with increased expression of Mash1 i",
+                  "Diabetes treatments and risk of amputation, blindness, severe kidney failure, hyperglycaemia, and hy",
+                  "Protection from olanzapine-induced metabolic toxicity in mice by acetaminophen and tetrahydroindenoi"
+                ]
+              },
+              {
+                "query": "alpha-synuclein aggregation and neurodegeneration",
+                "baseline_titles": [
+                  "Alpha-Synuclein Induces Lysosomal Rupture and Cathepsin Dependent Reactive Oxygen Species Following ",
+                  "Applicability of current staging/categorization of \u03b1-synuclein pathology and their clinical relevanc",
+                  "Prion-like activity of Cu/Zn superoxide dismutase: implications for amyotrophic lateral sclerosis."
+                ],
+                "new_titles": [
+                  "White matter hyperintensities are a core feature of Alzheimer's disease: Evidence from the dominantl",
+                  "Increased in vivo amyloid-\u03b242 production, exchange, and loss in presenilin mutation carriers."
+                ]
+              }
+            ]
+          },
+          "alpha=0.5": {
+            "mean_jaccard": 0.18012655129528193,
+            "mean_new_docs": 7.3,
+            "pct_queries_shifted": 1.0,
+            "examples": [
+              {
+                "query": "dopamine receptor agonists for motor symptom treatment",
+                "baseline_titles": [
+                  "Up-regulation of neuronal calcium sensor-1 (NCS-1) in the prefrontal cortex of schizophrenic and bip",
+                  "Varenicline, an alpha4beta2 nicotinic acetylcholine receptor partial agonist, selectively decreases ",
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease"
+                ],
+                "new_titles": [
+                  "Liraglutide improves hippocampal synaptic plasticity associated with increased expression of Mash1 i",
+                  "Peroxisome proliferator-activated receptor ligand bezafibrate for prevention of type 2 diabetes mell",
+                  "SIRT1 deacetylase in SF1 neurons protects against metabolic imbalance."
+                ]
+              },
+              {
+                "query": "levodopa therapy and dyskinesia side effects",
+                "baseline_titles": [
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease",
+                  "Immediate effects of droperidol",
+                  "Surgical therapy for dystonia."
+                ],
+                "new_titles": [
+                  "Liraglutide improves hippocampal synaptic plasticity associated with increased expression of Mash1 i",
+                  "SIRT1 deacetylase in SF1 neurons protects against metabolic imbalance.",
+                  "Insulin action and resistance in obesity and type 2 diabetes"
+                ]
+              },
+              {
+                "query": "alpha-synuclein aggregation and neurodegeneration",
+                "baseline_titles": [
+                  "Alpha-Synuclein Induces Lysosomal Rupture and Cathepsin Dependent Reactive Oxygen Species Following ",
+                  "Applicability of current staging/categorization of \u03b1-synuclein pathology and their clinical relevanc",
+                  "Prion-like activity of Cu/Zn superoxide dismutase: implications for amyotrophic lateral sclerosis."
+                ],
+                "new_titles": [
+                  "Insulin action and resistance in obesity and type 2 diabetes",
+                  "Functional and molecular defects of pancreatic islets in human type 2 diabetes.",
+                  "Homeostasis model assessment: insulin resistance and \u03b2-cell function from fasting plasma glucose and"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "multiple_sclerosis": {
+        "target": "multiple sclerosis demyelination autoimmune neuroinflammation",
+        "alphas": {
+          "alpha=0.1": {
+            "mean_jaccard": 0.8435897435897436,
+            "mean_new_docs": 0.9,
+            "pct_queries_shifted": 0.7,
+            "examples": [
+              {
+                "query": "dopamine receptor agonists for motor symptom treatment",
+                "baseline_titles": [
+                  "Up-regulation of neuronal calcium sensor-1 (NCS-1) in the prefrontal cortex of schizophrenic and bip",
+                  "Varenicline, an alpha4beta2 nicotinic acetylcholine receptor partial agonist, selectively decreases ",
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease"
+                ],
+                "new_titles": [
+                  "Intrahippocampal administration of an androgen receptor antagonist, flutamide, can increase anxiety-",
+                  "FTY720 (fingolimod) is a neuroprotective and disease-modifying agent in cellular and mouse models of"
+                ]
+              },
+              {
+                "query": "levodopa therapy and dyskinesia side effects",
+                "baseline_titles": [
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease",
+                  "Immediate effects of droperidol",
+                  "Surgical therapy for dystonia."
+                ],
+                "new_titles": [
+                  "Antidepressant use and risk of adverse outcomes in older people: population based cohort study"
+                ]
+              },
+              {
+                "query": "deep brain stimulation for movement disorders",
+                "baseline_titles": [
+                  "High-performance neuroprosthetic control by an individual with tetraplegia.",
+                  "Registration and real-time visualization of transcranial magnetic stimulation with 3-D MR images",
+                  "Beta-band oscillations--signalling the status quo?"
+                ],
+                "new_titles": [
+                  "Optogenetics reveal delayed afferent synaptogenesis on grafted human-induced pluripotent stem cell-d"
+                ]
+              }
+            ]
+          },
+          "alpha=0.2": {
+            "mean_jaccard": 0.7079087579087578,
+            "mean_new_docs": 1.8,
+            "pct_queries_shifted": 0.9,
+            "examples": [
+              {
+                "query": "dopamine receptor agonists for motor symptom treatment",
+                "baseline_titles": [
+                  "Up-regulation of neuronal calcium sensor-1 (NCS-1) in the prefrontal cortex of schizophrenic and bip",
+                  "Varenicline, an alpha4beta2 nicotinic acetylcholine receptor partial agonist, selectively decreases ",
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease"
+                ],
+                "new_titles": [
+                  "Lithium Therapy Improves Neurological Function and Hippocampal Dendritic Arborization in a Spinocere",
+                  "Fingolimod provides long-term protection in rodent models of cerebral ischemia.",
+                  "FTY720 (fingolimod) is a neuroprotective and disease-modifying agent in cellular and mouse models of"
+                ]
+              },
+              {
+                "query": "levodopa therapy and dyskinesia side effects",
+                "baseline_titles": [
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease",
+                  "Immediate effects of droperidol",
+                  "Surgical therapy for dystonia."
+                ],
+                "new_titles": [
+                  "FTY720 (fingolimod) is a neuroprotective and disease-modifying agent in cellular and mouse models of",
+                  "Oral fingolimod (FTY720) for relapsing multiple sclerosis.",
+                  "Rapamycin treatment augments motor neuron degeneration in SOD1(G93A) mouse model of amyotrophic late"
+                ]
+              },
+              {
+                "query": "deep brain stimulation for movement disorders",
+                "baseline_titles": [
+                  "High-performance neuroprosthetic control by an individual with tetraplegia.",
+                  "Registration and real-time visualization of transcranial magnetic stimulation with 3-D MR images",
+                  "Beta-band oscillations--signalling the status quo?"
+                ],
+                "new_titles": [
+                  "Lithium Therapy Improves Neurological Function and Hippocampal Dendritic Arborization in a Spinocere",
+                  "Orientationally invariant indices of axon diameter and density from diffusion MRI."
+                ]
+              }
+            ]
+          },
+          "alpha=0.3": {
+            "mean_jaccard": 0.5393273393273393,
+            "mean_new_docs": 3.1,
+            "pct_queries_shifted": 1.0,
+            "examples": [
+              {
+                "query": "dopamine receptor agonists for motor symptom treatment",
+                "baseline_titles": [
+                  "Up-regulation of neuronal calcium sensor-1 (NCS-1) in the prefrontal cortex of schizophrenic and bip",
+                  "Varenicline, an alpha4beta2 nicotinic acetylcholine receptor partial agonist, selectively decreases ",
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease"
+                ],
+                "new_titles": [
+                  "Applicability of current staging/categorization of \u03b1-synuclein pathology and their clinical relevanc",
+                  "Lithium Therapy Improves Neurological Function and Hippocampal Dendritic Arborization in a Spinocere",
+                  "Fingolimod provides long-term protection in rodent models of cerebral ischemia."
+                ]
+              },
+              {
+                "query": "levodopa therapy and dyskinesia side effects",
+                "baseline_titles": [
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease",
+                  "Immediate effects of droperidol",
+                  "Surgical therapy for dystonia."
+                ],
+                "new_titles": [
+                  "Applicability of current staging/categorization of \u03b1-synuclein pathology and their clinical relevanc",
+                  "Lithium Therapy Improves Neurological Function and Hippocampal Dendritic Arborization in a Spinocere",
+                  "Oral fingolimod (FTY720) for relapsing multiple sclerosis."
+                ]
+              },
+              {
+                "query": "alpha-synuclein aggregation and neurodegeneration",
+                "baseline_titles": [
+                  "Alpha-Synuclein Induces Lysosomal Rupture and Cathepsin Dependent Reactive Oxygen Species Following ",
+                  "Applicability of current staging/categorization of \u03b1-synuclein pathology and their clinical relevanc",
+                  "Prion-like activity of Cu/Zn superoxide dismutase: implications for amyotrophic lateral sclerosis."
+                ],
+                "new_titles": [
+                  "White matter hyperintensities are a core feature of Alzheimer's disease: Evidence from the dominantl",
+                  "Diffusion tensor imaging detects and differentiates axon and myelin degeneration in mouse optic nerv"
+                ]
+              }
+            ]
+          },
+          "alpha=0.5": {
+            "mean_jaccard": 0.2592960531041026,
+            "mean_new_docs": 6.1,
+            "pct_queries_shifted": 1.0,
+            "examples": [
+              {
+                "query": "dopamine receptor agonists for motor symptom treatment",
+                "baseline_titles": [
+                  "Up-regulation of neuronal calcium sensor-1 (NCS-1) in the prefrontal cortex of schizophrenic and bip",
+                  "Varenicline, an alpha4beta2 nicotinic acetylcholine receptor partial agonist, selectively decreases ",
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease"
+                ],
+                "new_titles": [
+                  "Clinical effects of Abeta immunization (AN1792) in patients with AD in an interrupted trial.",
+                  "Disturbance in cerebral spinal fluid sphingolipid content is associated with memory impairment in su",
+                  "Applicability of current staging/categorization of \u03b1-synuclein pathology and their clinical relevanc"
+                ]
+              },
+              {
+                "query": "levodopa therapy and dyskinesia side effects",
+                "baseline_titles": [
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease",
+                  "Immediate effects of droperidol",
+                  "Surgical therapy for dystonia."
+                ],
+                "new_titles": [
+                  "Clinical effects of Abeta immunization (AN1792) in patients with AD in an interrupted trial.",
+                  "Eosinophil pathogenicity mechanisms and therapeutics in neuromyelitis optica.",
+                  "Applicability of current staging/categorization of \u03b1-synuclein pathology and their clinical relevanc"
+                ]
+              },
+              {
+                "query": "alpha-synuclein aggregation and neurodegeneration",
+                "baseline_titles": [
+                  "Alpha-Synuclein Induces Lysosomal Rupture and Cathepsin Dependent Reactive Oxygen Species Following ",
+                  "Applicability of current staging/categorization of \u03b1-synuclein pathology and their clinical relevanc",
+                  "Prion-like activity of Cu/Zn superoxide dismutase: implications for amyotrophic lateral sclerosis."
+                ],
+                "new_titles": [
+                  "Rapamycin treatment augments motor neuron degeneration in SOD1(G93A) mouse model of amyotrophic late",
+                  "White matter hyperintensities are a core feature of Alzheimer's disease: Evidence from the dominantl",
+                  "Local neuroinflammation and the progression of Alzheimer\u2019s disease"
+                ]
+              }
+            ]
+          }
+        }
+      },
+      "cancer": {
+        "target": "cancer tumor oncology malignant neoplasm chemotherapy",
+        "alphas": {
+          "alpha=0.1": {
+            "mean_jaccard": 0.9106060606060605,
+            "mean_new_docs": 0.5,
+            "pct_queries_shifted": 0.45,
+            "examples": [
+              {
+                "query": "dopamine receptor agonists for motor symptom treatment",
+                "baseline_titles": [
+                  "Up-regulation of neuronal calcium sensor-1 (NCS-1) in the prefrontal cortex of schizophrenic and bip",
+                  "Varenicline, an alpha4beta2 nicotinic acetylcholine receptor partial agonist, selectively decreases ",
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease"
+                ],
+                "new_titles": [
+                  "Cognitive behavioral therapy vs zopiclone for treatment of chronic primary insomnia in older adults:"
+                ]
+              },
+              {
+                "query": "deep brain stimulation for movement disorders",
+                "baseline_titles": [
+                  "High-performance neuroprosthetic control by an individual with tetraplegia.",
+                  "Registration and real-time visualization of transcranial magnetic stimulation with 3-D MR images",
+                  "Beta-band oscillations--signalling the status quo?"
+                ],
+                "new_titles": [
+                  "Optogenetics reveal delayed afferent synaptogenesis on grafted human-induced pluripotent stem cell-d"
+                ]
+              },
+              {
+                "query": "LRRK2 gene mutation and familial disease risk",
+                "baseline_titles": [
+                  "Familial risk of lymphoproliferative tumors in families of patients with chronic lymphocytic leukemi",
+                  "Common variants in DGKK are strongly associated with risk of hypospadias",
+                  "Linkage Disequilibrium Mapping of       CHEK2: Common Variation and Breast Cancer Risk     "
+                ],
+                "new_titles": [
+                  "Association of type and location of BRCA1 and BRCA2 mutations with risk of breast and ovarian cancer",
+                  "Familial recurrence-pattern analysis of nonsyndromic isolated cleft palate--a Danish Registry study."
+                ]
+              }
+            ]
+          },
+          "alpha=0.2": {
+            "mean_jaccard": 0.7495171495171495,
+            "mean_new_docs": 1.5,
+            "pct_queries_shifted": 0.95,
+            "examples": [
+              {
+                "query": "dopamine receptor agonists for motor symptom treatment",
+                "baseline_titles": [
+                  "Up-regulation of neuronal calcium sensor-1 (NCS-1) in the prefrontal cortex of schizophrenic and bip",
+                  "Varenicline, an alpha4beta2 nicotinic acetylcholine receptor partial agonist, selectively decreases ",
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease"
+                ],
+                "new_titles": [
+                  "Cognitive behavioral therapy vs zopiclone for treatment of chronic primary insomnia in older adults:",
+                  "Long term pharmacotherapy for obesity and overweight: updated meta-analysis.",
+                  "Pharmacological interventions for smoking cessation: an overview and network meta-analysis."
+                ]
+              },
+              {
+                "query": "levodopa therapy and dyskinesia side effects",
+                "baseline_titles": [
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease",
+                  "Immediate effects of droperidol",
+                  "Surgical therapy for dystonia."
+                ],
+                "new_titles": [
+                  "Antidepressant use and risk of adverse outcomes in older people: population based cohort study"
+                ]
+              },
+              {
+                "query": "deep brain stimulation for movement disorders",
+                "baseline_titles": [
+                  "High-performance neuroprosthetic control by an individual with tetraplegia.",
+                  "Registration and real-time visualization of transcranial magnetic stimulation with 3-D MR images",
+                  "Beta-band oscillations--signalling the status quo?"
+                ],
+                "new_titles": [
+                  "A transition in brain state during propofol-induced unconsciousness.",
+                  "DMSO as a vehicle for central injections: tests with feeding elicited by norepinephrine injected int",
+                  "Optogenetics reveal delayed afferent synaptogenesis on grafted human-induced pluripotent stem cell-d"
+                ]
+              }
+            ]
+          },
+          "alpha=0.3": {
+            "mean_jaccard": 0.5963536463536464,
+            "mean_new_docs": 2.65,
+            "pct_queries_shifted": 1.0,
+            "examples": [
+              {
+                "query": "dopamine receptor agonists for motor symptom treatment",
+                "baseline_titles": [
+                  "Up-regulation of neuronal calcium sensor-1 (NCS-1) in the prefrontal cortex of schizophrenic and bip",
+                  "Varenicline, an alpha4beta2 nicotinic acetylcholine receptor partial agonist, selectively decreases ",
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease"
+                ],
+                "new_titles": [
+                  "Cognitive behavioral therapy vs zopiclone for treatment of chronic primary insomnia in older adults:",
+                  "Long term pharmacotherapy for obesity and overweight: updated meta-analysis.",
+                  "FTY720 (fingolimod) is a neuroprotective and disease-modifying agent in cellular and mouse models of"
+                ]
+              },
+              {
+                "query": "levodopa therapy and dyskinesia side effects",
+                "baseline_titles": [
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease",
+                  "Immediate effects of droperidol",
+                  "Surgical therapy for dystonia."
+                ],
+                "new_titles": [
+                  "Antidepressant use and risk of adverse outcomes in older people: population based cohort study",
+                  "Do Antidepressants Cure or Create Abnormal Brain States?",
+                  "Can Online Consumers Contribute to Drug Knowledge? A Mixed-Methods Comparison of Consumer-Generated "
+                ]
+              },
+              {
+                "query": "alpha-synuclein aggregation and neurodegeneration",
+                "baseline_titles": [
+                  "Alpha-Synuclein Induces Lysosomal Rupture and Cathepsin Dependent Reactive Oxygen Species Following ",
+                  "Applicability of current staging/categorization of \u03b1-synuclein pathology and their clinical relevanc",
+                  "Prion-like activity of Cu/Zn superoxide dismutase: implications for amyotrophic lateral sclerosis."
+                ],
+                "new_titles": [
+                  "Increased in vivo amyloid-\u03b242 production, exchange, and loss in presenilin mutation carriers."
+                ]
+              }
+            ]
+          },
+          "alpha=0.5": {
+            "mean_jaccard": 0.2050819450587252,
+            "mean_new_docs": 6.75,
+            "pct_queries_shifted": 1.0,
+            "examples": [
+              {
+                "query": "dopamine receptor agonists for motor symptom treatment",
+                "baseline_titles": [
+                  "Up-regulation of neuronal calcium sensor-1 (NCS-1) in the prefrontal cortex of schizophrenic and bip",
+                  "Varenicline, an alpha4beta2 nicotinic acetylcholine receptor partial agonist, selectively decreases ",
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease"
+                ],
+                "new_titles": [
+                  "Comparisons between different polychemotherapy regimens for early breast cancer: meta-analyses of lo",
+                  "Molecularly targeted therapy based on tumour molecular profiling versus conventional therapy for adv",
+                  "A phase I study of PF-04449913, an oral hedgehog inhibitor, in patients with advanced solid tumors."
+                ]
+              },
+              {
+                "query": "levodopa therapy and dyskinesia side effects",
+                "baseline_titles": [
+                  "Prodromal non-motor symptoms of Parkinson\u2019s disease",
+                  "Immediate effects of droperidol",
+                  "Surgical therapy for dystonia."
+                ],
+                "new_titles": [
+                  "Comparisons between different polychemotherapy regimens for early breast cancer: meta-analyses of lo",
+                  "Do Antidepressants Cure or Create Abnormal Brain States?",
+                  "A phase I study of PF-04449913, an oral hedgehog inhibitor, in patients with advanced solid tumors."
+                ]
+              },
+              {
+                "query": "alpha-synuclein aggregation and neurodegeneration",
+                "baseline_titles": [
+                  "Alpha-Synuclein Induces Lysosomal Rupture and Cathepsin Dependent Reactive Oxygen Species Following ",
+                  "Applicability of current staging/categorization of \u03b1-synuclein pathology and their clinical relevanc",
+                  "Prion-like activity of Cu/Zn superoxide dismutase: implications for amyotrophic lateral sclerosis."
+                ],
+                "new_titles": [
+                  "A framework for understanding and targeting residual disease in oncogene-driven solid cancers",
+                  "(99m)Tc-HisoDGR as a Potential SPECT Probe for Orthotopic Glioma Detection via Targeting of Integrin",
+                  "Targeting brain cancer: advances in the molecular pathology of malignant glioma and medulloblastoma"
+                ]
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "9B_legal_analogy": {
+    "label": "legal_analogy",
+    "targets": {
+      "criminal": {
+        "target": "criminal law punishment sentencing liability mens rea",
+        "alphas": {
+          "alpha=0.1": {
+            "mean_jaccard": 0.7752913752913753,
+            "mean_new_docs": 1.3333333333333333,
+            "pct_queries_shifted": 0.8
+          },
+          "alpha=0.2": {
+            "mean_jaccard": 0.6373848373848374,
+            "mean_new_docs": 2.3333333333333335,
+            "pct_queries_shifted": 0.9333333333333333
+          },
+          "alpha=0.3": {
+            "mean_jaccard": 0.45982350982350984,
+            "mean_new_docs": 3.8666666666666667,
+            "pct_queries_shifted": 1.0
+          },
+          "alpha=0.5": {
+            "mean_jaccard": 0.16384015594541912,
+            "mean_new_docs": 7.533333333333333,
+            "pct_queries_shifted": 1.0
+          }
+        }
+      },
+      "consumer": {
+        "target": "consumer protection rights warranty liability defective products",
+        "alphas": {
+          "alpha=0.1": {
+            "mean_jaccard": 0.8363636363636363,
+            "mean_new_docs": 0.9333333333333333,
+            "pct_queries_shifted": 0.7333333333333333
+          },
+          "alpha=0.2": {
+            "mean_jaccard": 0.6994338994338993,
+            "mean_new_docs": 1.8666666666666667,
+            "pct_queries_shifted": 0.9333333333333333
+          },
+          "alpha=0.3": {
+            "mean_jaccard": 0.5086691086691087,
+            "mean_new_docs": 3.3333333333333335,
+            "pct_queries_shifted": 1.0
+          },
+          "alpha=0.5": {
+            "mean_jaccard": 0.16003571019050894,
+            "mean_new_docs": 7.4,
+            "pct_queries_shifted": 1.0
+          }
+        }
+      },
+      "administrative": {
+        "target": "administrative law government regulation public policy bureaucracy",
+        "alphas": {
+          "alpha=0.1": {
+            "mean_jaccard": 0.8242424242424242,
+            "mean_new_docs": 1.0,
+            "pct_queries_shifted": 0.8
+          },
+          "alpha=0.2": {
+            "mean_jaccard": 0.6441336441336442,
+            "mean_new_docs": 2.2,
+            "pct_queries_shifted": 1.0
+          },
+          "alpha=0.3": {
+            "mean_jaccard": 0.5137973137973139,
+            "mean_new_docs": 3.2666666666666666,
+            "pct_queries_shifted": 1.0
+          },
+          "alpha=0.5": {
+            "mean_jaccard": 0.2053688141923436,
+            "mean_new_docs": 6.666666666666667,
+            "pct_queries_shifted": 1.0
+          }
+        }
+      },
+      "environmental": {
+        "target": "environmental law pollution regulation sustainability climate",
+        "alphas": {
+          "alpha=0.1": {
+            "mean_jaccard": 0.814141414141414,
+            "mean_new_docs": 1.0666666666666667,
+            "pct_queries_shifted": 0.8
+          },
+          "alpha=0.2": {
+            "mean_jaccard": 0.6780108780108781,
+            "mean_new_docs": 2.0,
+            "pct_queries_shifted": 0.9333333333333333
+          },
+          "alpha=0.3": {
+            "mean_jaccard": 0.5352203352203353,
+            "mean_new_docs": 3.1333333333333333,
+            "pct_queries_shifted": 1.0
+          },
+          "alpha=0.5": {
+            "mean_jaccard": 0.20802905957704715,
+            "mean_new_docs": 6.666666666666667,
+            "pct_queries_shifted": 1.0
+          }
+        }
+      }
+    }
+  },
+  "9C_cross_domain_scifact": {
+    "baseline_ndcg": 0.72,
+    "targets": {
+      "alzheimers_alpha=0.05": {
+        "ndcg": 0.7172,
+        "delta": -0.0028
+      },
+      "alzheimers_alpha=0.1": {
+        "ndcg": 0.7143,
+        "delta": -0.0057
+      },
+      "alzheimers_alpha=0.2": {
+        "ndcg": 0.7106,
+        "delta": -0.0094
+      },
+      "diabetes_alpha=0.05": {
+        "ndcg": 0.7188,
+        "delta": -0.0012
+      },
+      "diabetes_alpha=0.1": {
+        "ndcg": 0.713,
+        "delta": -0.007
+      },
+      "diabetes_alpha=0.2": {
+        "ndcg": 0.7038,
+        "delta": -0.0162
+      },
+      "multiple_sclerosis_alpha=0.05": {
+        "ndcg": 0.7179,
+        "delta": -0.0021
+      },
+      "multiple_sclerosis_alpha=0.1": {
+        "ndcg": 0.7189,
+        "delta": -0.0011
+      },
+      "multiple_sclerosis_alpha=0.2": {
+        "ndcg": 0.7115,
+        "delta": -0.0085
+      },
+      "cancer_alpha=0.05": {
+        "ndcg": 0.7162,
+        "delta": -0.0038
+      },
+      "cancer_alpha=0.1": {
+        "ndcg": 0.7107,
+        "delta": -0.0093
+      },
+      "cancer_alpha=0.2": {
+        "ndcg": 0.7034,
+        "delta": -0.0166
+      }
+    }
+  }
+}

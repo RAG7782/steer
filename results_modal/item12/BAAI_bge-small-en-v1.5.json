@@ -1,0 +1,83 @@
+{
+  "model": "BAAI/bge-small-en-v1.5",
+  "params_M": 33,
+  "family": "contrastive",
+  "scifact": {
+    "model": "BAAI/bge-small-en-v1.5",
+    "dataset": "scifact",
+    "num_docs": 5183,
+    "num_queries": 300,
+    "embedding_dim": 384,
+    "encode_time_s": 43.9,
+    "isotropy": {
+      "mean_cosine": 0.6284582614898682,
+      "std_cosine": 0.062134239822626114,
+      "median_cosine": 0.6309588551521301
+    },
+    "baseline": {
+      "ndcg@10": 0.72,
+      "ndcg@5": 0.69221,
+      "map@10": 0.67636,
+      "recall@10": 0.84522
+    },
+    "rotation_0.1": {
+      "ndcg@10": 0.71221,
+      "delta": -0.0078,
+      "delta_pct": -1.08
+    },
+    "rotation_0.2": {
+      "ndcg@10": 0.69391,
+      "delta": -0.0261,
+      "delta_pct": -3.62
+    },
+    "subtraction": {
+      "ndcg@10": 0.68821,
+      "delta": -0.0318,
+      "delta_pct": -4.42
+    },
+    "projection_stats": {
+      "mean": 0.5078262090682983,
+      "std": 0.03749549388885498,
+      "pct_above_0.2": 1.0
+    }
+  },
+  "arguana": {
+    "model": "BAAI/bge-small-en-v1.5",
+    "dataset": "arguana",
+    "num_docs": 8674,
+    "num_queries": 1406,
+    "embedding_dim": 384,
+    "encode_time_s": 52.0,
+    "isotropy": {
+      "mean_cosine": 0.549884021282196,
+      "std_cosine": 0.06613334268331528,
+      "median_cosine": 0.5468633770942688
+    },
+    "baseline": {
+      "ndcg@10": 0.59499,
+      "ndcg@5": 0.55176,
+      "map@10": 0.51322,
+      "recall@10": 0.8542
+    },
+    "rotation_0.1": {
+      "ndcg@10": 0.59129,
+      "delta": -0.0037,
+      "delta_pct": -0.62
+    },
+    "rotation_0.2": {
+      "ndcg@10": 0.57566,
+      "delta": -0.0193,
+      "delta_pct": -3.25
+    },
+    "subtraction": {
+      "ndcg@10": 0.54234,
+      "delta": -0.0526,
+      "delta_pct": -8.85
+    },
+    "projection_stats": {
+      "mean": 0.5456405282020569,
+      "std": 0.048211719840765,
+      "pct_above_0.2": 1.0
+    }
+  }
+}

@@ -1,0 +1,304 @@
+{
+  "scifact": {
+    "dataset": "scifact",
+    "num_queries": 300,
+    "angular_distance": {
+      "target": "clinical medicine and patient outcomes",
+      "mean_theta_deg": 56.8376350402832,
+      "std_theta_deg": 2.939669132232666,
+      "min_theta_deg": 46.7485237121582,
+      "max_theta_deg": 65.52101135253906,
+      "mean_cosine_sim": 0.5462939739227295
+    },
+    "nlerp_vs_slerp_error_pct": 1.9616961479187012,
+    "significance": {
+      "rotation_alpha=0.1": {
+        "n_queries": 300,
+        "mean_delta": -0.007790205714083327,
+        "std_delta": 0.058817336629444966,
+        "ci_95_lower": -0.014484107469162281,
+        "ci_95_upper": -0.0010963039590043723,
+        "t_statistic": 2.2902303490243963,
+        "t_pvalue": 0.022704086184103495,
+        "wilcoxon_pvalue": 0.007656380398036153,
+        "improved": 8,
+        "unchanged": 269,
+        "degraded": 23
+      },
+      "rotation_alpha=0.2": {
+        "n_queries": 300,
+        "mean_delta": -0.026096107737139662,
+        "std_delta": 0.1202208242626967,
+        "ci_95_lower": -0.03977823672572488,
+        "ci_95_upper": -0.012413978748554445,
+        "t_statistic": 3.7534585959463067,
+        "t_pvalue": 0.00020952289965114407,
+        "wilcoxon_pvalue": 2.4395938561952633e-05,
+        "improved": 14,
+        "unchanged": 237,
+        "degraded": 49
+      },
+      "rotation_alpha=0.3": {
+        "n_queries": 300,
+        "mean_delta": -0.04257328301335055,
+        "std_delta": 0.1564043335648847,
+        "ci_95_lower": -0.060373396091367965,
+        "ci_95_upper": -0.02477316993533314,
+        "t_statistic": 4.70678059090362,
+        "t_pvalue": 3.85428869798601e-06,
+        "wilcoxon_pvalue": 5.811961762123999e-07,
+        "improved": 16,
+        "unchanged": 219,
+        "degraded": 65
+      },
+      "subtraction_methodology and stat": {
+        "n_queries": 300,
+        "mean_delta": -0.031794585168513266,
+        "t_pvalue": 0.00028867362377820875,
+        "proj_norm_correlation": 0.0065281745612919195,
+        "low_proj_delta": null,
+        "mid_proj_delta": -0.03824704358537518,
+        "high_proj_delta": -0.026860352261501203,
+        "low_proj_count": 0,
+        "mid_proj_count": 130,
+        "high_proj_count": 170
+      },
+      "subtraction_animal model studies": {
+        "n_queries": 300,
+        "mean_delta": -0.04265624093638982,
+        "t_pvalue": 1.235750227845564e-06,
+        "proj_norm_correlation": 0.04670588633082885,
+        "low_proj_delta": null,
+        "mid_proj_delta": -0.04529186200178925,
+        "high_proj_delta": -0.04247803168285747,
+        "low_proj_count": 0,
+        "mid_proj_count": 19,
+        "high_proj_count": 281
+      },
+      "subtraction_genetic analysis": {
+        "n_queries": 300,
+        "mean_delta": -0.04918265329212901,
+        "t_pvalue": 5.327740695635893e-06,
+        "proj_norm_correlation": -0.08320966535673743,
+        "low_proj_delta": null,
+        "mid_proj_delta": -0.0445077240978469,
+        "high_proj_delta": -0.051092131413737196,
+        "low_proj_count": 0,
+        "mid_proj_count": 87,
+        "high_proj_count": 213
+      },
+      "subtraction_clinical trials": {
+        "n_queries": 300,
+        "mean_delta": -0.038406076021147456,
+        "t_pvalue": 3.88732635982181e-05,
+        "proj_norm_correlation": -0.0015714826294282026,
+        "low_proj_delta": null,
+        "mid_proj_delta": -0.030150828248966893,
+        "high_proj_delta": -0.039426387543551794,
+        "low_proj_count": 0,
+        "mid_proj_count": 33,
+        "high_proj_count": 267
+      }
+    },
+    "per_query": {
+      "alpha": 0.1,
+      "improved": 8,
+      "degraded": 23,
+      "unchanged": 269,
+      "mean_improvement_when_improved": 0.08915925152098565,
+      "mean_degradation_when_degraded": -0.1326232924518645,
+      "correlation_query_length_vs_delta": -0.04628510332970345,
+      "correlation_theta_vs_delta": -0.0629642370322515
+    },
+    "composition": {
+      "concept": "methodology and statistical analysis",
+      "target": "clinical medicine and patient outcomes",
+      "alpha": 0.1,
+      "subtract_only": {
+        "ndcg@10": 0.68821,
+        "mean_jaccard@10": 0.5414451383956028
+      },
+      "rotate_only": {
+        "ndcg@10": 0.71221,
+        "mean_jaccard@10": 0.8520590520590521
+      },
+      "composed": {
+        "ndcg@10": 0.68703,
+        "mean_jaccard@10": 0.5597649191766839
+      }
+    }
+  },
+  "arguana": {
+    "dataset": "arguana",
+    "num_queries": 1406,
+    "angular_distance": {
+      "target": "legal reasoning and jurisprudence",
+      "mean_theta_deg": 60.68374252319336,
+      "std_theta_deg": 3.9095566272735596,
+      "min_theta_deg": 45.374168395996094,
+      "max_theta_deg": 71.392822265625,
+      "mean_cosine_sim": 0.4884813725948334
+    },
+    "nlerp_vs_slerp_error_pct": 2.2351443767547607,
+    "significance": {
+      "rotation_alpha=0.1": {
+        "n_queries": 1406,
+        "mean_delta": -0.0028278621203342616,
+        "std_delta": 0.06109382491912327,
+        "ci_95_lower": -0.006025148459154991,
+        "ci_95_upper": 0.0003694242184864682,
+        "t_statistic": 1.734998392051832,
+        "t_pvalue": 0.08296037611545107,
+        "wilcoxon_pvalue": 0.1614235665676994,
+        "improved": 118,
+        "unchanged": 1142,
+        "degraded": 146
+      },
+      "rotation_alpha=0.2": {
+        "n_queries": 1406,
+        "mean_delta": -0.014029713345370388,
+        "std_delta": 0.09534409637889683,
+        "ci_95_lower": -0.019019454571149064,
+        "ci_95_upper": -0.009039972119591712,
+        "t_statistic": 5.5156049496843504,
+        "t_pvalue": 4.1319125313195036e-08,
+        "wilcoxon_pvalue": 1.397526047960853e-07,
+        "improved": 176,
+        "unchanged": 955,
+        "degraded": 275
+      },
+      "rotation_alpha=0.3": {
+        "n_queries": 1406,
+        "mean_delta": -0.03592688553975428,
+        "std_delta": 0.1320107004207024,
+        "ci_95_lower": -0.042835538085114096,
+        "ci_95_upper": -0.029018232994394468,
+        "t_statistic": 10.201137399481777,
+        "t_pvalue": 1.2744008975654025e-23,
+        "wilcoxon_pvalue": 4.193636408546176e-22,
+        "improved": 198,
+        "unchanged": 803,
+        "degraded": 405
+      },
+      "subtraction_economic arguments": {
+        "n_queries": 1406,
+        "mean_delta": -0.0319032608711224,
+        "t_pvalue": 3.2874123474590466e-15,
+        "proj_norm_correlation": -0.03905766880572441,
+        "low_proj_delta": null,
+        "mid_proj_delta": -0.01881333676299955,
+        "high_proj_delta": -0.03463830090403199,
+        "low_proj_count": 0,
+        "mid_proj_count": 243,
+        "high_proj_count": 1163
+      },
+      "subtraction_moral and ethical re": {
+        "n_queries": 1406,
+        "mean_delta": -0.024170991012386265,
+        "t_pvalue": 6.266114764730561e-12,
+        "proj_norm_correlation": -0.046578229275556875,
+        "low_proj_delta": -0.09635494210596263,
+        "mid_proj_delta": -0.01906362489079758,
+        "high_proj_delta": -0.035414407985640405,
+        "low_proj_count": 3,
+        "mid_proj_count": 978,
+        "high_proj_count": 425
+      },
+      "subtraction_legal precedent": {
+        "n_queries": 1406,
+        "mean_delta": -0.020862594971697703,
+        "t_pvalue": 2.9094445108826917e-09,
+        "proj_norm_correlation": -0.03622199481873526,
+        "low_proj_delta": null,
+        "mid_proj_delta": -0.01641735117058757,
+        "high_proj_delta": -0.023701748355157332,
+        "low_proj_count": 0,
+        "mid_proj_count": 548,
+        "high_proj_count": 858
+      },
+      "subtraction_environmental impact": {
+        "n_queries": 1406,
+        "mean_delta": -0.008926798694465657,
+        "t_pvalue": 0.006375935057530161,
+        "proj_norm_correlation": -0.031783341995702374,
+        "low_proj_delta": null,
+        "mid_proj_delta": -0.010019217707092146,
+        "high_proj_delta": -0.006090979518465951,
+        "low_proj_count": 0,
+        "mid_proj_count": 1015,
+        "high_proj_count": 391
+      }
+    },
+    "per_query": {
+      "alpha": 0.1,
+      "improved": 118,
+      "degraded": 146,
+      "unchanged": 1142,
+      "mean_improvement_when_improved": 0.0955549267561759,
+      "mean_degradation_when_degraded": -0.10446202396177211,
+      "correlation_query_length_vs_delta": -0.025390075591543014,
+      "correlation_theta_vs_delta": 0.02136912044434258
+    },
+    "composition": {
+      "concept": "economic arguments",
+      "target": "legal reasoning and jurisprudence",
+      "alpha": 0.1,
+      "subtract_only": {
+        "ndcg@10": 0.54234,
+        "mean_jaccard@10": 0.5370040321360184
+      },
+      "rotate_only": {
+        "ndcg@10": 0.59129,
+        "mean_jaccard@10": 0.7718871929398246
+      },
+      "composed": {
+        "ndcg@10": 0.54959,
+        "mean_jaccard@10": 0.5560702963953739
+      }
+    }
+  },
+  "pareto": [
+    {
+      "alpha": 0.05,
+      "new_docs": 0.6,
+      "ndcg": 0.503,
+      "retained_pct": 98.82121807465619
+    },
+    {
+      "alpha": 0.1,
+      "new_docs": 1.0,
+      "ndcg": 0.498,
+      "retained_pct": 97.83889980353634
+    },
+    {
+      "alpha": 0.15,
+      "new_docs": 1.5,
+      "ndcg": 0.488,
+      "retained_pct": 95.87426326129666
+    },
+    {
+      "alpha": 0.2,
+      "new_docs": 2.0,
+      "ndcg": 0.476,
+      "retained_pct": 93.51669941060902
+    },
+    {
+      "alpha": 0.3,
+      "new_docs": 3.3,
+      "ndcg": 0.442,
+      "retained_pct": 86.8369351669941
+    },
+    {
+      "alpha": 0.4,
+      "new_docs": 5.0,
+      "ndcg": 0.386,
+      "retained_pct": 75.83497053045186
+    },
+    {
+      "alpha": 0.5,
+      "new_docs": 7.1,
+      "ndcg": 0.297,
+      "retained_pct": 58.349705304518665
+    }
+  ]
+}

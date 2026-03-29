@@ -1,0 +1,17 @@
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+Model: BAAI/bge-small-en-v1.5
+Loading weights:   0%|          | 0/199 [00:00<?, ?it/s]Loading weights:  19%|█▉        | 38/199 [00:00<00:00, 311.01it/s]Loading weights: 100%|██████████| 199/199 [00:00<00:00, 1405.06it/s]
+[1mBertModel LOAD REPORT[0m from: BAAI/bge-small-en-v1.5
+Key                     | Status     |  | 
+------------------------+------------+--+-
+embeddings.position_ids | UNEXPECTED |  | 
+
+[3mNotes:
+- UNEXPECTED[3m	:can be ignored when loading from different task/architecture; not ok if you expect identical arch.[0m
+
+============================================================
+  scifact
+============================================================
+  0%|          | 0/5183 [00:00<?, ?it/s]100%|██████████| 5183/5183 [00:00<00:00, 164044.99it/s]
+  Encoding 5183 docs, 300 queries...
+Batches:   0%|          | 0/21 [00:00<?, ?it/s]Batches:   5%|▍         | 1/21 [00:09<03:19,  9.95s/it]t]Batches:  10%|▉         | 2/21 [00:23<03:20, 10.56s/it]Batches:  14%|█▍        | 3/21 [00:30<02:40,  8.94s/it]Batches:  19%|█▉        | 4/21 [00:34<02:02,  7.18s/it]Batches:  24%|██▍       | 5/21 [00:39<01:40,  6.26s/it]Batches:  29%|██▊       | 6/21 [00:43<01:23,  5.57s/it]Batches:  33%|███▎      | 7/21 [00:48<01:13,  5.27s/it]Batches:  38%|███▊      | 8/21 [00:55<01:15,  5.79s/it]

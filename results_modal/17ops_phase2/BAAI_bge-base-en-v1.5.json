@@ -1,0 +1,181 @@
+{
+  "model": "BAAI/bge-base-en-v1.5",
+  "params_M": 109,
+  "family": "contrastive",
+  "scifact": {
+    "baseline_ndcg10": 0.73763,
+    "mobius_c0.5": {
+      "ndcg10": 0.72265,
+      "delta": -0.015,
+      "jaccard": 0.7391194916194916
+    },
+    "mobius_c1.0": {
+      "ndcg10": 0.73763,
+      "delta": 0.0,
+      "jaccard": 1.0
+    },
+    "mobius_c2.0": {
+      "ndcg10": 0.73763,
+      "delta": 0.0,
+      "jaccard": 1.0
+    },
+    "gyroscalar_r0.1": {
+      "ndcg10": 0.73954,
+      "delta": 0.0019,
+      "jaccard": 0.6222543469602293
+    },
+    "gyroscalar_r0.5": {
+      "ndcg10": 0.75084,
+      "delta": 0.0132,
+      "jaccard": 0.7657153957153957
+    },
+    "gyroscalar_r1.0": {
+      "ndcg10": 0.73763,
+      "delta": 0.0,
+      "jaccard": 1.0
+    },
+    "gyroscalar_r2.0": {
+      "ndcg10": 0.71721,
+      "delta": -0.0204,
+      "jaccard": 0.7045440017498841
+    },
+    "wasserstein_w0.3": {
+      "ndcg10": 0.6882,
+      "delta": -0.0494,
+      "jaccard": 0.49776298721345164
+    },
+    "wasserstein_w0.5": {
+      "ndcg10": 0.6893,
+      "delta": -0.0483,
+      "jaccard": 0.5419771717217537
+    },
+    "wasserstein_w0.7": {
+      "ndcg10": 0.69073,
+      "delta": -0.0469,
+      "jaccard": 0.5364108752731044
+    },
+    "rotor_a0.1": {
+      "ndcg10": 0.73476,
+      "delta": -0.0029,
+      "jaccard": 0.8946231546231546
+    },
+    "rotor_a0.2": {
+      "ndcg10": 0.73835,
+      "delta": 0.0007,
+      "jaccard": 0.8058397158397158
+    },
+    "rotor_a0.3": {
+      "ndcg10": 0.73195,
+      "delta": -0.0057,
+      "jaccard": 0.7329406704406705
+    },
+    "kronecker_r2": {
+      "ndcg10": 0.73721,
+      "delta": -0.0004,
+      "jaccard": 0.9909090909090911
+    },
+    "kronecker_r4": {
+      "ndcg10": 0.73667,
+      "delta": -0.001,
+      "jaccard": 0.9830303030303031
+    },
+    "kronecker_r8": {
+      "ndcg10": 0.73729,
+      "delta": -0.0003,
+      "jaccard": 0.9884848484848485
+    },
+    "kronecker_r16": {
+      "ndcg10": 0.73634,
+      "delta": -0.0013,
+      "jaccard": 0.9781818181818182
+    }
+  },
+  "arguana": {
+    "baseline_ndcg10": 0.63616,
+    "mobius_c0.5": {
+      "ndcg10": 0.61901,
+      "delta": -0.0171,
+      "jaccard": 0.7826554076554078
+    },
+    "mobius_c1.0": {
+      "ndcg10": 0.63616,
+      "delta": 0.0,
+      "jaccard": 1.0
+    },
+    "mobius_c2.0": {
+      "ndcg10": 0.63616,
+      "delta": 0.0,
+      "jaccard": 1.0
+    },
+    "gyroscalar_r0.1": {
+      "ndcg10": 0.60404,
+      "delta": -0.0321,
+      "jaccard": 0.7133824150078021
+    },
+    "gyroscalar_r0.5": {
+      "ndcg10": 0.6283,
+      "delta": -0.0079,
+      "jaccard": 0.8263722408459251
+    },
+    "gyroscalar_r1.0": {
+      "ndcg10": 0.63616,
+      "delta": 0.0,
+      "jaccard": 1.0
+    },
+    "gyroscalar_r2.0": {
+      "ndcg10": 0.6141,
+      "delta": -0.0221,
+      "jaccard": 0.7554066369855844
+    },
+    "wasserstein_w0.3": {
+      "ndcg10": 0.5797,
+      "delta": -0.0565,
+      "jaccard": 0.604321888377616
+    },
+    "wasserstein_w0.5": {
+      "ndcg10": 0.57701,
+      "delta": -0.0591,
+      "jaccard": 0.6029487252397469
+    },
+    "wasserstein_w0.7": {
+      "ndcg10": 0.56525,
+      "delta": -0.0709,
+      "jaccard": 0.57185358122298
+    },
+    "rotor_a0.1": {
+      "ndcg10": 0.6346,
+      "delta": -0.0016,
+      "jaccard": 0.9138838875680981
+    },
+    "rotor_a0.2": {
+      "ndcg10": 0.62935,
+      "delta": -0.0068,
+      "jaccard": 0.8427603690761586
+    },
+    "rotor_a0.3": {
+      "ndcg10": 0.62382,
+      "delta": -0.0123,
+      "jaccard": 0.7758666771824667
+    },
+    "kronecker_r2": {
+      "ndcg10": 0.63622,
+      "delta": 0.0001,
+      "jaccard": 0.9893960946592525
+    },
+    "kronecker_r4": {
+      "ndcg10": 0.63653,
+      "delta": 0.0004,
+      "jaccard": 0.9874563558774084
+    },
+    "kronecker_r8": {
+      "ndcg10": 0.6355,
+      "delta": -0.0007,
+      "jaccard": 0.9887495150653046
+    },
+    "kronecker_r16": {
+      "ndcg10": 0.63542,
+      "delta": -0.0007,
+      "jaccard": 0.982413035044614
+    }
+  }
+}

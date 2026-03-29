@@ -1,0 +1,181 @@
+{
+  "model": "BAAI/bge-small-en-v1.5",
+  "params_M": 33,
+  "family": "contrastive",
+  "scifact": {
+    "baseline_ndcg10": 0.72,
+    "mobius_c0.5": {
+      "ndcg10": 0.69537,
+      "delta": -0.0246,
+      "jaccard": 0.7144130869130869
+    },
+    "mobius_c1.0": {
+      "ndcg10": 0.72,
+      "delta": 0.0,
+      "jaccard": 1.0
+    },
+    "mobius_c2.0": {
+      "ndcg10": 0.72,
+      "delta": 0.0,
+      "jaccard": 1.0
+    },
+    "gyroscalar_r0.1": {
+      "ndcg10": 0.69344,
+      "delta": -0.0266,
+      "jaccard": 0.5520067405361523
+    },
+    "gyroscalar_r0.5": {
+      "ndcg10": 0.7189,
+      "delta": -0.0011,
+      "jaccard": 0.7288861138861139
+    },
+    "gyroscalar_r1.0": {
+      "ndcg10": 0.72,
+      "delta": 0.0,
+      "jaccard": 1.0
+    },
+    "gyroscalar_r2.0": {
+      "ndcg10": 0.69206,
+      "delta": -0.0279,
+      "jaccard": 0.669907249613132
+    },
+    "wasserstein_w0.3": {
+      "ndcg10": 0.65578,
+      "delta": -0.0642,
+      "jaccard": 0.3980573414087346
+    },
+    "wasserstein_w0.5": {
+      "ndcg10": 0.65793,
+      "delta": -0.0621,
+      "jaccard": 0.4441083111361749
+    },
+    "wasserstein_w0.7": {
+      "ndcg10": 0.65806,
+      "delta": -0.0619,
+      "jaccard": 0.4523399527888692
+    },
+    "rotor_a0.1": {
+      "ndcg10": 0.71561,
+      "delta": -0.0044,
+      "jaccard": 0.8551270951270952
+    },
+    "rotor_a0.2": {
+      "ndcg10": 0.70797,
+      "delta": -0.012,
+      "jaccard": 0.7422577422577423
+    },
+    "rotor_a0.3": {
+      "ndcg10": 0.69639,
+      "delta": -0.0236,
+      "jaccard": 0.6487192709251534
+    },
+    "kronecker_r2": {
+      "ndcg10": 0.71584,
+      "delta": -0.0042,
+      "jaccard": 0.9541414141414142
+    },
+    "kronecker_r4": {
+      "ndcg10": 0.71821,
+      "delta": -0.0018,
+      "jaccard": 0.9565656565656566
+    },
+    "kronecker_r8": {
+      "ndcg10": 0.71973,
+      "delta": -0.0003,
+      "jaccard": 0.9526262626262625
+    },
+    "kronecker_r16": {
+      "ndcg10": 0.71615,
+      "delta": -0.0039,
+      "jaccard": 0.9392929292929292
+    }
+  },
+  "arguana": {
+    "baseline_ndcg10": 0.59499,
+    "mobius_c0.5": {
+      "ndcg10": 0.57404,
+      "delta": -0.021,
+      "jaccard": 0.7708036392246919
+    },
+    "mobius_c1.0": {
+      "ndcg10": 0.59499,
+      "delta": 0.0,
+      "jaccard": 0.9997413681624207
+    },
+    "mobius_c2.0": {
+      "ndcg10": 0.59499,
+      "delta": 0.0,
+      "jaccard": 0.9997413681624207
+    },
+    "gyroscalar_r0.1": {
+      "ndcg10": 0.5676,
+      "delta": -0.0274,
+      "jaccard": 0.661466833680456
+    },
+    "gyroscalar_r0.5": {
+      "ndcg10": 0.59813,
+      "delta": 0.0031,
+      "jaccard": 0.7915375283796336
+    },
+    "gyroscalar_r1.0": {
+      "ndcg10": 0.59499,
+      "delta": 0.0,
+      "jaccard": 1.0
+    },
+    "gyroscalar_r2.0": {
+      "ndcg10": 0.56679,
+      "delta": -0.0282,
+      "jaccard": 0.7304450980921569
+    },
+    "wasserstein_w0.3": {
+      "ndcg10": 0.49522,
+      "delta": -0.0998,
+      "jaccard": 0.5288395094896643
+    },
+    "wasserstein_w0.5": {
+      "ndcg10": 0.50081,
+      "delta": -0.0942,
+      "jaccard": 0.5310015004287449
+    },
+    "wasserstein_w0.7": {
+      "ndcg10": 0.48835,
+      "delta": -0.1066,
+      "jaccard": 0.5101570198319424
+    },
+    "rotor_a0.1": {
+      "ndcg10": 0.59474,
+      "delta": -0.0002,
+      "jaccard": 0.8936061567640514
+    },
+    "rotor_a0.2": {
+      "ndcg10": 0.58424,
+      "delta": -0.0108,
+      "jaccard": 0.8095697569381781
+    },
+    "rotor_a0.3": {
+      "ndcg10": 0.57016,
+      "delta": -0.0248,
+      "jaccard": 0.7345264106100021
+    },
+    "kronecker_r2": {
+      "ndcg10": 0.59463,
+      "delta": -0.0004,
+      "jaccard": 0.9726712358291305
+    },
+    "kronecker_r4": {
+      "ndcg10": 0.5962,
+      "delta": 0.0012,
+      "jaccard": 0.9707746023535497
+    },
+    "kronecker_r8": {
+      "ndcg10": 0.59729,
+      "delta": 0.0023,
+      "jaccard": 0.9717444717444719
+    },
+    "kronecker_r16": {
+      "ndcg10": 0.59591,
+      "delta": 0.0009,
+      "jaccard": 0.9618949092633303
+    }
+  }
+}

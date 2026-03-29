@@ -1,166 +1,188 @@
 {
   "dataset": "scifact",
-  "num_queries": 300,
+  "num_queries": 50,
   "num_docs": 5183,
   "model": "BAAI/bge-small-en-v1.5",
   "baseline": {
     "ndcg": {
-      "NDCG@1": 0.60333,
-      "NDCG@5": 0.69221,
-      "NDCG@10": 0.72
+      "NDCG@1": 0.72,
+      "NDCG@5": 0.77958,
+      "NDCG@10": 0.80246
     },
     "map": {
-      "MAP@1": 0.57872,
-      "MAP@5": 0.66291,
-      "MAP@10": 0.67636
+      "MAP@1": 0.669,
+      "MAP@5": 0.75353,
+      "MAP@10": 0.76556
     },
     "recall": {
-      "Recall@1": 0.57872,
-      "Recall@5": 0.76528,
-      "Recall@10": 0.84522
+      "Recall@1": 0.669,
+      "Recall@5": 0.841,
+      "Recall@10": 0.906
     },
     "precision": {
-      "P@1": 0.60333,
-      "P@5": 0.17,
-      "P@10": 0.09533
+      "P@1": 0.72,
+      "P@5": 0.2,
+      "P@10": 0.108
     }
   },
   "prf": {
     "ndcg": {
-      "NDCG@1": 0.59,
-      "NDCG@5": 0.69095,
-      "NDCG@10": 0.71232
+      "NDCG@1": 0.7,
+      "NDCG@5": 0.77225,
+      "NDCG@10": 0.79915
     },
     "map": {
-      "MAP@1": 0.56539,
-      "MAP@5": 0.65769,
-      "MAP@10": 0.6683
+      "MAP@1": 0.649,
+      "MAP@5": 0.74337,
+      "MAP@10": 0.75845
     },
     "recall": {
-      "Recall@1": 0.56539,
-      "Recall@5": 0.77861,
-      "Recall@10": 0.83922
+      "Recall@1": 0.649,
+      "Recall@5": 0.846,
+      "Recall@10": 0.92
     },
     "precision": {
-      "P@1": 0.59,
-      "P@5": 0.174,
-      "P@10": 0.095
+      "P@1": 0.7,
+      "P@5": 0.204,
+      "P@10": 0.112
+    }
+  },
+  "hyde": {
+    "ndcg": {
+      "NDCG@1": 0.58,
+      "NDCG@5": 0.72233,
+      "NDCG@10": 0.75231
+    },
+    "map": {
+      "MAP@1": 0.549,
+      "MAP@5": 0.67612,
+      "MAP@10": 0.69064
+    },
+    "recall": {
+      "Recall@1": 0.549,
+      "Recall@5": 0.846,
+      "Recall@10": 0.93
+    },
+    "precision": {
+      "P@1": 0.58,
+      "P@5": 0.2,
+      "P@10": 0.112
     }
   },
   "subtraction": {
     "methodology and statistical analysis": {
       "ndcg": {
-        "NDCG@1": 0.58667,
-        "NDCG@5": 0.66148,
-        "NDCG@10": 0.68821
+        "NDCG@1": 0.66,
+        "NDCG@5": 0.74472,
+        "NDCG@10": 0.76823
       },
       "map": {
-        "MAP@1": 0.55928,
-        "MAP@5": 0.63294,
-        "MAP@10": 0.64535
+        "MAP@1": 0.619,
+        "MAP@5": 0.7182,
+        "MAP@10": 0.72891
       },
       "recall": {
-        "Recall@1": 0.55928,
-        "Recall@5": 0.7325,
-        "Recall@10": 0.81111
+        "Recall@1": 0.619,
+        "Recall@5": 0.806,
+        "Recall@10": 0.876
       },
       "precision": {
-        "P@1": 0.58667,
-        "P@5": 0.164,
-        "P@10": 0.09133
+        "P@1": 0.66,
+        "P@5": 0.196,
+        "P@10": 0.106
       },
       "projection_stats": {
-        "mean": 0.5078262090682983,
-        "std": 0.03749549761414528,
-        "min": 0.397214412689209,
-        "max": 0.6681948900222778,
+        "mean": 0.5103194117546082,
+        "std": 0.03667207062244415,
+        "min": 0.44163239002227783,
+        "max": 0.6113489270210266,
         "pct_above_0.1": 1.0
       }
     },
     "animal model studies": {
       "ndcg": {
-        "NDCG@1": 0.56333,
-        "NDCG@5": 0.64981,
-        "NDCG@10": 0.67735
+        "NDCG@1": 0.7,
+        "NDCG@5": 0.74092,
+        "NDCG@10": 0.77553
       },
       "map": {
-        "MAP@1": 0.53483,
-        "MAP@5": 0.61808,
-        "MAP@10": 0.63095
+        "MAP@1": 0.649,
+        "MAP@5": 0.71895,
+        "MAP@10": 0.73517
       },
       "recall": {
-        "Recall@1": 0.53483,
-        "Recall@5": 0.72694,
-        "Recall@10": 0.809
+        "Recall@1": 0.649,
+        "Recall@5": 0.781,
+        "Recall@10": 0.886
       },
       "precision": {
-        "P@1": 0.56333,
-        "P@5": 0.16267,
-        "P@10": 0.09133
+        "P@1": 0.7,
+        "P@5": 0.188,
+        "P@10": 0.106
       },
       "projection_stats": {
-        "mean": 0.5704309344291687,
-        "std": 0.04403822124004364,
-        "min": 0.39058709144592285,
-        "max": 0.7412415146827698,
+        "mean": 0.5613877177238464,
+        "std": 0.04141462594270706,
+        "min": 0.4454282522201538,
+        "max": 0.6401959657669067,
         "pct_above_0.1": 1.0
       }
     },
     "genetic analysis": {
       "ndcg": {
-        "NDCG@1": 0.57333,
-        "NDCG@5": 0.65575,
-        "NDCG@10": 0.67082
+        "NDCG@1": 0.7,
+        "NDCG@5": 0.73638,
+        "NDCG@10": 0.75451
       },
       "map": {
-        "MAP@1": 0.54817,
-        "MAP@5": 0.62605,
-        "MAP@10": 0.63386
+        "MAP@1": 0.659,
+        "MAP@5": 0.7217,
+        "MAP@10": 0.73126
       },
       "recall": {
-        "Recall@1": 0.54817,
-        "Recall@5": 0.72906,
-        "Recall@10": 0.77211
+        "Recall@1": 0.659,
+        "Recall@5": 0.761,
+        "Recall@10": 0.816
       },
       "precision": {
-        "P@1": 0.57333,
-        "P@5": 0.16133,
-        "P@10": 0.08667
+        "P@1": 0.7,
+        "P@5": 0.18,
+        "P@10": 0.098
       },
       "projection_stats": {
-        "mean": 0.5267184376716614,
-        "std": 0.057512328028678894,
-        "min": 0.339826375246048,
+        "mean": 0.5178487300872803,
+        "std": 0.06044703349471092,
+        "min": 0.38324210047721863,
         "max": 0.7102352380752563,
         "pct_above_0.1": 1.0
       }
     },
     "clinical trials": {
       "ndcg": {
-        "NDCG@1": 0.55667,
-        "NDCG@5": 0.65295,
-        "NDCG@10": 0.6816
+        "NDCG@1": 0.68,
+        "NDCG@5": 0.72813,
+        "NDCG@10": 0.76147
       },
       "map": {
-        "MAP@1": 0.5315,
-        "MAP@5": 0.61865,
-        "MAP@10": 0.63263
+        "MAP@1": 0.639,
+        "MAP@5": 0.70587,
+        "MAP@10": 0.72309
       },
       "recall": {
-        "Recall@1": 0.5315,
-        "Recall@5": 0.73678,
-        "Recall@10": 0.82022
+        "Recall@1": 0.639,
+        "Recall@5": 0.771,
+        "Recall@10": 0.866
       },
       "precision": {
-        "P@1": 0.55667,
-        "P@5": 0.164,
-        "P@10": 0.09267
+        "P@1": 0.68,
+        "P@5": 0.184,
+        "P@10": 0.104
       },
       "projection_stats": {
-        "mean": 0.5548295378684998,
-        "std": 0.042121972888708115,
-        "min": 0.4165486693382263,
-        "max": 0.6737840175628662,
+        "mean": 0.5484261512756348,
+        "std": 0.039235588163137436,
+        "min": 0.46210911870002747,
+        "max": 0.6368557214736938,
         "pct_above_0.1": 1.0
       }
     }
@@ -169,77 +191,77 @@
     "target": "clinical medicine and patient outcomes",
     "data": {
       "alpha=0.05": {
-        "mean_jaccard@10": 0.9213908313908314,
+        "mean_jaccard@10": 0.9224242424242425,
         "mean_new_docs": 0.44,
-        "mean_sim_shift": 0.006787221769491836,
-        "pct_queries_with_change": 0.39666666666666667
+        "mean_sim_shift": 0.0068782833814621,
+        "pct_queries_with_change": 0.36
       },
       "alpha=0.1": {
-        "mean_jaccard@10": 0.8520590520590521,
-        "mean_new_docs": 0.8466666666666667,
-        "mean_sim_shift": 0.012538481970628106,
-        "pct_queries_with_change": 0.6666666666666666
+        "mean_jaccard@10": 0.852913752913753,
+        "mean_new_docs": 0.86,
+        "mean_sim_shift": 0.012738696336746213,
+        "pct_queries_with_change": 0.6
       },
       "alpha=0.15": {
-        "mean_jaccard@10": 0.7816661116661118,
-        "mean_new_docs": 1.3,
-        "mean_sim_shift": 0.017094203730424248,
-        "pct_queries_with_change": 0.8166666666666667
+        "mean_jaccard@10": 0.7779353979353979,
+        "mean_new_docs": 1.38,
+        "mean_sim_shift": 0.017485898494720455,
+        "pct_queries_with_change": 0.72
       },
       "alpha=0.2": {
-        "mean_jaccard@10": 0.7102772227772228,
-        "mean_new_docs": 1.8,
-        "mean_sim_shift": 0.020293226540088652,
-        "pct_queries_with_change": 0.9
+        "mean_jaccard@10": 0.7137512487512487,
+        "mean_new_docs": 1.82,
+        "mean_sim_shift": 0.020958179593086247,
+        "pct_queries_with_change": 0.84
       },
       "alpha=0.3": {
-        "mean_jaccard@10": 0.5605175706646295,
-        "mean_new_docs": 2.98,
-        "mean_sim_shift": 0.02212425392866135,
-        "pct_queries_with_change": 0.9566666666666667
+        "mean_jaccard@10": 0.5734716264128028,
+        "mean_new_docs": 2.92,
+        "mean_sim_shift": 0.023341442227363594,
+        "pct_queries_with_change": 0.94
       },
       "alpha=0.4": {
-        "mean_jaccard@10": 0.40590606532557,
-        "mean_new_docs": 4.453333333333333,
-        "mean_sim_shift": 0.017712240060170494,
-        "pct_queries_with_change": 0.99
+        "mean_jaccard@10": 0.42111752540545105,
+        "mean_new_docs": 4.32,
+        "mean_sim_shift": 0.01980043053627015,
+        "pct_queries_with_change": 1.0
       },
       "alpha=0.5": {
-        "mean_jaccard@10": 0.22189983792150975,
-        "mean_new_docs": 6.59,
-        "mean_sim_shift": 0.008890674054622653,
+        "mean_jaccard@10": 0.2327006808121359,
+        "mean_new_docs": 6.42,
+        "mean_sim_shift": 0.012004604578018194,
         "pct_queries_with_change": 1.0
       }
     }
   },
   "rotation_ndcg": {
     "alpha=0.05": {
-      "ndcg@10": 0.71763,
-      "recall@10": 0.84356
+      "ndcg@10": 0.80208,
+      "recall@10": 0.906
     },
     "alpha=0.1": {
-      "ndcg@10": 0.71221,
-      "recall@10": 0.83689
+      "ndcg@10": 0.79691,
+      "recall@10": 0.906
     },
     "alpha=0.15": {
-      "ndcg@10": 0.70468,
-      "recall@10": 0.81856
+      "ndcg@10": 0.78935,
+      "recall@10": 0.886
     },
     "alpha=0.2": {
-      "ndcg@10": 0.69391,
-      "recall@10": 0.81289
+      "ndcg@10": 0.76899,
+      "recall@10": 0.886
     },
     "alpha=0.3": {
-      "ndcg@10": 0.67743,
-      "recall@10": 0.79456
+      "ndcg@10": 0.75324,
+      "recall@10": 0.866
     },
     "alpha=0.4": {
-      "ndcg@10": 0.6285,
-      "recall@10": 0.74622
+      "ndcg@10": 0.69298,
+      "recall@10": 0.756
     },
     "alpha=0.5": {
-      "ndcg@10": 0.5226,
-      "recall@10": 0.60278
+      "ndcg@10": 0.61456,
+      "recall@10": 0.686
     }
   }
 }

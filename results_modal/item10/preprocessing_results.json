@@ -1,0 +1,79 @@
+{
+  "config": {
+    "eval_model": "BAAI/bge-small-en-v1.5",
+    "rewrite_model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "n_docs_rewritten": 100,
+    "total_docs": 5183
+  },
+  "embedding_similarity": {
+    "mean_cosine": 0.8846928477287292,
+    "std_cosine": 0.07781635969877243,
+    "min_cosine": 0.6758494973182678,
+    "max_cosine": 0.9845538139343262
+  },
+  "projections": {
+    "methodology": {
+      "concept": "methodology and statistical analysis",
+      "original": {
+        "mean": 0.5231930017471313,
+        "std": 0.0394093357026577
+      },
+      "rewritten": {
+        "mean": 0.49245646595954895,
+        "std": 0.03783509135246277
+      },
+      "delta_pct": -5.874798774719238
+    },
+    "animal_studies": {
+      "concept": "animal model studies",
+      "original": {
+        "mean": 0.6040884852409363,
+        "std": 0.028981473296880722
+      },
+      "rewritten": {
+        "mean": 0.5769014358520508,
+        "std": 0.035538140684366226
+      },
+      "delta_pct": -4.500507831573486
+    },
+    "genetics": {
+      "concept": "genetic analysis",
+      "original": {
+        "mean": 0.5536220073699951,
+        "std": 0.04709191992878914
+      },
+      "rewritten": {
+        "mean": 0.5223702788352966,
+        "std": 0.04975244775414467
+      },
+      "delta_pct": -5.644957542419434
+    },
+    "rotation_target": {
+      "concept": "clinical medicine and patient outcomes",
+      "original": {
+        "mean": 0.5531024932861328,
+        "std": 0.04004596546292305
+      },
+      "rewritten": {
+        "mean": 0.5271127223968506,
+        "std": 0.038174428045749664
+      },
+      "delta_pct": -4.698906898498535
+    }
+  },
+  "retrieval": {
+    "baseline_ndcg10": 0.72,
+    "hybrid_ndcg10": 0.62837,
+    "delta": -0.0916
+  },
+  "rotation_0.1": {
+    "on_original": 0.71221,
+    "on_hybrid": 0.61895,
+    "delta_orig_vs_base": -0.0078,
+    "delta_hybrid_vs_base": -0.101
+  },
+  "isotropy": {
+    "original": 0.6495869755744934,
+    "rewritten": 0.6061145067214966
+  }
+}
