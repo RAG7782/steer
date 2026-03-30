@@ -1,0 +1,79 @@
+{
+  "config": {
+    "eval_model": "BAAI/bge-small-en-v1.5",
+    "rewrite_model": "Qwen/Qwen2.5-1.5B-Instruct",
+    "n_docs_rewritten": 100,
+    "total_docs": 5183
+  },
+  "embedding_similarity": {
+    "mean_cosine": 0.8792577981948853,
+    "std_cosine": 0.06924206763505936,
+    "min_cosine": 0.6608757376670837,
+    "max_cosine": 0.9796025156974792
+  },
+  "projections": {
+    "methodology": {
+      "concept": "methodology and statistical analysis",
+      "original": {
+        "mean": 0.5231931805610657,
+        "std": 0.039409339427948
+      },
+      "rewritten": {
+        "mean": 0.4899815022945404,
+        "std": 0.03688988462090492
+      },
+      "delta_pct": -6.3478803634643555
+    },
+    "animal_studies": {
+      "concept": "animal model studies",
+      "original": {
+        "mean": 0.604088544845581,
+        "std": 0.028981473296880722
+      },
+      "rewritten": {
+        "mean": 0.5785313844680786,
+        "std": 0.03307671099901199
+      },
+      "delta_pct": -4.2306976318359375
+    },
+    "genetics": {
+      "concept": "genetic analysis",
+      "original": {
+        "mean": 0.5536220669746399,
+        "std": 0.04709191247820854
+      },
+      "rewritten": {
+        "mean": 0.5225618481636047,
+        "std": 0.05290685221552849
+      },
+      "delta_pct": -5.61036491394043
+    },
+    "rotation_target": {
+      "concept": "clinical medicine and patient outcomes",
+      "original": {
+        "mean": 0.5531026124954224,
+        "std": 0.04004596546292305
+      },
+      "rewritten": {
+        "mean": 0.5265228152275085,
+        "std": 0.03854690492153168
+      },
+      "delta_pct": -4.805581569671631
+    }
+  },
+  "retrieval": {
+    "baseline_ndcg10": 0.72,
+    "hybrid_ndcg10": 0.61227,
+    "delta": -0.1077
+  },
+  "rotation_0.1": {
+    "on_original": 0.71221,
+    "on_hybrid": 0.60005,
+    "delta_orig_vs_base": -0.0078,
+    "delta_hybrid_vs_base": -0.12
+  },
+  "isotropy": {
+    "original": 0.6495871543884277,
+    "rewritten": 0.6095293760299683
+  }
+}

@@ -1,0 +1,314 @@
+{
+  "model": "all-MiniLM-L6-v2",
+  "dataset": "arguana",
+  "n_docs": 8674,
+  "n_queries": 1406,
+  "dim": 384,
+  "fp32": {
+    "angular_fidelity": {
+      "pearson_r": 1.0,
+      "mae_cosine": 0.0
+    },
+    "baseline_ndcg10": 0.50167,
+    "rotation_a0.1": {
+      "quant_then_rotate": {
+        "ndcg10": 0.50375,
+        "delta_vs_base": 0.0021
+      },
+      "rotate_then_quant": {
+        "ndcg10": 0.50375,
+        "delta_vs_base": 0.0021
+      },
+      "angle_fidelity": {
+        "mean_angle_deviation_deg": 0.005947491619735956,
+        "max_angle_deviation_deg": 0.03426402062177658,
+        "std_angle_deviation_deg": 0.01014694757759571
+      }
+    },
+    "rotation_a0.2": {
+      "quant_then_rotate": {
+        "ndcg10": 0.50002,
+        "delta_vs_base": -0.0016
+      },
+      "rotate_then_quant": {
+        "ndcg10": 0.50002,
+        "delta_vs_base": -0.0016
+      },
+      "angle_fidelity": {
+        "mean_angle_deviation_deg": 0.006728567648679018,
+        "max_angle_deviation_deg": 0.03956468030810356,
+        "std_angle_deviation_deg": 0.01090618409216404
+      }
+    },
+    "subtraction": {
+      "ndcg10": 0.49882,
+      "delta_vs_base": -0.0028
+    },
+    "combined_rot_sub": {
+      "ndcg10": 0.49722,
+      "delta_vs_base": -0.0044
+    }
+  },
+  "int8": {
+    "angular_fidelity": {
+      "pearson_r": 0.9999890213803586,
+      "mae_cosine": 0.0004237809916958213
+    },
+    "baseline_ndcg10": 0.50212,
+    "rotation_a0.1": {
+      "quant_then_rotate": {
+        "ndcg10": 0.50248,
+        "delta_vs_base": 0.0004
+      },
+      "rotate_then_quant": {
+        "ndcg10": 0.50296,
+        "delta_vs_base": 0.0008
+      },
+      "angle_fidelity": {
+        "mean_angle_deviation_deg": 0.41029179096221924,
+        "max_angle_deviation_deg": 0.6605679988861084,
+        "std_angle_deviation_deg": 0.04785999283194542
+      }
+    },
+    "rotation_a0.2": {
+      "quant_then_rotate": {
+        "ndcg10": 0.5004,
+        "delta_vs_base": -0.0017
+      },
+      "rotate_then_quant": {
+        "ndcg10": 0.50041,
+        "delta_vs_base": -0.0017
+      },
+      "angle_fidelity": {
+        "mean_angle_deviation_deg": 0.39448627829551697,
+        "max_angle_deviation_deg": 0.6286957263946533,
+        "std_angle_deviation_deg": 0.046345341950654984
+      }
+    },
+    "subtraction": {
+      "ndcg10": 0.4996,
+      "delta_vs_base": -0.0025
+    },
+    "combined_rot_sub": {
+      "ndcg10": 0.49816,
+      "delta_vs_base": -0.004
+    }
+  },
+  "int4": {
+    "angular_fidelity": {
+      "pearson_r": 0.996394758892536,
+      "mae_cosine": 0.007700531743466854
+    },
+    "baseline_ndcg10": 0.50063,
+    "rotation_a0.1": {
+      "quant_then_rotate": {
+        "ndcg10": 0.49912,
+        "delta_vs_base": -0.0015
+      },
+      "rotate_then_quant": {
+        "ndcg10": 0.49859,
+        "delta_vs_base": -0.002
+      },
+      "angle_fidelity": {
+        "mean_angle_deviation_deg": 7.399196147918701,
+        "max_angle_deviation_deg": 12.018735885620117,
+        "std_angle_deviation_deg": 0.8610864877700806
+      }
+    },
+    "rotation_a0.2": {
+      "quant_then_rotate": {
+        "ndcg10": 0.49197,
+        "delta_vs_base": -0.0087
+      },
+      "rotate_then_quant": {
+        "ndcg10": 0.49589,
+        "delta_vs_base": -0.0047
+      },
+      "angle_fidelity": {
+        "mean_angle_deviation_deg": 7.117605686187744,
+        "max_angle_deviation_deg": 11.451979637145996,
+        "std_angle_deviation_deg": 0.8331553936004639
+      }
+    },
+    "subtraction": {
+      "ndcg10": 0.4982,
+      "delta_vs_base": -0.0024
+    },
+    "combined_rot_sub": {
+      "ndcg10": 0.4971,
+      "delta_vs_base": -0.0035
+    }
+  },
+  "3bit": {
+    "angular_fidelity": {
+      "pearson_r": 0.9801351961768411,
+      "mae_cosine": 0.01842520944774151
+    },
+    "baseline_ndcg10": 0.49064,
+    "rotation_a0.1": {
+      "quant_then_rotate": {
+        "ndcg10": 0.49132,
+        "delta_vs_base": 0.0007
+      },
+      "rotate_then_quant": {
+        "ndcg10": 0.48966,
+        "delta_vs_base": -0.001
+      },
+      "angle_fidelity": {
+        "mean_angle_deviation_deg": 16.857402801513672,
+        "max_angle_deviation_deg": 26.824705123901367,
+        "std_angle_deviation_deg": 1.8699395656585693
+      }
+    },
+    "rotation_a0.2": {
+      "quant_then_rotate": {
+        "ndcg10": 0.48445,
+        "delta_vs_base": -0.0062
+      },
+      "rotate_then_quant": {
+        "ndcg10": 0.4765,
+        "delta_vs_base": -0.0141
+      },
+      "angle_fidelity": {
+        "mean_angle_deviation_deg": 16.24512481689453,
+        "max_angle_deviation_deg": 25.73531723022461,
+        "std_angle_deviation_deg": 1.820772409439087
+      }
+    },
+    "subtraction": {
+      "ndcg10": 0.49016,
+      "delta_vs_base": -0.0005
+    },
+    "combined_rot_sub": {
+      "ndcg10": 0.48808,
+      "delta_vs_base": -0.0026
+    }
+  },
+  "binary": {
+    "angular_fidelity": {
+      "pearson_r": 0.8827968066750014,
+      "mae_cosine": 0.054680194705724716
+    },
+    "baseline_ndcg10": 0.43575,
+    "rotation_a0.1": {
+      "quant_then_rotate": {
+        "ndcg10": 0.44143,
+        "delta_vs_base": 0.0057
+      },
+      "rotate_then_quant": {
+        "ndcg10": 0.43493,
+        "delta_vs_base": -0.0008
+      },
+      "angle_fidelity": {
+        "mean_angle_deviation_deg": 36.777042388916016,
+        "max_angle_deviation_deg": 40.62232208251953,
+        "std_angle_deviation_deg": 1.0363003015518188
+      }
+    },
+    "rotation_a0.2": {
+      "quant_then_rotate": {
+        "ndcg10": 0.435,
+        "delta_vs_base": -0.0008
+      },
+      "rotate_then_quant": {
+        "ndcg10": 0.41714,
+        "delta_vs_base": -0.0186
+      },
+      "angle_fidelity": {
+        "mean_angle_deviation_deg": 35.3652458190918,
+        "max_angle_deviation_deg": 40.015533447265625,
+        "std_angle_deviation_deg": 1.1496793031692505
+      }
+    },
+    "subtraction": {
+      "ndcg10": 0.43587,
+      "delta_vs_base": 0.0001
+    },
+    "combined_rot_sub": {
+      "ndcg10": 0.43659,
+      "delta_vs_base": 0.0008
+    }
+  },
+  "polar_int8": {
+    "angular_fidelity": {
+      "pearson_r": 0.9999893892568245,
+      "mae_cosine": 0.0004166135040577501
+    },
+    "baseline_ndcg10": 0.50162,
+    "rotation_a0.1": {
+      "quant_then_rotate": {
+        "ndcg10": 0.50286,
+        "delta_vs_base": 0.0012
+      },
+      "rotate_then_quant": {
+        "ndcg10": 0.50312,
+        "delta_vs_base": 0.0015
+      },
+      "angle_fidelity": {
+        "mean_angle_deviation_deg": 0.4102819263935089,
+        "max_angle_deviation_deg": 0.6602717041969299,
+        "std_angle_deviation_deg": 0.04786573350429535
+      }
+    },
+    "rotation_a0.2": {
+      "quant_then_rotate": {
+        "ndcg10": 0.50058,
+        "delta_vs_base": -0.001
+      },
+      "rotate_then_quant": {
+        "ndcg10": 0.5003,
+        "delta_vs_base": -0.0013
+      },
+      "angle_fidelity": {
+        "mean_angle_deviation_deg": 0.39450329542160034,
+        "max_angle_deviation_deg": 0.6280729174613953,
+        "std_angle_deviation_deg": 0.046323616057634354
+      }
+    },
+    "subtraction": {
+      "ndcg10": 0.49863,
+      "delta_vs_base": -0.003
+    },
+    "combined_rot_sub": {
+      "ndcg10": 0.49779,
+      "delta_vs_base": -0.0038
+    }
+  },
+  "summary": {
+    "int8": {
+      "baseline_degradation": 0.0005,
+      "rotation_delta_fp32": 0.0021,
+      "rotation_delta_quant": 0.0004,
+      "rotation_preserved": true,
+      "subtraction_degradation": 0.0008
+    },
+    "int4": {
+      "baseline_degradation": -0.001,
+      "rotation_delta_fp32": 0.0021,
+      "rotation_delta_quant": -0.0015,
+      "rotation_preserved": true,
+      "subtraction_degradation": -0.0006
+    },
+    "3bit": {
+      "baseline_degradation": -0.011,
+      "rotation_delta_fp32": 0.0021,
+      "rotation_delta_quant": 0.0007,
+      "rotation_preserved": true,
+      "subtraction_degradation": -0.0087
+    },
+    "binary": {
+      "baseline_degradation": -0.0659,
+      "rotation_delta_fp32": 0.0021,
+      "rotation_delta_quant": 0.0057,
+      "rotation_preserved": true,
+      "subtraction_degradation": -0.063
+    },
+    "polar_int8": {
+      "baseline_degradation": -0.0,
+      "rotation_delta_fp32": 0.0021,
+      "rotation_delta_quant": 0.0012,
+      "rotation_preserved": true,
+      "subtraction_degradation": -0.0002
+    }
+  }
+}

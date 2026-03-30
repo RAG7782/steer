@@ -1,0 +1,524 @@
+{
+  "model": "intfloat/e5-small-v2",
+  "family": "instruction",
+  "scifact": {
+    "baseline_ndcg10": 0.70884,
+    "n_queries": 100,
+    "gradient_walk": {
+      "curve": [
+        {
+          "alpha": 0.0,
+          "ndcg10": 0.70884,
+          "pct_baseline": 1.0
+        },
+        {
+          "alpha": 0.025,
+          "ndcg10": 0.70908,
+          "pct_baseline": 1.00033
+        },
+        {
+          "alpha": 0.05,
+          "ndcg10": 0.70859,
+          "pct_baseline": 0.99965
+        },
+        {
+          "alpha": 0.075,
+          "ndcg10": 0.71234,
+          "pct_baseline": 1.00493
+        },
+        {
+          "alpha": 0.1,
+          "ndcg10": 0.71452,
+          "pct_baseline": 1.008
+        },
+        {
+          "alpha": 0.125,
+          "ndcg10": 0.71354,
+          "pct_baseline": 1.00663
+        },
+        {
+          "alpha": 0.15,
+          "ndcg10": 0.70914,
+          "pct_baseline": 1.00042
+        },
+        {
+          "alpha": 0.2,
+          "ndcg10": 0.70305,
+          "pct_baseline": 0.99182
+        },
+        {
+          "alpha": 0.25,
+          "ndcg10": 0.70113,
+          "pct_baseline": 0.98911
+        },
+        {
+          "alpha": 0.3,
+          "ndcg10": 0.69222,
+          "pct_baseline": 0.97654
+        },
+        {
+          "alpha": 0.4,
+          "ndcg10": 0.679,
+          "pct_baseline": 0.9579
+        },
+        {
+          "alpha": 0.5,
+          "ndcg10": 0.65036,
+          "pct_baseline": 0.9175
+        }
+      ],
+      "inflection_95": 0.5,
+      "inflection_90": null,
+      "monotonic": false
+    },
+    "orbit": {
+      "alpha": 0.1,
+      "arms": [
+        {
+          "target": "pharmacological interventions",
+          "ndcg10": 0.70738,
+          "delta": -0.00147
+        },
+        {
+          "target": "epidemiological surveillance",
+          "ndcg10": 0.71088,
+          "delta": 0.00203
+        },
+        {
+          "target": "genetic mechanisms and pathways",
+          "ndcg10": 0.71379,
+          "delta": 0.00495
+        },
+        {
+          "target": "clinical trial design",
+          "ndcg10": 0.71197,
+          "delta": 0.00312
+        },
+        {
+          "target": "public health policy",
+          "ndcg10": 0.71561,
+          "delta": 0.00677
+        }
+      ],
+      "mean_pairwise_jaccard": 0.8426,
+      "mean_new_docs_vs_baseline": 2.12,
+      "diversity_achieved": false
+    }
+  },
+  "arguana": {
+    "baseline_ndcg10": 0.37053,
+    "n_queries": 100,
+    "gradient_walk": {
+      "curve": [
+        {
+          "alpha": 0.0,
+          "ndcg10": 0.37053,
+          "pct_baseline": 1.0
+        },
+        {
+          "alpha": 0.025,
+          "ndcg10": 0.37394,
+          "pct_baseline": 1.0092
+        },
+        {
+          "alpha": 0.05,
+          "ndcg10": 0.37206,
+          "pct_baseline": 1.00411
+        },
+        {
+          "alpha": 0.075,
+          "ndcg10": 0.37335,
+          "pct_baseline": 1.0076
+        },
+        {
+          "alpha": 0.1,
+          "ndcg10": 0.37313,
+          "pct_baseline": 1.00701
+        },
+        {
+          "alpha": 0.125,
+          "ndcg10": 0.37202,
+          "pct_baseline": 1.00401
+        },
+        {
+          "alpha": 0.15,
+          "ndcg10": 0.37216,
+          "pct_baseline": 1.00439
+        },
+        {
+          "alpha": 0.2,
+          "ndcg10": 0.36845,
+          "pct_baseline": 0.99437
+        },
+        {
+          "alpha": 0.25,
+          "ndcg10": 0.36737,
+          "pct_baseline": 0.99145
+        },
+        {
+          "alpha": 0.3,
+          "ndcg10": 0.36404,
+          "pct_baseline": 0.98247
+        },
+        {
+          "alpha": 0.4,
+          "ndcg10": 0.35592,
+          "pct_baseline": 0.96055
+        },
+        {
+          "alpha": 0.5,
+          "ndcg10": 0.35774,
+          "pct_baseline": 0.96546
+        }
+      ],
+      "inflection_95": null,
+      "inflection_90": null,
+      "monotonic": false
+    },
+    "orbit": {
+      "alpha": 0.1,
+      "arms": [
+        {
+          "target": "economic policy arguments",
+          "ndcg10": 0.3695,
+          "delta": -0.00103
+        },
+        {
+          "target": "ethical philosophy reasoning",
+          "ndcg10": 0.37986,
+          "delta": 0.00932
+        },
+        {
+          "target": "historical precedent analysis",
+          "ndcg10": 0.37293,
+          "delta": 0.0024
+        },
+        {
+          "target": "scientific evidence interpretation",
+          "ndcg10": 0.37692,
+          "delta": 0.00639
+        },
+        {
+          "target": "political ideology critique",
+          "ndcg10": 0.37684,
+          "delta": 0.0063
+        }
+      ],
+      "mean_pairwise_jaccard": 0.9113,
+      "mean_new_docs_vs_baseline": 1.13,
+      "diversity_achieved": false
+    }
+  },
+  "nfcorpus": {
+    "baseline_ndcg10": 0.36184,
+    "n_queries": 100,
+    "gradient_walk": {
+      "curve": [
+        {
+          "alpha": 0.0,
+          "ndcg10": 0.36184,
+          "pct_baseline": 1.0
+        },
+        {
+          "alpha": 0.025,
+          "ndcg10": 0.35921,
+          "pct_baseline": 0.99274
+        },
+        {
+          "alpha": 0.05,
+          "ndcg10": 0.35744,
+          "pct_baseline": 0.98785
+        },
+        {
+          "alpha": 0.075,
+          "ndcg10": 0.36144,
+          "pct_baseline": 0.9989
+        },
+        {
+          "alpha": 0.1,
+          "ndcg10": 0.35864,
+          "pct_baseline": 0.99117
+        },
+        {
+          "alpha": 0.125,
+          "ndcg10": 0.36013,
+          "pct_baseline": 0.99527
+        },
+        {
+          "alpha": 0.15,
+          "ndcg10": 0.35575,
+          "pct_baseline": 0.98318
+        },
+        {
+          "alpha": 0.2,
+          "ndcg10": 0.35545,
+          "pct_baseline": 0.98233
+        },
+        {
+          "alpha": 0.25,
+          "ndcg10": 0.35705,
+          "pct_baseline": 0.98675
+        },
+        {
+          "alpha": 0.3,
+          "ndcg10": 0.3545,
+          "pct_baseline": 0.97972
+        },
+        {
+          "alpha": 0.4,
+          "ndcg10": 0.34193,
+          "pct_baseline": 0.94496
+        },
+        {
+          "alpha": 0.5,
+          "ndcg10": 0.32832,
+          "pct_baseline": 0.90735
+        }
+      ],
+      "inflection_95": 0.4,
+      "inflection_90": null,
+      "monotonic": false
+    },
+    "orbit": {
+      "alpha": 0.1,
+      "arms": [
+        {
+          "target": "pharmaceutical nutrition supplements",
+          "ndcg10": 0.35985,
+          "delta": -0.00199
+        },
+        {
+          "target": "metabolic disease pathways",
+          "ndcg10": 0.35405,
+          "delta": -0.00779
+        },
+        {
+          "target": "public health dietary guidelines",
+          "ndcg10": 0.3565,
+          "delta": -0.00534
+        },
+        {
+          "target": "food chemistry and processing",
+          "ndcg10": 0.35679,
+          "delta": -0.00505
+        },
+        {
+          "target": "microbiome and gut health",
+          "ndcg10": 0.35273,
+          "delta": -0.00911
+        }
+      ],
+      "mean_pairwise_jaccard": 0.8265,
+      "mean_new_docs_vs_baseline": 2.55,
+      "diversity_achieved": false
+    }
+  },
+  "fiqa": {
+    "baseline_ndcg10": 0.39424,
+    "n_queries": 100,
+    "gradient_walk": {
+      "curve": [
+        {
+          "alpha": 0.0,
+          "ndcg10": 0.39424,
+          "pct_baseline": 1.0
+        },
+        {
+          "alpha": 0.025,
+          "ndcg10": 0.39475,
+          "pct_baseline": 1.00128
+        },
+        {
+          "alpha": 0.05,
+          "ndcg10": 0.39341,
+          "pct_baseline": 0.99791
+        },
+        {
+          "alpha": 0.075,
+          "ndcg10": 0.3911,
+          "pct_baseline": 0.99203
+        },
+        {
+          "alpha": 0.1,
+          "ndcg10": 0.38539,
+          "pct_baseline": 0.97754
+        },
+        {
+          "alpha": 0.125,
+          "ndcg10": 0.37809,
+          "pct_baseline": 0.95903
+        },
+        {
+          "alpha": 0.15,
+          "ndcg10": 0.37689,
+          "pct_baseline": 0.956
+        },
+        {
+          "alpha": 0.2,
+          "ndcg10": 0.3784,
+          "pct_baseline": 0.95984
+        },
+        {
+          "alpha": 0.25,
+          "ndcg10": 0.36654,
+          "pct_baseline": 0.92973
+        },
+        {
+          "alpha": 0.3,
+          "ndcg10": 0.36016,
+          "pct_baseline": 0.91356
+        },
+        {
+          "alpha": 0.4,
+          "ndcg10": 0.33975,
+          "pct_baseline": 0.8618
+        },
+        {
+          "alpha": 0.5,
+          "ndcg10": 0.31865,
+          "pct_baseline": 0.80825
+        }
+      ],
+      "inflection_95": 0.25,
+      "inflection_90": 0.4,
+      "monotonic": false
+    },
+    "orbit": {
+      "alpha": 0.1,
+      "arms": [
+        {
+          "target": "regulatory compliance frameworks",
+          "ndcg10": 0.38413,
+          "delta": -0.01011
+        },
+        {
+          "target": "behavioral economics insights",
+          "ndcg10": 0.39623,
+          "delta": 0.00199
+        },
+        {
+          "target": "quantitative risk modeling",
+          "ndcg10": 0.38438,
+          "delta": -0.00986
+        },
+        {
+          "target": "corporate governance practices",
+          "ndcg10": 0.39652,
+          "delta": 0.00228
+        },
+        {
+          "target": "global trade dynamics",
+          "ndcg10": 0.39198,
+          "delta": -0.00226
+        }
+      ],
+      "mean_pairwise_jaccard": 0.8138,
+      "mean_new_docs_vs_baseline": 2.61,
+      "diversity_achieved": false
+    }
+  },
+  "trec-covid": {
+    "baseline_ndcg10": 0.52614,
+    "n_queries": 50,
+    "gradient_walk": {
+      "curve": [
+        {
+          "alpha": 0.0,
+          "ndcg10": 0.52614,
+          "pct_baseline": 1.0
+        },
+        {
+          "alpha": 0.025,
+          "ndcg10": 0.52435,
+          "pct_baseline": 0.99659
+        },
+        {
+          "alpha": 0.05,
+          "ndcg10": 0.52077,
+          "pct_baseline": 0.98978
+        },
+        {
+          "alpha": 0.075,
+          "ndcg10": 0.51723,
+          "pct_baseline": 0.98307
+        },
+        {
+          "alpha": 0.1,
+          "ndcg10": 0.51334,
+          "pct_baseline": 0.97566
+        },
+        {
+          "alpha": 0.125,
+          "ndcg10": 0.51236,
+          "pct_baseline": 0.9738
+        },
+        {
+          "alpha": 0.15,
+          "ndcg10": 0.50753,
+          "pct_baseline": 0.96463
+        },
+        {
+          "alpha": 0.2,
+          "ndcg10": 0.49886,
+          "pct_baseline": 0.94814
+        },
+        {
+          "alpha": 0.25,
+          "ndcg10": 0.48222,
+          "pct_baseline": 0.91653
+        },
+        {
+          "alpha": 0.3,
+          "ndcg10": 0.46809,
+          "pct_baseline": 0.88966
+        },
+        {
+          "alpha": 0.4,
+          "ndcg10": 0.44944,
+          "pct_baseline": 0.85422
+        },
+        {
+          "alpha": 0.5,
+          "ndcg10": 0.40845,
+          "pct_baseline": 0.7763
+        }
+      ],
+      "inflection_95": 0.2,
+      "inflection_90": 0.3,
+      "monotonic": true
+    },
+    "orbit": {
+      "alpha": 0.1,
+      "arms": [
+        {
+          "target": "vaccine development and immunology",
+          "ndcg10": 0.51633,
+          "delta": -0.00981
+        },
+        {
+          "target": "epidemiological modeling and forecasting",
+          "ndcg10": 0.51745,
+          "delta": -0.00869
+        },
+        {
+          "target": "healthcare system capacity planning",
+          "ndcg10": 0.52228,
+          "delta": -0.00386
+        },
+        {
+          "target": "mental health during pandemic",
+          "ndcg10": 0.49666,
+          "delta": -0.02948
+        },
+        {
+          "target": "economic impact of lockdowns",
+          "ndcg10": 0.50454,
+          "delta": -0.02161
+        }
+      ],
+      "mean_pairwise_jaccard": 0.8275,
+      "mean_new_docs_vs_baseline": 2.3,
+      "diversity_achieved": false
+    }
+  }
+}

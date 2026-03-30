@@ -1,0 +1,95 @@
+{
+  "model": "intfloat/e5-small-v2",
+  "family": "instruction",
+  "scifact": {
+    "n_queries": 300,
+    "positive_rate": 0.0633,
+    "cv_accuracy": 0.9367,
+    "cv_f1": 0.0,
+    "cv_precision": 0.0,
+    "cv_recall": 0.0,
+    "feature_importances": {
+      "query_length": -0.3571,
+      "specificity": -0.0914,
+      "dist_to_centroid": -0.1955,
+      "embedding_norm": 0.2714,
+      "isotropy_local": 0.0408,
+      "query_target_sim": -0.0228
+    },
+    "top_feature": "query_length"
+  },
+  "arguana": {
+    "n_queries": 300,
+    "positive_rate": 0.07,
+    "cv_accuracy": 0.93,
+    "cv_f1": 0.0,
+    "cv_precision": 0.0,
+    "cv_recall": 0.0,
+    "feature_importances": {
+      "query_length": 0.1182,
+      "specificity": -0.3999,
+      "dist_to_centroid": 0.062,
+      "embedding_norm": 0.0029,
+      "isotropy_local": -0.1799,
+      "query_target_sim": -0.2301
+    },
+    "top_feature": "specificity"
+  },
+  "nfcorpus": {
+    "n_queries": 300,
+    "positive_rate": 0.1733,
+    "cv_accuracy": 0.82,
+    "cv_f1": 0.0,
+    "cv_precision": 0.0,
+    "cv_recall": 0.0,
+    "feature_importances": {
+      "query_length": 0.3206,
+      "specificity": -0.0326,
+      "dist_to_centroid": 0.7635,
+      "embedding_norm": -0.018,
+      "isotropy_local": 0.9254,
+      "query_target_sim": -0.1745
+    },
+    "top_feature": "isotropy_local"
+  },
+  "fiqa": {
+    "n_queries": 300,
+    "positive_rate": 0.11,
+    "cv_accuracy": 0.89,
+    "cv_f1": 0.0,
+    "cv_precision": 0.0,
+    "cv_recall": 0.0,
+    "feature_importances": {
+      "query_length": 0.3273,
+      "specificity": 0.137,
+      "dist_to_centroid": 0.4997,
+      "embedding_norm": 0.1508,
+      "isotropy_local": 0.5553,
+      "query_target_sim": 0.0478
+    },
+    "top_feature": "isotropy_local"
+  },
+  "trec-covid": {
+    "n_queries": 50,
+    "positive_rate": 0.32,
+    "cv_accuracy": 0.54,
+    "cv_f1": 0.08,
+    "cv_precision": 0.0571,
+    "cv_recall": 0.1333,
+    "feature_importances": {
+      "query_length": 0.4569,
+      "specificity": -0.1844,
+      "dist_to_centroid": -0.0706,
+      "embedding_norm": 0.0277,
+      "isotropy_local": 0.4599,
+      "query_target_sim": 0.1189
+    },
+    "top_feature": "isotropy_local"
+  },
+  "cross_dataset_transfer": {
+    "train": "scifact",
+    "test": "fiqa",
+    "accuracy": 0.89,
+    "f1": 0.0
+  }
+}

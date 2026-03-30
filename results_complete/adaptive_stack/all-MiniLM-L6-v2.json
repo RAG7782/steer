@@ -1,0 +1,199 @@
+{
+  "model": "all-MiniLM-L6-v2",
+  "family": "distilled",
+  "scifact": {
+    "A_baseline": {
+      "NDCG@1": 0.57,
+      "NDCG@5": 0.6882,
+      "NDCG@10": 0.6996
+    },
+    "B_adaptive_alpha_only": {
+      "ndcg": {
+        "NDCG@1": 0.58,
+        "NDCG@5": 0.6891,
+        "NDCG@10": 0.704
+      },
+      "delta": 0.0044
+    },
+    "C_multivector_generic": {
+      "ndcg": {
+        "NDCG@1": 0.57,
+        "NDCG@5": 0.6852,
+        "NDCG@10": 0.6975
+      },
+      "delta": -0.0021
+    },
+    "D_adapt_mv_no_topk": {
+      "ndcg": {
+        "NDCG@1": 0.58,
+        "NDCG@5": 0.6927,
+        "NDCG@10": 0.7041
+      },
+      "delta": 0.0044
+    },
+    "E_full_stack": {
+      "ndcg": {
+        "NDCG@1": 0.62,
+        "NDCG@5": 0.7089,
+        "NDCG@10": 0.7222
+      },
+      "delta": 0.0226
+    }
+  },
+  "arguana": {
+    "A_baseline": {
+      "NDCG@1": 0.27,
+      "NDCG@5": 0.4304,
+      "NDCG@10": 0.4887
+    },
+    "B_adaptive_alpha_only": {
+      "ndcg": {
+        "NDCG@1": 0.26,
+        "NDCG@5": 0.4311,
+        "NDCG@10": 0.4831
+      },
+      "delta": -0.0056
+    },
+    "C_multivector_generic": {
+      "ndcg": {
+        "NDCG@1": 0.28,
+        "NDCG@5": 0.4433,
+        "NDCG@10": 0.4938
+      },
+      "delta": 0.0051
+    },
+    "D_adapt_mv_no_topk": {
+      "ndcg": {
+        "NDCG@1": 0.27,
+        "NDCG@5": 0.4295,
+        "NDCG@10": 0.4884
+      },
+      "delta": -0.0003
+    },
+    "E_full_stack": {
+      "ndcg": {
+        "NDCG@1": 0.27,
+        "NDCG@5": 0.4379,
+        "NDCG@10": 0.4932
+      },
+      "delta": 0.0045
+    }
+  },
+  "nfcorpus": {
+    "A_baseline": {
+      "NDCG@1": 0.435,
+      "NDCG@5": 0.3684,
+      "NDCG@10": 0.3526
+    },
+    "B_adaptive_alpha_only": {
+      "ndcg": {
+        "NDCG@1": 0.445,
+        "NDCG@5": 0.3836,
+        "NDCG@10": 0.3576
+      },
+      "delta": 0.005
+    },
+    "C_multivector_generic": {
+      "ndcg": {
+        "NDCG@1": 0.41,
+        "NDCG@5": 0.3675,
+        "NDCG@10": 0.3442
+      },
+      "delta": -0.0084
+    },
+    "D_adapt_mv_no_topk": {
+      "ndcg": {
+        "NDCG@1": 0.445,
+        "NDCG@5": 0.3785,
+        "NDCG@10": 0.3548
+      },
+      "delta": 0.0021
+    },
+    "E_full_stack": {
+      "ndcg": {
+        "NDCG@1": 0.43,
+        "NDCG@5": 0.376,
+        "NDCG@10": 0.3471
+      },
+      "delta": -0.0056
+    }
+  },
+  "fiqa": {
+    "A_baseline": {
+      "NDCG@1": 0.33,
+      "NDCG@5": 0.3643,
+      "NDCG@10": 0.3944
+    },
+    "B_adaptive_alpha_only": {
+      "ndcg": {
+        "NDCG@1": 0.34,
+        "NDCG@5": 0.3691,
+        "NDCG@10": 0.4018
+      },
+      "delta": 0.0074
+    },
+    "C_multivector_generic": {
+      "ndcg": {
+        "NDCG@1": 0.35,
+        "NDCG@5": 0.3762,
+        "NDCG@10": 0.4017
+      },
+      "delta": 0.0072
+    },
+    "D_adapt_mv_no_topk": {
+      "ndcg": {
+        "NDCG@1": 0.34,
+        "NDCG@5": 0.3726,
+        "NDCG@10": 0.3979
+      },
+      "delta": 0.0035
+    },
+    "E_full_stack": {
+      "ndcg": {
+        "NDCG@1": 0.31,
+        "NDCG@5": 0.3596,
+        "NDCG@10": 0.3852
+      },
+      "delta": -0.0092
+    }
+  },
+  "trec-covid": {
+    "A_baseline": {
+      "NDCG@1": 0.56,
+      "NDCG@5": 0.5057,
+      "NDCG@10": 0.4723
+    },
+    "B_adaptive_alpha_only": {
+      "ndcg": {
+        "NDCG@1": 0.57,
+        "NDCG@5": 0.5094,
+        "NDCG@10": 0.472
+      },
+      "delta": -0.0003
+    },
+    "C_multivector_generic": {
+      "ndcg": {
+        "NDCG@1": 0.54,
+        "NDCG@5": 0.4968,
+        "NDCG@10": 0.4631
+      },
+      "delta": -0.0092
+    },
+    "D_adapt_mv_no_topk": {
+      "ndcg": {
+        "NDCG@1": 0.55,
+        "NDCG@5": 0.5111,
+        "NDCG@10": 0.4736
+      },
+      "delta": 0.0013
+    },
+    "E_full_stack": {
+      "ndcg": {
+        "NDCG@1": 0.56,
+        "NDCG@5": 0.5272,
+        "NDCG@10": 0.4969
+      },
+      "delta": 0.0246
+    }
+  }
+}

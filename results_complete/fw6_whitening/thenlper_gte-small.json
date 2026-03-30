@@ -1,0 +1,65 @@
+{
+  "model": "thenlper/gte-small",
+  "scifact": {
+    "whitened_d384": {
+      "isotropy_before": 0.74072265625,
+      "isotropy_after": 0.0016102554749997482,
+      "baseline_before": 0.72696,
+      "baseline_after": 0.6812,
+      "rotation_delta_before": -0.0031,
+      "rotation_delta_after": 0.0005
+    },
+    "whitened_d256": {
+      "isotropy_before": 0.74072265625,
+      "isotropy_after": 0.0021738783528158136,
+      "baseline_before": 0.72696,
+      "baseline_after": 0.69088,
+      "rotation_delta_before": -0.0031,
+      "rotation_delta_after": -0.0034
+    },
+    "whitened_d128": {
+      "isotropy_before": 0.74072265625,
+      "isotropy_after": 0.003578414014243236,
+      "baseline_before": 0.72696,
+      "baseline_after": 0.67571,
+      "rotation_delta_before": -0.0031,
+      "rotation_delta_after": -0.0004
+    },
+    "original": {
+      "isotropy": 0.74072265625,
+      "baseline": 0.72696,
+      "rotation_delta": -0.0031
+    }
+  },
+  "arguana": {
+    "whitened_d384": {
+      "isotropy_before": 0.77099609375,
+      "isotropy_after": 0.002991540956942156,
+      "baseline_before": 0.55271,
+      "baseline_after": 0.49032,
+      "rotation_delta_before": -0.0011,
+      "rotation_delta_after": -0.0019
+    },
+    "whitened_d256": {
+      "isotropy_before": 0.77099609375,
+      "isotropy_after": 0.003610897283618079,
+      "baseline_before": 0.55271,
+      "baseline_after": 0.50835,
+      "rotation_delta_before": -0.0011,
+      "rotation_delta_after": 0.0017
+    },
+    "whitened_d128": {
+      "isotropy_before": 0.77099609375,
+      "isotropy_after": 0.004039913069341953,
+      "baseline_before": 0.55271,
+      "baseline_after": 0.504,
+      "rotation_delta_before": -0.0011,
+      "rotation_delta_after": -0.002
+    },
+    "original": {
+      "isotropy": 0.77099609375,
+      "baseline": 0.55271,
+      "rotation_delta": -0.0011
+    }
+  }
+}

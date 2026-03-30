@@ -1,0 +1,28 @@
+{
+  "model": "BAAI/bge-base-en-v1.5",
+  "dataset": "arguana",
+  "fp32": {
+    "baseline_ndcg10": 0.63616,
+    "rotation_0.1_ndcg10": 0.6298,
+    "rotation_delta": -0.0064,
+    "angular_fidelity": 1.0
+  },
+  "int8": {
+    "baseline_ndcg10": 0.6356,
+    "rotation_0.1_ndcg10": 0.63026,
+    "rotation_delta": -0.0053,
+    "angular_fidelity": 0.9999355208647012
+  },
+  "int4": {
+    "baseline_ndcg10": 0.61013,
+    "rotation_0.1_ndcg10": 0.60476,
+    "rotation_delta": -0.0054,
+    "angular_fidelity": 0.977614370149562
+  },
+  "binary": {
+    "baseline_ndcg10": 0.55772,
+    "rotation_0.1_ndcg10": 0.55167,
+    "rotation_delta": -0.006,
+    "angular_fidelity": 0.8781809594081708
+  }
+}

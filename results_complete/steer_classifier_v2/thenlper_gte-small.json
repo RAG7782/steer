@@ -1,0 +1,270 @@
+{
+  "model": "thenlper/gte-small",
+  "family": "general",
+  "scifact": {
+    "n_queries": 300,
+    "positive_rate_any_op": 0.1233,
+    "best_op_distribution": {
+      "none": 263,
+      "rotate_away_0.2": 12,
+      "rotate_toward_0.2": 6,
+      "rotate_away_0.1": 5,
+      "rotate_toward_0.1": 5,
+      "contrastive_sym_0.1": 4,
+      "contrastive_asym_a0.1_b0.2": 3,
+      "amplify_0.1": 2
+    },
+    "binary_classifiers": {
+      "logistic": {
+        "accuracy": 0.5233,
+        "f1": 0.1679,
+        "precision": 0.1092,
+        "recall": 0.3714
+      },
+      "random_forest": {
+        "accuracy": 0.8767,
+        "f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0
+      },
+      "gradient_boosting": {
+        "accuracy": 0.84,
+        "f1": 0.0333,
+        "precision": 0.04,
+        "recall": 0.0286
+      }
+    },
+    "best_binary_classifier": "logistic",
+    "feature_importances": {
+      "query_length": 0.1086,
+      "specificity": 0.0736,
+      "dist_to_centroid": 0.0695,
+      "embedding_norm": 0.0673,
+      "isotropy_local": 0.2096,
+      "query_pos_sim": 0.1051,
+      "query_neg_sim": 0.0018,
+      "centroid_alignment": 0.0695,
+      "target_orthogonality": 0.1966
+    },
+    "top_feature": "isotropy_local",
+    "multi_class": {
+      "accuracy": 0.8767,
+      "f1_macro": 0.1379,
+      "n_classes": 5
+    }
+  },
+  "arguana": {
+    "n_queries": 300,
+    "positive_rate_any_op": 0.2667,
+    "best_op_distribution": {
+      "none": 220,
+      "rotate_away_0.2": 23,
+      "rotate_toward_0.2": 22,
+      "rotate_toward_0.1": 16,
+      "rotate_away_0.1": 8,
+      "contrastive_asym_a0.1_b0.2": 6,
+      "amplify_0.1": 3,
+      "contrastive_sym_0.1": 2
+    },
+    "binary_classifiers": {
+      "logistic": {
+        "accuracy": 0.5833,
+        "f1": 0.3493,
+        "precision": 0.2939,
+        "recall": 0.4375
+      },
+      "random_forest": {
+        "accuracy": 0.73,
+        "f1": 0.0889,
+        "precision": 0.4,
+        "recall": 0.05
+      },
+      "gradient_boosting": {
+        "accuracy": 0.6567,
+        "f1": 0.1856,
+        "precision": 0.2613,
+        "recall": 0.15
+      }
+    },
+    "best_binary_classifier": "logistic",
+    "feature_importances": {
+      "query_length": 0.1411,
+      "specificity": 0.0915,
+      "dist_to_centroid": 0.0915,
+      "embedding_norm": 0.101,
+      "isotropy_local": 0.0883,
+      "query_pos_sim": 0.349,
+      "query_neg_sim": 0.1488,
+      "centroid_alignment": 0.0915,
+      "target_orthogonality": 0.0505
+    },
+    "top_feature": "query_pos_sim",
+    "multi_class": {
+      "accuracy": 0.7267,
+      "f1_macro": 0.1202,
+      "n_classes": 6
+    }
+  },
+  "nfcorpus": {
+    "n_queries": 300,
+    "positive_rate_any_op": 0.4533,
+    "best_op_distribution": {
+      "none": 164,
+      "rotate_away_0.2": 33,
+      "rotate_toward_0.2": 24,
+      "contrastive_asym_a0.1_b0.2": 22,
+      "rotate_away_0.1": 22,
+      "rotate_toward_0.1": 17,
+      "contrastive_sym_0.1": 10,
+      "amplify_0.1": 8
+    },
+    "binary_classifiers": {
+      "logistic": {
+        "accuracy": 0.62,
+        "f1": 0.5984,
+        "precision": 0.5726,
+        "recall": 0.6325
+      },
+      "random_forest": {
+        "accuracy": 0.64,
+        "f1": 0.5928,
+        "precision": 0.6107,
+        "recall": 0.581
+      },
+      "gradient_boosting": {
+        "accuracy": 0.63,
+        "f1": 0.5895,
+        "precision": 0.6101,
+        "recall": 0.5878
+      }
+    },
+    "best_binary_classifier": "logistic",
+    "feature_importances": {
+      "query_length": 0.1017,
+      "specificity": 0.261,
+      "dist_to_centroid": 0.136,
+      "embedding_norm": 0.0849,
+      "isotropy_local": 0.6916,
+      "query_pos_sim": 0.2291,
+      "query_neg_sim": 0.256,
+      "centroid_alignment": 0.136,
+      "target_orthogonality": 0.0289
+    },
+    "top_feature": "isotropy_local",
+    "multi_class": {
+      "accuracy": 0.5133,
+      "f1_macro": 0.1261,
+      "n_classes": 8
+    }
+  },
+  "fiqa": {
+    "n_queries": 300,
+    "positive_rate_any_op": 0.3667,
+    "best_op_distribution": {
+      "none": 190,
+      "rotate_toward_0.2": 30,
+      "rotate_away_0.2": 20,
+      "rotate_away_0.1": 19,
+      "contrastive_asym_a0.1_b0.2": 15,
+      "rotate_toward_0.1": 15,
+      "contrastive_sym_0.1": 6,
+      "amplify_0.1": 5
+    },
+    "binary_classifiers": {
+      "logistic": {
+        "accuracy": 0.5167,
+        "f1": 0.3793,
+        "precision": 0.3557,
+        "recall": 0.4091
+      },
+      "random_forest": {
+        "accuracy": 0.6067,
+        "f1": 0.2006,
+        "precision": 0.3829,
+        "recall": 0.1364
+      },
+      "gradient_boosting": {
+        "accuracy": 0.5767,
+        "f1": 0.3061,
+        "precision": 0.39,
+        "recall": 0.2545
+      }
+    },
+    "best_binary_classifier": "logistic",
+    "feature_importances": {
+      "query_length": 0.1697,
+      "specificity": 0.1029,
+      "dist_to_centroid": 0.0055,
+      "embedding_norm": 0.0216,
+      "isotropy_local": 0.2556,
+      "query_pos_sim": 0.2759,
+      "query_neg_sim": 0.5194,
+      "centroid_alignment": 0.0055,
+      "target_orthogonality": 0.4085
+    },
+    "top_feature": "query_neg_sim",
+    "multi_class": {
+      "accuracy": 0.6267,
+      "f1_macro": 0.1062,
+      "n_classes": 8
+    }
+  },
+  "trec-covid": {
+    "n_queries": 50,
+    "positive_rate_any_op": 0.8,
+    "best_op_distribution": {
+      "rotate_away_0.2": 14,
+      "none": 10,
+      "contrastive_asym_a0.1_b0.2": 9,
+      "rotate_toward_0.2": 6,
+      "contrastive_sym_0.1": 4,
+      "rotate_away_0.1": 4,
+      "rotate_toward_0.1": 2,
+      "amplify_0.1": 1
+    },
+    "binary_classifiers": {
+      "logistic": {
+        "accuracy": 0.72,
+        "f1": 0.7872,
+        "precision": 0.9429,
+        "recall": 0.7
+      },
+      "random_forest": {
+        "accuracy": 0.72,
+        "f1": 0.835,
+        "precision": 0.7811,
+        "recall": 0.9
+      },
+      "gradient_boosting": {
+        "accuracy": 0.72,
+        "f1": 0.8107,
+        "precision": 0.8583,
+        "recall": 0.775
+      }
+    },
+    "best_binary_classifier": "random_forest",
+    "feature_importances": {
+      "query_length": 0.1084,
+      "specificity": 0.0874,
+      "dist_to_centroid": 0.1194,
+      "embedding_norm": 0.0174,
+      "isotropy_local": 0.3346,
+      "query_pos_sim": 0.0891,
+      "query_neg_sim": 0.0793,
+      "centroid_alignment": 0.0893,
+      "target_orthogonality": 0.075
+    },
+    "top_feature": "isotropy_local",
+    "multi_class": {
+      "accuracy": 0.2,
+      "f1_macro": 0.1006,
+      "n_classes": 4
+    }
+  },
+  "cross_dataset_transfer": {
+    "train": "trec-covid",
+    "test": "fiqa",
+    "accuracy": 0.3667,
+    "f1": 0.5366
+  }
+}

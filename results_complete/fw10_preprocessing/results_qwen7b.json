@@ -1,0 +1,33 @@
+{
+  "rewrite_model": "Qwen/Qwen2.5-7B-Instruct",
+  "n_rewritten": 100,
+  "embedding_similarity": {
+    "mean": 0.864051103591919,
+    "std": 0.044467274099588394
+  },
+  "baseline_ndcg10": 0.72,
+  "hybrid_ndcg10": 0.59088,
+  "delta": -0.1291,
+  "projections": {
+    "methodology": {
+      "original": 0.5231932401657104,
+      "rewritten": 0.48526132106781006,
+      "delta_pct": -7.3
+    },
+    "animal_studies": {
+      "original": 0.604088544845581,
+      "rewritten": 0.5787363648414612,
+      "delta_pct": -4.2
+    },
+    "genetics": {
+      "original": 0.5536220669746399,
+      "rewritten": 0.5167095065116882,
+      "delta_pct": -6.7
+    },
+    "clinical": {
+      "original": 0.5531026721000671,
+      "rewritten": 0.5215698480606079,
+      "delta_pct": -5.7
+    }
+  }
+}

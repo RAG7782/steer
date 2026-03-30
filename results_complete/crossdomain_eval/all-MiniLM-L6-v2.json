@@ -1,0 +1,98 @@
+{
+  "model": "all-MiniLM-L6-v2",
+  "family": "distilled",
+  "scifact_to_nfcorpus": {
+    "n_queries": 50,
+    "n_target_docs": 3633,
+    "n_annotated_pairs": 1426,
+    "score_distribution": {
+      "0": 1177,
+      "1": 230,
+      "2": 19
+    },
+    "n_queries_with_relevant": 35,
+    "baseline": {
+      "metrics": {
+        "ndcg_cut_10": 0.4983,
+        "ndcg_cut_5": 0.4485,
+        "recall_10": 0.5601,
+        "recall_20": 0.9078
+      },
+      "relevant_surfaced": 201
+    },
+    "alpha_0.1": {
+      "metrics": {
+        "ndcg_cut_10": 0.4946,
+        "ndcg_cut_5": 0.4504,
+        "recall_10": 0.5788,
+        "recall_20": 0.8711
+      },
+      "relevant_surfaced": 195
+    },
+    "alpha_0.2": {
+      "metrics": {
+        "ndcg_cut_10": 0.4904,
+        "ndcg_cut_5": 0.4373,
+        "recall_10": 0.5536,
+        "recall_20": 0.7851
+      },
+      "relevant_surfaced": 183
+    },
+    "alpha_0.3": {
+      "metrics": {
+        "ndcg_cut_10": 0.4352,
+        "ndcg_cut_5": 0.3935,
+        "recall_10": 0.4726,
+        "recall_20": 0.7072
+      },
+      "relevant_surfaced": 178
+    }
+  },
+  "scifact_to_trec-covid": {
+    "n_queries": 50,
+    "n_target_docs": 171332,
+    "n_annotated_pairs": 1609,
+    "score_distribution": {
+      "0": 921,
+      "1": 660,
+      "2": 28
+    },
+    "n_queries_with_relevant": 45,
+    "baseline": {
+      "metrics": {
+        "ndcg_cut_10": 0.6793,
+        "ndcg_cut_5": 0.6453,
+        "recall_10": 0.4773,
+        "recall_20": 0.8001
+      },
+      "relevant_surfaced": 518
+    },
+    "alpha_0.1": {
+      "metrics": {
+        "ndcg_cut_10": 0.6519,
+        "ndcg_cut_5": 0.6277,
+        "recall_10": 0.4336,
+        "recall_20": 0.7439
+      },
+      "relevant_surfaced": 504
+    },
+    "alpha_0.2": {
+      "metrics": {
+        "ndcg_cut_10": 0.6019,
+        "ndcg_cut_5": 0.5912,
+        "recall_10": 0.3885,
+        "recall_20": 0.6409
+      },
+      "relevant_surfaced": 471
+    },
+    "alpha_0.3": {
+      "metrics": {
+        "ndcg_cut_10": 0.5365,
+        "ndcg_cut_5": 0.4902,
+        "recall_10": 0.3646,
+        "recall_20": 0.5773
+      },
+      "relevant_surfaced": 424
+    }
+  }
+}

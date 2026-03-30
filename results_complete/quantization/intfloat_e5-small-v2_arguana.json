@@ -1,0 +1,28 @@
+{
+  "model": "intfloat/e5-small-v2",
+  "dataset": "arguana",
+  "fp32": {
+    "baseline_ndcg10": 0.4687,
+    "rotation_0.1_ndcg10": 0.4667,
+    "rotation_delta": -0.002,
+    "angular_fidelity": 1.0
+  },
+  "int8": {
+    "baseline_ndcg10": 0.46909,
+    "rotation_0.1_ndcg10": 0.4652,
+    "rotation_delta": -0.0039,
+    "angular_fidelity": 0.9997472512966561
+  },
+  "int4": {
+    "baseline_ndcg10": 0.43751,
+    "rotation_0.1_ndcg10": 0.42605,
+    "rotation_delta": -0.0115,
+    "angular_fidelity": 0.9417329860467223
+  },
+  "binary": {
+    "baseline_ndcg10": 0.23794,
+    "rotation_0.1_ndcg10": 0.23728,
+    "rotation_delta": -0.0007,
+    "angular_fidelity": 0.5552413213715331
+  }
+}

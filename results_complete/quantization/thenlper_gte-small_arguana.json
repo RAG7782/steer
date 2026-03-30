@@ -1,0 +1,28 @@
+{
+  "model": "thenlper/gte-small",
+  "dataset": "arguana",
+  "fp32": {
+    "baseline_ndcg10": 0.55271,
+    "rotation_0.1_ndcg10": 0.5516,
+    "rotation_delta": -0.0011,
+    "angular_fidelity": 0.9999999999999999
+  },
+  "int8": {
+    "baseline_ndcg10": 0.55325,
+    "rotation_0.1_ndcg10": 0.55406,
+    "rotation_delta": 0.0008,
+    "angular_fidelity": 0.9995795591135491
+  },
+  "int4": {
+    "baseline_ndcg10": 0.48152,
+    "rotation_0.1_ndcg10": 0.47419,
+    "rotation_delta": -0.0073,
+    "angular_fidelity": 0.8867750489545384
+  },
+  "binary": {
+    "baseline_ndcg10": 0.40737,
+    "rotation_0.1_ndcg10": 0.40762,
+    "rotation_delta": 0.0002,
+    "angular_fidelity": 0.6598349768384069
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "model": "thenlper/gte-small",
+  "dataset": "scifact",
+  "fp32": {
+    "baseline_ndcg10": 0.72696,
+    "rotation_0.1_ndcg10": 0.72385,
+    "rotation_delta": -0.0031,
+    "angular_fidelity": 1.0
+  },
+  "int8": {
+    "baseline_ndcg10": 0.72783,
+    "rotation_0.1_ndcg10": 0.72605,
+    "rotation_delta": -0.0018,
+    "angular_fidelity": 0.99971912484079
+  },
+  "int4": {
+    "baseline_ndcg10": 0.68654,
+    "rotation_0.1_ndcg10": 0.675,
+    "rotation_delta": -0.0115,
+    "angular_fidelity": 0.9167293395949278
+  },
+  "binary": {
+    "baseline_ndcg10": 0.568,
+    "rotation_0.1_ndcg10": 0.56639,
+    "rotation_delta": -0.0016,
+    "angular_fidelity": 0.7129561336282709
+  }
+}

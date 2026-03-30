@@ -1,0 +1,194 @@
+{
+  "model": "thenlper/gte-small",
+  "family": "general",
+  "scifact": {
+    "n_queries": 100,
+    "n_docs": 5183,
+    "A_baseline": {
+      "NDCG@1": 0.65,
+      "NDCG@5": 0.739,
+      "NDCG@10": 0.7529
+    },
+    "B_addition_uniform": {
+      "ndcg": {
+        "NDCG@1": 0.62,
+        "NDCG@5": 0.7215,
+        "NDCG@10": 0.7426
+      },
+      "delta": -0.0103
+    },
+    "C_multivector_generic": {
+      "ndcg": {
+        "NDCG@1": 0.64,
+        "NDCG@5": 0.7283,
+        "NDCG@10": 0.7484
+      },
+      "delta": -0.0045
+    },
+    "D_multivector_perquery": {
+      "ndcg": {
+        "NDCG@1": 0.65,
+        "NDCG@5": 0.7365,
+        "NDCG@10": 0.7539
+      },
+      "delta": 0.001,
+      "new_docs_avg_top10": 0.1,
+      "unique_targets": 290
+    },
+    "E_full_stack": {
+      "ndcg": {
+        "NDCG@1": 0.64,
+        "NDCG@5": 0.7335,
+        "NDCG@10": 0.7508
+      },
+      "delta": -0.0021
+    },
+    "target_samples": {
+      "1": [
+        "Cellular interactions",
+        "Tissue engineering",
+        "Nano-bio interface"
+      ],
+      "3": [
+        "Population genetics",
+        "Rare variant association",
+        "Genetic epidemiology"
+      ],
+      "5": [
+        "neurodegenerative diseases",
+        "prion disorders",
+        "public health surveillance"
+      ],
+      "13": [
+        "maternal nutrition",
+        "fetal growth disorders",
+        "gestational diabetes management"
+      ],
+      "36": [
+        "Homocysteine metabolism",
+        "Vitamin B12 function",
+        "Cobalamin biochemical pathways"
+      ],
+      "42": [
+        "Hemoglobin disorders",
+        "Anemia pathophysiology",
+        "Thalassemia genetics"
+      ],
+      "48": [
+        "epidemiology of CJD",
+        "vCJD transmission pathways",
+        "public health implications of asymptomatic carriers"
+      ],
+      "49": [
+        "RNA processing",
+        "MicroRNA biogenesis",
+        "Transcript modification"
+      ],
+      "50": [
+        "immune system response",
+        "tumor biology",
+        "cutaneous pathology"
+      ],
+      "51": [
+        "cancer genetics",
+        "molecular markers",
+        "survival analysis"
+      ]
+    }
+  },
+  "arguana": {
+    "n_queries": 100,
+    "n_docs": 8674,
+    "A_baseline": {
+      "NDCG@1": 0.29,
+      "NDCG@5": 0.4897,
+      "NDCG@10": 0.5293
+    },
+    "B_addition_uniform": {
+      "ndcg": {
+        "NDCG@1": 0.27,
+        "NDCG@5": 0.4743,
+        "NDCG@10": 0.5295
+      },
+      "delta": 0.0002
+    },
+    "C_multivector_generic": {
+      "ndcg": {
+        "NDCG@1": 0.27,
+        "NDCG@5": 0.4807,
+        "NDCG@10": 0.529
+      },
+      "delta": -0.0003
+    },
+    "D_multivector_perquery": {
+      "ndcg": {
+        "NDCG@1": 0.29,
+        "NDCG@5": 0.4935,
+        "NDCG@10": 0.5325
+      },
+      "delta": 0.0032,
+      "new_docs_avg_top10": 0.04,
+      "unique_targets": 291
+    },
+    "E_full_stack": {
+      "ndcg": {
+        "NDCG@1": 0.3,
+        "NDCG@5": 0.489,
+        "NDCG@10": 0.5283
+      },
+      "delta": -0.001
+    },
+    "target_samples": {
+      "test-environment-aeghhgwpe-pro02a": [
+        "Sustainability practices",
+        "Agroecological systems",
+        "Water conservation efforts"
+      ],
+      "test-environment-aeghhgwpe-pro01a": [
+        "Animal rights advocacy",
+        "Sentience and consciousness",
+        "Humane treatment practices"
+      ],
+      "test-environment-aeghhgwpe-pro03a": [
+        "Nutrition Science",
+        "Dietary Guidelines",
+        "Cardiovascular Health"
+      ],
+      "test-environment-aeghhgwpe-pro04a": [
+        "Meat safety and hygiene",
+        "Poultry handling practices",
+        "Dairy product contamination"
+      ],
+      "test-environment-aeghhgwpe-con02a": [
+        "Iron Absorption Efficiency",
+        "Vegetarian Iron Sources",
+        "Iron Deficiency Anemia"
+      ],
+      "test-environment-aeghhgwpe-con03a": [
+        "Survival of ecosystems",
+        "Animal agriculture ethics",
+        "Ecological footprint assessment"
+      ],
+      "test-environment-aeghhgwpe-con01a": [
+        "Mammalian Evolution",
+        "Primate Diet History",
+        "Carnivore vs. Herbivore Adaptations"
+      ],
+      "test-environment-assgbatj-pro02a": [
+        "Animal welfare standards",
+        "Alternatives to animal testing",
+        "Ethics of vivisection"
+      ],
+      "test-environment-assgbatj-pro05a": [
+        "Animal rights activism",
+        "Cruelty prevention policies",
+        "Regulatory oversight discrepancies"
+      ],
+      "test-environment-assgbatj-pro01a": [
+        "Moral philosophy",
+        "Comparative anatomy",
+        "Ethological behaviorism"
+      ]
+    }
+  }
+}

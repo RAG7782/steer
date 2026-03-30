@@ -1,0 +1,28 @@
+{
+  "model": "BAAI/bge-base-en-v1.5",
+  "dataset": "scifact",
+  "fp32": {
+    "baseline_ndcg10": 0.73763,
+    "rotation_0.1_ndcg10": 0.72791,
+    "rotation_delta": -0.0097,
+    "angular_fidelity": 1.0
+  },
+  "int8": {
+    "baseline_ndcg10": 0.73753,
+    "rotation_0.1_ndcg10": 0.72658,
+    "rotation_delta": -0.011,
+    "angular_fidelity": 0.9999144828948734
+  },
+  "int4": {
+    "baseline_ndcg10": 0.72348,
+    "rotation_0.1_ndcg10": 0.70961,
+    "rotation_delta": -0.0139,
+    "angular_fidelity": 0.9724589650672624
+  },
+  "binary": {
+    "baseline_ndcg10": 0.69133,
+    "rotation_0.1_ndcg10": 0.69128,
+    "rotation_delta": -0.0,
+    "angular_fidelity": 0.8659391827733269
+  }
+}

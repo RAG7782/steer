@@ -1,0 +1,181 @@
+{
+  "model": "all-MiniLM-L6-v2",
+  "params_M": 22,
+  "family": "distilled",
+  "scifact": {
+    "baseline_ndcg10": 0.64508,
+    "mobius_c0.5": {
+      "ndcg10": 0.64792,
+      "delta": 0.0028,
+      "jaccard": 0.6951189170306817
+    },
+    "mobius_c1.0": {
+      "ndcg10": 0.64508,
+      "delta": 0.0,
+      "jaccard": 1.0
+    },
+    "mobius_c2.0": {
+      "ndcg10": 0.64508,
+      "delta": 0.0,
+      "jaccard": 1.0
+    },
+    "gyroscalar_r0.1": {
+      "ndcg10": 0.64083,
+      "delta": -0.0042,
+      "jaccard": 0.8986213786213786
+    },
+    "gyroscalar_r0.5": {
+      "ndcg10": 0.6426,
+      "delta": -0.0025,
+      "jaccard": 0.9369774669774669
+    },
+    "gyroscalar_r1.0": {
+      "ndcg10": 0.64508,
+      "delta": 0.0,
+      "jaccard": 1.0
+    },
+    "gyroscalar_r2.0": {
+      "ndcg10": 0.6512,
+      "delta": 0.0061,
+      "jaccard": 0.8844422244422245
+    },
+    "wasserstein_w0.3": {
+      "ndcg10": 0.62931,
+      "delta": -0.0158,
+      "jaccard": 0.5261003524625816
+    },
+    "wasserstein_w0.5": {
+      "ndcg10": 0.64565,
+      "delta": 0.0006,
+      "jaccard": 0.5960014604132251
+    },
+    "wasserstein_w0.7": {
+      "ndcg10": 0.65009,
+      "delta": 0.005,
+      "jaccard": 0.5798015274485863
+    },
+    "rotor_a0.1": {
+      "ndcg10": 0.64648,
+      "delta": 0.0014,
+      "jaccard": 0.9764646464646465
+    },
+    "rotor_a0.2": {
+      "ndcg10": 0.6458,
+      "delta": 0.0007,
+      "jaccard": 0.9544444444444444
+    },
+    "rotor_a0.3": {
+      "ndcg10": 0.646,
+      "delta": 0.0009,
+      "jaccard": 0.9339305139305137
+    },
+    "kronecker_r2": {
+      "ndcg10": 0.6465,
+      "delta": 0.0014,
+      "jaccard": 0.9793939393939392
+    },
+    "kronecker_r4": {
+      "ndcg10": 0.64677,
+      "delta": 0.0017,
+      "jaccard": 0.9818181818181819
+    },
+    "kronecker_r8": {
+      "ndcg10": 0.64488,
+      "delta": -0.0002,
+      "jaccard": 0.9793939393939394
+    },
+    "kronecker_r16": {
+      "ndcg10": 0.64671,
+      "delta": 0.0016,
+      "jaccard": 0.9739393939393938
+    }
+  },
+  "arguana": {
+    "baseline_ndcg10": 0.50167,
+    "mobius_c0.5": {
+      "ndcg10": 0.49582,
+      "delta": -0.0058,
+      "jaccard": 0.8056616214510951
+    },
+    "mobius_c1.0": {
+      "ndcg10": 0.50167,
+      "delta": 0.0,
+      "jaccard": 1.0
+    },
+    "mobius_c2.0": {
+      "ndcg10": 0.50167,
+      "delta": 0.0,
+      "jaccard": 1.0
+    },
+    "gyroscalar_r0.1": {
+      "ndcg10": 0.49571,
+      "delta": -0.006,
+      "jaccard": 0.9125191427823006
+    },
+    "gyroscalar_r0.5": {
+      "ndcg10": 0.49907,
+      "delta": -0.0026,
+      "jaccard": 0.9511313721840038
+    },
+    "gyroscalar_r1.0": {
+      "ndcg10": 0.50167,
+      "delta": 0.0,
+      "jaccard": 1.0
+    },
+    "gyroscalar_r2.0": {
+      "ndcg10": 0.50308,
+      "delta": 0.0014,
+      "jaccard": 0.9096297254191992
+    },
+    "wasserstein_w0.3": {
+      "ndcg10": 0.48534,
+      "delta": -0.0163,
+      "jaccard": 0.7218296026345562
+    },
+    "wasserstein_w0.5": {
+      "ndcg10": 0.48365,
+      "delta": -0.018,
+      "jaccard": 0.723418414207888
+    },
+    "wasserstein_w0.7": {
+      "ndcg10": 0.4738,
+      "delta": -0.0279,
+      "jaccard": 0.6981168742004656
+    },
+    "rotor_a0.1": {
+      "ndcg10": 0.5039,
+      "delta": 0.0022,
+      "jaccard": 0.9740721582826846
+    },
+    "rotor_a0.2": {
+      "ndcg10": 0.50249,
+      "delta": 0.0008,
+      "jaccard": 0.9537480063795853
+    },
+    "rotor_a0.3": {
+      "ndcg10": 0.50198,
+      "delta": 0.0003,
+      "jaccard": 0.9342975658765134
+    },
+    "kronecker_r2": {
+      "ndcg10": 0.50198,
+      "delta": 0.0003,
+      "jaccard": 0.9939221518168887
+    },
+    "kronecker_r4": {
+      "ndcg10": 0.50225,
+      "delta": 0.0006,
+      "jaccard": 0.9923919134445451
+    },
+    "kronecker_r8": {
+      "ndcg10": 0.50074,
+      "delta": -0.0009,
+      "jaccard": 0.9913358334410965
+    },
+    "kronecker_r16": {
+      "ndcg10": 0.50249,
+      "delta": 0.0008,
+      "jaccard": 0.9888788309840942
+    }
+  }
+}

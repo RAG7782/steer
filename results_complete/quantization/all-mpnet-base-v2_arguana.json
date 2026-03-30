@@ -1,0 +1,28 @@
+{
+  "model": "all-mpnet-base-v2",
+  "dataset": "arguana",
+  "fp32": {
+    "baseline_ndcg10": 0.46521,
+    "rotation_0.1_ndcg10": 0.46709,
+    "rotation_delta": 0.0019,
+    "angular_fidelity": 1.0
+  },
+  "int8": {
+    "baseline_ndcg10": 0.46561,
+    "rotation_0.1_ndcg10": 0.46743,
+    "rotation_delta": 0.0018,
+    "angular_fidelity": 0.999993598633895
+  },
+  "int4": {
+    "baseline_ndcg10": 0.46249,
+    "rotation_0.1_ndcg10": 0.4659,
+    "rotation_delta": 0.0034,
+    "angular_fidelity": 0.997860882440548
+  },
+  "binary": {
+    "baseline_ndcg10": 0.44539,
+    "rotation_0.1_ndcg10": 0.4485,
+    "rotation_delta": 0.0031,
+    "angular_fidelity": 0.9375553707014834
+  }
+}

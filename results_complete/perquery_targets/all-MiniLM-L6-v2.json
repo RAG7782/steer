@@ -1,0 +1,194 @@
+{
+  "model": "all-MiniLM-L6-v2",
+  "family": "distilled",
+  "scifact": {
+    "n_queries": 100,
+    "n_docs": 5183,
+    "A_baseline": {
+      "NDCG@1": 0.57,
+      "NDCG@5": 0.6882,
+      "NDCG@10": 0.6996
+    },
+    "B_addition_uniform": {
+      "ndcg": {
+        "NDCG@1": 0.57,
+        "NDCG@5": 0.6868,
+        "NDCG@10": 0.7046
+      },
+      "delta": 0.005
+    },
+    "C_multivector_generic": {
+      "ndcg": {
+        "NDCG@1": 0.57,
+        "NDCG@5": 0.6852,
+        "NDCG@10": 0.6975
+      },
+      "delta": -0.0021
+    },
+    "D_multivector_perquery": {
+      "ndcg": {
+        "NDCG@1": 0.58,
+        "NDCG@5": 0.693,
+        "NDCG@10": 0.7044
+      },
+      "delta": 0.0048,
+      "new_docs_avg_top10": 0.51,
+      "unique_targets": 291
+    },
+    "E_full_stack": {
+      "ndcg": {
+        "NDCG@1": 0.59,
+        "NDCG@5": 0.697,
+        "NDCG@10": 0.7114
+      },
+      "delta": 0.0118
+    },
+    "target_samples": {
+      "1": [
+        "Cell signaling pathways",
+        "Tissue engineering scaffolds",
+        "Molecular recognition processes"
+      ],
+      "3": [
+        "Rare variant analysis",
+        "Penetrance genetics",
+        "Population genomics"
+      ],
+      "5": [
+        "neurodegenerative diseases",
+        "Creutzfeldt-Jakob disease",
+        "prion protein polymorphisms"
+      ],
+      "13": [
+        "maternal nutrition",
+        "neonatal intensive care",
+        "fetal growth disorders"
+      ],
+      "36": [
+        "Homocysteine metabolism",
+        "Vitamin B12 absorption",
+        "Cobalamin deficiency effects"
+      ],
+      "42": [
+        "Anemia genetics",
+        "Alpha thalassemia heterozygotes",
+        "Erythrocyte morphology studies"
+      ],
+      "48": [
+        "epidemiology of Creutzfeldt-Jakob disease",
+        "public health implications of asymptomatic carriers",
+        "vCJD transmission dynamics and prevention"
+      ],
+      "49": [
+        "microRNA biogenesis",
+        "post-transcriptional regulation",
+        "RNA processing mechanisms"
+      ],
+      "50": [
+        "immune response",
+        "cutaneous pathology",
+        "autoimmunity mechanisms"
+      ],
+      "51": [
+        "breast cancer prognosis",
+        "cancer biomarkers",
+        "metabolic pathways in cancer"
+      ]
+    }
+  },
+  "arguana": {
+    "n_queries": 100,
+    "n_docs": 8674,
+    "A_baseline": {
+      "NDCG@1": 0.27,
+      "NDCG@5": 0.4304,
+      "NDCG@10": 0.4887
+    },
+    "B_addition_uniform": {
+      "ndcg": {
+        "NDCG@1": 0.26,
+        "NDCG@5": 0.423,
+        "NDCG@10": 0.4805
+      },
+      "delta": -0.0082
+    },
+    "C_multivector_generic": {
+      "ndcg": {
+        "NDCG@1": 0.28,
+        "NDCG@5": 0.4433,
+        "NDCG@10": 0.4938
+      },
+      "delta": 0.0051
+    },
+    "D_multivector_perquery": {
+      "ndcg": {
+        "NDCG@1": 0.27,
+        "NDCG@5": 0.4312,
+        "NDCG@10": 0.4893
+      },
+      "delta": 0.0006,
+      "new_docs_avg_top10": 0.1,
+      "unique_targets": 293
+    },
+    "E_full_stack": {
+      "ndcg": {
+        "NDCG@1": 0.27,
+        "NDCG@5": 0.4353,
+        "NDCG@10": 0.4907
+      },
+      "delta": 0.002
+    },
+    "target_samples": {
+      "test-environment-aeghhgwpe-pro02a": [
+        "agricultural practices",
+        "pesticide use",
+        "carbon footprint reduction"
+      ],
+      "test-environment-aeghhgwpe-pro01a": [
+        "Animal welfare",
+        "Sentient beings",
+        "Ethics of non-violence"
+      ],
+      "test-environment-aeghhgwpe-pro03a": [
+        "Nutritional Science",
+        "Dietary Fiber Analysis",
+        "Cholesterol Levels Research"
+      ],
+      "test-environment-aeghhgwpe-pro04a": [
+        "Meat safety and hygiene",
+        "Poultry handling practices",
+        "Foodborne pathogens and transmission"
+      ],
+      "test-environment-aeghhgwpe-con02a": [
+        "Iron Absorption Efficiency",
+        "Vegetarian Iron Sources",
+        "Iron Deficiency Anemia"
+      ],
+      "test-environment-aeghhgwpe-con03a": [
+        "Survival of ecosystems",
+        "Ecological balance disruption",
+        "Hunter-gatherer vs. agricultural societies"
+      ],
+      "test-environment-aeghhgwpe-con01a": [
+        "Mammalian Diet Evolution",
+        "Primate Omnivorous Behavior",
+        "Hunter-Gatherer Nutrition Practices"
+      ],
+      "test-environment-assgbatj-pro02a": [
+        "Animal welfare organizations",
+        "Vivisection ethics debates",
+        "Alternatives to animal testing"
+      ],
+      "test-environment-assgbatj-pro05a": [
+        "Animal rights advocacy",
+        "Ethics of scientific research",
+        "Humane treatment standards"
+      ],
+      "test-environment-assgbatj-pro01a": [
+        "Animal cognition",
+        "Comparative psychology",
+        "Sentient beings"
+      ]
+    }
+  }
+}

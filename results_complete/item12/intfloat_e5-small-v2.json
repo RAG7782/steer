@@ -1,0 +1,83 @@
+{
+  "model": "intfloat/e5-small-v2",
+  "params_M": 33,
+  "family": "instruction-tuned",
+  "scifact": {
+    "model": "intfloat/e5-small-v2",
+    "dataset": "scifact",
+    "num_docs": 5183,
+    "num_queries": 300,
+    "embedding_dim": 384,
+    "encode_time_s": 39.9,
+    "isotropy": {
+      "mean_cosine": 0.8121554851531982,
+      "std_cosine": 0.02436753921210766,
+      "median_cosine": 0.812921404838562
+    },
+    "baseline": {
+      "ndcg@10": 0.67965,
+      "ndcg@5": 0.65977,
+      "map@10": 0.63135,
+      "recall@10": 0.81289
+    },
+    "rotation_0.1": {
+      "ndcg@10": 0.67834,
+      "delta": -0.0013,
+      "delta_pct": -0.19
+    },
+    "rotation_0.2": {
+      "ndcg@10": 0.66533,
+      "delta": -0.0143,
+      "delta_pct": -2.11
+    },
+    "subtraction": {
+      "ndcg@10": 0.59704,
+      "delta": -0.0826,
+      "delta_pct": -12.15
+    },
+    "projection_stats": {
+      "mean": 0.7825745940208435,
+      "std": 0.015790654346346855,
+      "pct_above_0.2": 1.0
+    }
+  },
+  "arguana": {
+    "model": "intfloat/e5-small-v2",
+    "dataset": "arguana",
+    "num_docs": 8674,
+    "num_queries": 1406,
+    "embedding_dim": 384,
+    "encode_time_s": 44.3,
+    "isotropy": {
+      "mean_cosine": 0.785826563835144,
+      "std_cosine": 0.026623345911502838,
+      "median_cosine": 0.7860676050186157
+    },
+    "baseline": {
+      "ndcg@10": 0.4687,
+      "ndcg@5": 0.41721,
+      "map@10": 0.38535,
+      "recall@10": 0.73684
+    },
+    "rotation_0.1": {
+      "ndcg@10": 0.46925,
+      "delta": 0.0005,
+      "delta_pct": 0.12
+    },
+    "rotation_0.2": {
+      "ndcg@10": 0.46516,
+      "delta": -0.0035,
+      "delta_pct": -0.76
+    },
+    "subtraction": {
+      "ndcg@10": 0.42531,
+      "delta": -0.0434,
+      "delta_pct": -9.26
+    },
+    "projection_stats": {
+      "mean": 0.7642164826393127,
+      "std": 0.017290448769927025,
+      "pct_above_0.2": 1.0
+    }
+  }
+}

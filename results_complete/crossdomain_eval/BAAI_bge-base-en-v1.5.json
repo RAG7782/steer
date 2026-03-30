@@ -1,0 +1,98 @@
+{
+  "model": "BAAI/bge-base-en-v1.5",
+  "family": "contrastive",
+  "scifact_to_nfcorpus": {
+    "n_queries": 50,
+    "n_target_docs": 3633,
+    "n_annotated_pairs": 1419,
+    "score_distribution": {
+      "0": 1177,
+      "1": 225,
+      "2": 17
+    },
+    "n_queries_with_relevant": 36,
+    "baseline": {
+      "metrics": {
+        "ndcg_cut_10": 0.6568,
+        "ndcg_cut_5": 0.5609,
+        "recall_10": 0.7549,
+        "recall_20": 0.9414
+      },
+      "relevant_surfaced": 207
+    },
+    "alpha_0.1": {
+      "metrics": {
+        "ndcg_cut_10": 0.6109,
+        "ndcg_cut_5": 0.5536,
+        "recall_10": 0.6676,
+        "recall_20": 0.8893
+      },
+      "relevant_surfaced": 203
+    },
+    "alpha_0.2": {
+      "metrics": {
+        "ndcg_cut_10": 0.5516,
+        "ndcg_cut_5": 0.5309,
+        "recall_10": 0.5529,
+        "recall_20": 0.7703
+      },
+      "relevant_surfaced": 190
+    },
+    "alpha_0.3": {
+      "metrics": {
+        "ndcg_cut_10": 0.4937,
+        "ndcg_cut_5": 0.4642,
+        "recall_10": 0.51,
+        "recall_20": 0.7394
+      },
+      "relevant_surfaced": 184
+    }
+  },
+  "scifact_to_trec-covid": {
+    "n_queries": 50,
+    "n_target_docs": 171332,
+    "n_annotated_pairs": 1377,
+    "score_distribution": {
+      "0": 697,
+      "1": 635,
+      "2": 45
+    },
+    "n_queries_with_relevant": 47,
+    "baseline": {
+      "metrics": {
+        "ndcg_cut_10": 0.6773,
+        "ndcg_cut_5": 0.6963,
+        "recall_10": 0.4633,
+        "recall_20": 0.8115
+      },
+      "relevant_surfaced": 528
+    },
+    "alpha_0.1": {
+      "metrics": {
+        "ndcg_cut_10": 0.6864,
+        "ndcg_cut_5": 0.6951,
+        "recall_10": 0.4823,
+        "recall_20": 0.8083
+      },
+      "relevant_surfaced": 526
+    },
+    "alpha_0.2": {
+      "metrics": {
+        "ndcg_cut_10": 0.6792,
+        "ndcg_cut_5": 0.6953,
+        "recall_10": 0.4736,
+        "recall_20": 0.8008
+      },
+      "relevant_surfaced": 523
+    },
+    "alpha_0.3": {
+      "metrics": {
+        "ndcg_cut_10": 0.6567,
+        "ndcg_cut_5": 0.6852,
+        "recall_10": 0.4474,
+        "recall_20": 0.7682
+      },
+      "relevant_surfaced": 514
+    }
+  }
+}

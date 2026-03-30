@@ -1,0 +1,181 @@
+{
+  "model": "intfloat/e5-small-v2",
+  "params_M": 33,
+  "family": "instruction-tuned",
+  "scifact": {
+    "baseline_ndcg10": 0.67965,
+    "mobius_c0.5": {
+      "ndcg10": 0.66833,
+      "delta": -0.0113,
+      "jaccard": 0.7376301476301476
+    },
+    "mobius_c1.0": {
+      "ndcg10": 0.67965,
+      "delta": 0.0,
+      "jaccard": 1.0
+    },
+    "mobius_c2.0": {
+      "ndcg10": 0.67965,
+      "delta": 0.0,
+      "jaccard": 1.0
+    },
+    "gyroscalar_r0.1": {
+      "ndcg10": 0.62008,
+      "delta": -0.0596,
+      "jaccard": 0.39541536464911076
+    },
+    "gyroscalar_r0.5": {
+      "ndcg10": 0.67403,
+      "delta": -0.0056,
+      "jaccard": 0.6490007215007215
+    },
+    "gyroscalar_r1.0": {
+      "ndcg10": 0.67965,
+      "delta": 0.0,
+      "jaccard": 1.0
+    },
+    "gyroscalar_r2.0": {
+      "ndcg10": 0.66958,
+      "delta": -0.0101,
+      "jaccard": 0.7706726606726607
+    },
+    "wasserstein_w0.3": {
+      "ndcg10": 0.61915,
+      "delta": -0.0605,
+      "jaccard": 0.4601342909469845
+    },
+    "wasserstein_w0.5": {
+      "ndcg10": 0.6264,
+      "delta": -0.0533,
+      "jaccard": 0.49885594654170506
+    },
+    "wasserstein_w0.7": {
+      "ndcg10": 0.61434,
+      "delta": -0.0653,
+      "jaccard": 0.48425530752930135
+    },
+    "rotor_a0.1": {
+      "ndcg10": 0.66969,
+      "delta": -0.01,
+      "jaccard": 0.7263691863691865
+    },
+    "rotor_a0.2": {
+      "ndcg10": 0.6423,
+      "delta": -0.0373,
+      "jaccard": 0.5480753288106229
+    },
+    "rotor_a0.3": {
+      "ndcg10": 0.59954,
+      "delta": -0.0801,
+      "jaccard": 0.4286148695359222
+    },
+    "kronecker_r2": {
+      "ndcg10": 0.68434,
+      "delta": 0.0047,
+      "jaccard": 0.9007381507381509
+    },
+    "kronecker_r4": {
+      "ndcg10": 0.67906,
+      "delta": -0.0006,
+      "jaccard": 0.9014685314685316
+    },
+    "kronecker_r8": {
+      "ndcg10": 0.68226,
+      "delta": 0.0026,
+      "jaccard": 0.8835431235431236
+    },
+    "kronecker_r16": {
+      "ndcg10": 0.68013,
+      "delta": 0.0005,
+      "jaccard": 0.8583449883449884
+    }
+  },
+  "arguana": {
+    "baseline_ndcg10": 0.4687,
+    "mobius_c0.5": {
+      "ndcg10": 0.45997,
+      "delta": -0.0087,
+      "jaccard": 0.8356757040967567
+    },
+    "mobius_c1.0": {
+      "ndcg10": 0.46863,
+      "delta": -0.0001,
+      "jaccard": 1.0
+    },
+    "mobius_c2.0": {
+      "ndcg10": 0.46863,
+      "delta": -0.0001,
+      "jaccard": 1.0
+    },
+    "gyroscalar_r0.1": {
+      "ndcg10": 0.42549,
+      "delta": -0.0432,
+      "jaccard": 0.6227395790089288
+    },
+    "gyroscalar_r0.5": {
+      "ndcg10": 0.46092,
+      "delta": -0.0078,
+      "jaccard": 0.7960680855417698
+    },
+    "gyroscalar_r1.0": {
+      "ndcg10": 0.4687,
+      "delta": 0.0,
+      "jaccard": 1.0
+    },
+    "gyroscalar_r2.0": {
+      "ndcg10": 0.46084,
+      "delta": -0.0079,
+      "jaccard": 0.8470022154232679
+    },
+    "wasserstein_w0.3": {
+      "ndcg10": 0.4349,
+      "delta": -0.0338,
+      "jaccard": 0.6582727209662194
+    },
+    "wasserstein_w0.5": {
+      "ndcg10": 0.43347,
+      "delta": -0.0352,
+      "jaccard": 0.6585288798911091
+    },
+    "wasserstein_w0.7": {
+      "ndcg10": 0.42669,
+      "delta": -0.042,
+      "jaccard": 0.63921165623952
+    },
+    "rotor_a0.1": {
+      "ndcg10": 0.45773,
+      "delta": -0.011,
+      "jaccard": 0.8295527966580599
+    },
+    "rotor_a0.2": {
+      "ndcg10": 0.43398,
+      "delta": -0.0347,
+      "jaccard": 0.6949662092850948
+    },
+    "rotor_a0.3": {
+      "ndcg10": 0.3972,
+      "delta": -0.0715,
+      "jaccard": 0.5776449661491213
+    },
+    "kronecker_r2": {
+      "ndcg10": 0.46692,
+      "delta": -0.0018,
+      "jaccard": 0.9443726022673391
+    },
+    "kronecker_r4": {
+      "ndcg10": 0.46648,
+      "delta": -0.0022,
+      "jaccard": 0.9474115263588947
+    },
+    "kronecker_r8": {
+      "ndcg10": 0.47331,
+      "delta": 0.0046,
+      "jaccard": 0.9422985738775213
+    },
+    "kronecker_r16": {
+      "ndcg10": 0.46826,
+      "delta": -0.0004,
+      "jaccard": 0.9270558744242954
+    }
+  }
+}

@@ -1,0 +1,338 @@
+{
+  "dataset": "arguana",
+  "concepts": {
+    "economic arguments": {
+      "projection_distribution": {
+        "mean": 0.5456405282020569,
+        "std": 0.048211719840765,
+        "min": 0.41002392768859863,
+        "max": 0.7109543681144714,
+        "percentiles": {
+          "p10": 0.48527491092681885,
+          "p25": 0.5138317942619324,
+          "p50": 0.5423473715782166,
+          "p75": 0.577607274055481,
+          "p90": 0.6090422868728638
+        }
+      },
+      "bins": {
+        "very_low": {
+          "range": [
+            0.0,
+            0.1
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "low": {
+          "range": [
+            0.1,
+            0.2
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "medium": {
+          "range": [
+            0.2,
+            0.3
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "high": {
+          "range": [
+            0.3,
+            0.5
+          ],
+          "n_queries": 243,
+          "base_ndcg_mean": 0.44033029762604897,
+          "sub_ndcg_mean": 0.42151696086304946,
+          "delta_mean": -0.01881333676299955,
+          "delta_std": 0.14133459575005053,
+          "t_pvalue": 0.039443868604208676,
+          "pct_improved": 0.16872427983539096,
+          "pct_degraded": 0.2345679012345679,
+          "pct_unchanged": 0.5967078189300411
+        },
+        "very_high": {
+          "range": [
+            0.5,
+            1.0
+          ],
+          "n_queries": 1163,
+          "base_ndcg_mean": 0.42630202224338565,
+          "sub_ndcg_mean": 0.39166372133935357,
+          "delta_mean": -0.03463830090403199,
+          "delta_std": 0.1516839704421369,
+          "t_pvalue": 1.54260180505933e-14,
+          "pct_improved": 0.18572656921754085,
+          "pct_degraded": 0.3301805674978504,
+          "pct_unchanged": 0.48409286328460877
+        }
+      }
+    },
+    "moral and ethical reasoning": {
+      "projection_distribution": {
+        "mean": 0.470473051071167,
+        "std": 0.060979265719652176,
+        "min": 0.28773170709609985,
+        "max": 0.6878764629364014,
+        "percentiles": {
+          "p10": 0.39218950271606445,
+          "p25": 0.4282252788543701,
+          "p50": 0.4703269302845001,
+          "p75": 0.5094717741012573,
+          "p90": 0.5507848262786865
+        }
+      },
+      "bins": {
+        "very_low": {
+          "range": [
+            0.0,
+            0.1
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "low": {
+          "range": [
+            0.1,
+            0.2
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "medium": {
+          "range": [
+            0.2,
+            0.3
+          ],
+          "n_queries": 3,
+          "base_ndcg_mean": 0.45022371265424616,
+          "sub_ndcg_mean": 0.35386877054828353,
+          "delta_mean": -0.09635494210596263,
+          "delta_std": 0.13626646592792674,
+          "t_pvalue": 0.4226497308103742,
+          "pct_improved": 0.0,
+          "pct_degraded": 0.3333333333333333,
+          "pct_unchanged": 0.6666666666666666
+        },
+        "high": {
+          "range": [
+            0.3,
+            0.5
+          ],
+          "n_queries": 978,
+          "base_ndcg_mean": 0.4420180511420323,
+          "sub_ndcg_mean": 0.4229544262512347,
+          "delta_mean": -0.01906362489079758,
+          "delta_std": 0.1152224484575128,
+          "t_pvalue": 2.8169013522762294e-07,
+          "pct_improved": 0.1574642126789366,
+          "pct_degraded": 0.25153374233128833,
+          "pct_unchanged": 0.591002044989775
+        },
+        "very_high": {
+          "range": [
+            0.5,
+            1.0
+          ],
+          "n_queries": 425,
+          "base_ndcg_mean": 0.3979886800878048,
+          "sub_ndcg_mean": 0.3625742721021644,
+          "delta_mean": -0.035414407985640405,
+          "delta_std": 0.159976762243456,
+          "t_pvalue": 6.754621638774623e-06,
+          "pct_improved": 0.1952941176470588,
+          "pct_degraded": 0.3388235294117647,
+          "pct_unchanged": 0.46588235294117647
+        }
+      }
+    },
+    "legal precedent": {
+      "projection_distribution": {
+        "mean": 0.5169638991355896,
+        "std": 0.05293915420770645,
+        "min": 0.34623947739601135,
+        "max": 0.7030520439147949,
+        "percentiles": {
+          "p10": 0.45157328248023987,
+          "p25": 0.4764622151851654,
+          "p50": 0.5155535936355591,
+          "p75": 0.553704023361206,
+          "p90": 0.5873309373855591
+        }
+      },
+      "bins": {
+        "very_low": {
+          "range": [
+            0.0,
+            0.1
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "low": {
+          "range": [
+            0.1,
+            0.2
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "medium": {
+          "range": [
+            0.2,
+            0.3
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "high": {
+          "range": [
+            0.3,
+            0.5
+          ],
+          "n_queries": 548,
+          "base_ndcg_mean": 0.4528098767523988,
+          "sub_ndcg_mean": 0.43639252558181124,
+          "delta_mean": -0.01641735117058757,
+          "delta_std": 0.10378656712183149,
+          "t_pvalue": 0.00023775998580300868,
+          "pct_improved": 0.15875912408759124,
+          "pct_degraded": 0.2664233576642336,
+          "pct_unchanged": 0.5748175182481752
+        },
+        "very_high": {
+          "range": [
+            0.5,
+            1.0
+          ],
+          "n_queries": 858,
+          "base_ndcg_mean": 0.4133446407131385,
+          "sub_ndcg_mean": 0.3896428923579812,
+          "delta_mean": -0.023701748355157332,
+          "delta_std": 0.14549181781015033,
+          "t_pvalue": 2.1746175199075467e-06,
+          "pct_improved": 0.19230769230769232,
+          "pct_degraded": 0.3111888111888112,
+          "pct_unchanged": 0.4965034965034965
+        }
+      }
+    },
+    "environmental impact": {
+      "projection_distribution": {
+        "mean": 0.47500571608543396,
+        "std": 0.046368252485990524,
+        "min": 0.3563116192817688,
+        "max": 0.7063198685646057,
+        "percentiles": {
+          "p10": 0.41749307513237,
+          "p25": 0.4439695477485657,
+          "p50": 0.47404181957244873,
+          "p75": 0.5029160380363464,
+          "p90": 0.5284476280212402
+        }
+      },
+      "bins": {
+        "very_low": {
+          "range": [
+            0.0,
+            0.1
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "low": {
+          "range": [
+            0.1,
+            0.2
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "medium": {
+          "range": [
+            0.2,
+            0.3
+          ],
+          "n_queries": 0,
+          "note": "too few queries"
+        },
+        "high": {
+          "range": [
+            0.3,
+            0.5
+          ],
+          "n_queries": 1015,
+          "base_ndcg_mean": 0.4366727648268344,
+          "sub_ndcg_mean": 0.4266535471197423,
+          "delta_mean": -0.010019217707092146,
+          "delta_std": 0.1082716112767372,
+          "t_pvalue": 0.003285176952595429,
+          "pct_improved": 0.18226600985221675,
+          "pct_degraded": 0.22758620689655173,
+          "pct_unchanged": 0.5901477832512315
+        },
+        "very_high": {
+          "range": [
+            0.5,
+            1.0
+          ],
+          "n_queries": 391,
+          "base_ndcg_mean": 0.40809886929143324,
+          "sub_ndcg_mean": 0.40200788977296725,
+          "delta_mean": -0.006090979518465951,
+          "delta_std": 0.15330450005214472,
+          "t_pvalue": 0.4331472586207979,
+          "pct_improved": 0.23529411764705882,
+          "pct_degraded": 0.24808184143222506,
+          "pct_unchanged": 0.5166240409207161
+        }
+      }
+    }
+  },
+  "control_orthogonal": [
+    {
+      "trial": 0,
+      "proj_to_centroid": 6.984919309616089e-09,
+      "mean_proj_to_queries": 0.02952498570084572,
+      "delta_mean": 0.00043728005500369,
+      "delta_std": 0.025012231702353914,
+      "pct_changed": 0.041963015647226175
+    },
+    {
+      "trial": 1,
+      "proj_to_centroid": 1.862645149230957e-09,
+      "mean_proj_to_queries": 0.025229455903172493,
+      "delta_mean": 8.309619985259116e-05,
+      "delta_std": 0.021136061110423914,
+      "pct_changed": 0.03911806543385491
+    },
+    {
+      "trial": 2,
+      "proj_to_centroid": 5.587935447692871e-09,
+      "mean_proj_to_queries": 0.02677125856280327,
+      "delta_mean": -0.0008861251073922506,
+      "delta_std": 0.023326818397653368,
+      "pct_changed": 0.04054054054054054
+    },
+    {
+      "trial": 3,
+      "proj_to_centroid": 7.450580596923828e-09,
+      "mean_proj_to_queries": 0.028141900897026062,
+      "delta_mean": 4.731435754846497e-05,
+      "delta_std": 0.020909059966007455,
+      "pct_changed": 0.03556187766714083
+    },
+    {
+      "trial": 4,
+      "proj_to_centroid": 2.7939677238464355e-09,
+      "mean_proj_to_queries": 0.029423752799630165,
+      "delta_mean": -0.0008618254361008664,
+      "delta_std": 0.027982780350862792,
+      "pct_changed": 0.051209103840682786
+    }
+  ]
+}

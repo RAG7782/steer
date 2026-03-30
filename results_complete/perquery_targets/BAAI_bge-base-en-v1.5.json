@@ -1,0 +1,194 @@
+{
+  "model": "BAAI/bge-base-en-v1.5",
+  "family": "contrastive",
+  "scifact": {
+    "n_queries": 100,
+    "n_docs": 5183,
+    "A_baseline": {
+      "NDCG@1": 0.61,
+      "NDCG@5": 0.7309,
+      "NDCG@10": 0.7468
+    },
+    "B_addition_uniform": {
+      "ndcg": {
+        "NDCG@1": 0.61,
+        "NDCG@5": 0.703,
+        "NDCG@10": 0.7341
+      },
+      "delta": -0.0126
+    },
+    "C_multivector_generic": {
+      "ndcg": {
+        "NDCG@1": 0.61,
+        "NDCG@5": 0.716,
+        "NDCG@10": 0.7378
+      },
+      "delta": -0.009
+    },
+    "D_multivector_perquery": {
+      "ndcg": {
+        "NDCG@1": 0.61,
+        "NDCG@5": 0.7323,
+        "NDCG@10": 0.7482
+      },
+      "delta": 0.0015,
+      "new_docs_avg_top10": 0.19,
+      "unique_targets": 284
+    },
+    "E_full_stack": {
+      "ndcg": {
+        "NDCG@1": 0.63,
+        "NDCG@5": 0.744,
+        "NDCG@10": 0.7632
+      },
+      "delta": 0.0164
+    },
+    "target_samples": {
+      "1": [
+        "Cell signaling",
+        "Regenerative medicine",
+        "Tissue engineering"
+      ],
+      "3": [
+        "genetic epidemiology",
+        "population genetics",
+        "clinical genomics"
+      ],
+      "5": [
+        "Prion prevalence rates",
+        "UK neurological disorders",
+        "Prion disease epidemiology"
+      ],
+      "13": [
+        "maternal nutrition",
+        "fetal growth disorders",
+        "gestational diabetes management"
+      ],
+      "36": [
+        "Metabolic pathways",
+        "Homocysteine regulation",
+        "Vitamin metabolism"
+      ],
+      "42": [
+        "thalassemia genetics",
+        "anemia pathophysiology",
+        "erythrocyte morphology analysis"
+      ],
+      "48": [
+        "viral transmission dynamics",
+        "epidemiology of prion diseases",
+        "public health implications of asymptomatic carriers"
+      ],
+      "49": [
+        "RNA processing and modification",
+        "MicroRNA biogenesis",
+        "Transcriptome regulation"
+      ],
+      "50": [
+        "immune response",
+        "cutaneous pathology",
+        "autoimmunity mechanisms"
+      ],
+      "51": [
+        "breast cancer prognosis",
+        "cancer biomarkers research",
+        "drug resistance mechanisms"
+      ]
+    }
+  },
+  "arguana": {
+    "n_queries": 100,
+    "n_docs": 8674,
+    "A_baseline": {
+      "NDCG@1": 0.33,
+      "NDCG@5": 0.5558,
+      "NDCG@10": 0.5983
+    },
+    "B_addition_uniform": {
+      "ndcg": {
+        "NDCG@1": 0.35,
+        "NDCG@5": 0.5563,
+        "NDCG@10": 0.588
+      },
+      "delta": -0.0103
+    },
+    "C_multivector_generic": {
+      "ndcg": {
+        "NDCG@1": 0.34,
+        "NDCG@5": 0.5567,
+        "NDCG@10": 0.5918
+      },
+      "delta": -0.0065
+    },
+    "D_multivector_perquery": {
+      "ndcg": {
+        "NDCG@1": 0.33,
+        "NDCG@5": 0.557,
+        "NDCG@10": 0.5959
+      },
+      "delta": -0.0024,
+      "new_docs_avg_top10": 0.07,
+      "unique_targets": 290
+    },
+    "E_full_stack": {
+      "ndcg": {
+        "NDCG@1": 0.32,
+        "NDCG@5": 0.5544,
+        "NDCG@10": 0.5924
+      },
+      "delta": -0.0059
+    },
+    "target_samples": {
+      "test-environment-aeghhgwpe-pro02a": [
+        "Environmental impact assessment",
+        "Pollution control measures",
+        "Sustainable agriculture practices"
+      ],
+      "test-environment-aeghhgwpe-pro01a": [
+        "Animal rights advocacy",
+        "Sentient being ethics",
+        "Ethical treatment of livestock"
+      ],
+      "test-environment-aeghhgwpe-pro03a": [
+        "Nutrition Science",
+        "Dietary Guidelines",
+        "Plant-Based Diets"
+      ],
+      "test-environment-aeghhgwpe-pro04a": [
+        "Meat safety and handling",
+        "Poultry health and hygiene",
+        "Foodborne pathogens and transmission"
+      ],
+      "test-environment-aeghhgwpe-con02a": [
+        "Iron Absorption Efficiency",
+        "Vegetarian Iron Sources",
+        "Iron Deficiency Anemia"
+      ],
+      "test-environment-aeghhgwpe-con03a": [
+        "evolutionary biology",
+        "ecological ethics",
+        "human-nature relationship"
+      ],
+      "test-environment-aeghhgwpe-con01a": [
+        "Carnivore Evolutionary Biology",
+        "Plant-Based Nutrition",
+        "Meat Consumption Studies"
+      ],
+      "test-environment-assgbatj-pro02a": [
+        "Animal welfare organizations",
+        "Humane alternatives to animal testing",
+        "Regulatory oversight of animal experiments"
+      ],
+      "test-environment-assgbatj-pro05a": [
+        "Animal rights advocacy",
+        "Scientific ethics",
+        "Cruelty prevention legislation"
+      ],
+      "test-environment-assgbatj-pro01a": [
+        "Animal sentience and cognition",
+        "Comparative anatomy and physiology",
+        "Ethical implications for interspecies relationships"
+      ]
+    }
+  }
+}
