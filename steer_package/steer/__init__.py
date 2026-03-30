@@ -9,7 +9,7 @@ Usage:
     steerer = Steerer(model_name="all-MiniLM-L6-v2")
     results = steerer.search(query="VEGF inhibition", target="oncology", alpha=0.1)
 
-Paper: https://arxiv.org/abs/XXXX.XXXXX  # TODO: update after submission
+Paper: https://doi.org/10.5281/zenodo.19325724
 """
 
 __version__ = "0.1.0"

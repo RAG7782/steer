@@ -93,4 +93,4 @@ STEER provides 16 operations built from a single primitive: `normalize(q + alpha
 
 ## License
 
-MIT
+Apache 2.0 — see [LICENSE](../LICENSE).

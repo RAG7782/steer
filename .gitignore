@@ -20,7 +20,9 @@ venv/
 Thumbs.db
 
 # Local config
-.claude/settings.local.json
+.claude/
+.mcp.json
+HANDOFF-*.md
 
 # Experimental results (large data files)
 results_modal/
