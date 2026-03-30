@@ -1,0 +1,23 @@
+# Credentials
+.env
+.env.*
+*.credentials*
+.credentials*
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local config
+.claude/settings.local.json
