@@ -21,3 +21,6 @@ Thumbs.db
 
 # Local config
 .claude/settings.local.json
+
+# Experimental results (large data files)
+results_modal/
