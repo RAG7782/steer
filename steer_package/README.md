@@ -4,7 +4,7 @@
 
 A retrieval primitive for controllable semantic navigation in embedding spaces. No retraining, no fine-tuning, works with any embedding model.
 
-> Paper: [STEER: An Honest Evaluation of Sixteen Algebraic Operations](https://arxiv.org/abs/XXXX.XXXXX)
+> Paper: [STEER: An Honest Evaluation of Sixteen Algebraic Operations](https://doi.org/10.5281/zenodo.19325724)
 
 ## Install
 
@@ -86,7 +86,7 @@ STEER provides 16 operations built from a single primitive: `normalize(q + alpha
 @article{gomes2026steer,
   title={STEER: Semantic Transformation for Embedding-space Exploration in Retrieval --- An Honest Evaluation of Sixteen Algebraic Operations},
   author={Gomes, Renato Aparecido},
-  journal={arXiv preprint arXiv:XXXX.XXXXX},
+  doi={10.5281/zenodo.19325724},
   year={2026}
 }
 ```

@@ -1,6 +1,6 @@
 [build-system]
 requires = ["setuptools>=68.0", "wheel"]
-build-backend = "setuptools.backends._legacy:_Backend"
+build-backend = "setuptools.build_meta"
 
 [project]
 name = "steer-retrieval"
@@ -29,7 +29,7 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://github.com/RAG7782/steer"
-Paper = "https://arxiv.org/abs/XXXX.XXXXX"
+Paper = "https://doi.org/10.5281/zenodo.19325724"
 Documentation = "https://github.com/RAG7782/steer#readme"
 
 [tool.setuptools.packages.find]
