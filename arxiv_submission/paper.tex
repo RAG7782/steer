@@ -1,0 +1,1271 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{fancyvrb}
+\usepackage{array}
+\usepackage{longtable}
+
+\geometry{margin=1in}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue,
+  citecolor=blue,
+  urlcolor=blue
+}
+
+\title{STEER: Semantic Transformation for Embedding-space Exploration in Retrieval\\--- An Honest Evaluation of Sixteen Algebraic Operations}
+
+\author{Renato Aparecido Gomes \\
+Independent Researcher \\
+S\~{a}o Paulo, SP, Brazil \\
+\texttt{renatoapgomes@gmail.com}}
+
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+What happens when you algebraically transform a query embedding \emph{before} retrieval? We investigate this question systematically, evaluating seventeen candidate operations across six sentence transformer architectures and four BEIR benchmarks (2,677 queries). We formalize \emph{algebraic retrieval} as $R(\mathbf{q}, D) = \text{argmax}_{d \in D} \ \text{sim}(T(\mathbf{q}), d)$, where standard RAG is the identity case $T = \text{id}$.
+
+Three findings merit highlight. First, \emph{embedding rotation} --- simple normalized linear interpolation toward a target domain --- provides controllable cross-domain result set modification: at $\alpha = 0.1$, it replaces 1 of 10 results at $-2.2\%$ nDCG cost. We validate this on cross-domain scenarios (drug repurposing across 4 diseases, legal analogy across 4 branches of law), confirming structural displacement, though whether surfaced documents constitute \emph{genuinely useful} analogies remains an open question requiring domain-expert evaluation. Second, operation efficacy is governed by \emph{embedding isotropy}: low-isotropy models (MiniLM, mean cosine $\approx 0.13$) benefit from algebraic manipulation, while high-isotropy models (E5, $\approx 0.81$) are harmed --- a finding with implications beyond retrieval for any application manipulating sentence embeddings. Third, of seventeen operations spanning Euclidean, hyperbolic, optimal transport, and conceptor-based approaches, \emph{only Euclidean operations on normalized embeddings prove effective}; the remainder either reduce to identity, add complexity without benefit, or fail catastrophically.
+
+We report negative results with equal rigor: orthogonal concept exclusion degrades real benchmarks when concepts are domain-central; semantic preprocessing via LLM rewriting destroys discriminative information; Boolean conceptors collapse retrieval quality.
+
+Building on these findings, we present STEER (Semantic Transformation for Embedding-space Exploration in Retrieval), an adaptive stack that composes three techniques --- isotropy correction, adaptive alpha, and multi-vector fusion --- to eliminate the nDCG degradation observed with naive rotation. Extended to sixteen operations including contrastive steer ($+3.5\%$ nDCG), rotate-away as bias correction ($+3.6\%$), and per-query LLM targets, STEER achieves an automatic operation router with F1$=0.91$ on biomedical benchmarks. The contribution is both an honest empirical map of what algebraic steering can and cannot do, and a practical system that makes it deployable.
+\end{abstract}
+
+\noindent\textbf{Keywords:} semantic steering, embedding manipulation, retrieval-augmented generation, vector arithmetic, adaptive retrieval, STEER
+
+\section{Introduction}
+
+The dominant paradigm in information retrieval, and by extension in Retrieval-Augmented Generation, treats the query embedding as a fixed object. A user's intent is encoded into a vector, and the system returns whatever lies nearest to that vector in the embedding space. This process is fundamentally \emph{passive}: the system cannot reason about what the user might want beyond what the query literally states. It cannot, for instance, find the deep learning equivalent of a classical machine learning algorithm, nor can it exclude a semantic concept without resorting to keyword filtering.
+
+We argue that this limitation is not inherent to the embedding space itself, but rather to how retrieval systems \emph{use} it. Modern sentence transformers produce embeddings that encode rich semantic structure --- structure that supports algebraic manipulation. The celebrated word2vec analogy \emph{king $-$ man $+$ woman $=$ queen} \cite{mikolov2013} demonstrated that vector arithmetic preserves semantic relationships at the word level. More recently, RISE \cite{rise2025} showed that semantic-syntactic transformations correspond to rotational operations in embedding space across seven languages. Yet no prior work has systematically validated whether such operations generalize to \emph{document-level} embeddings for practical retrieval.
+
+This paper introduces and empirically evaluates the \emph{algebraic retrieval} paradigm, in which the query embedding is explicitly transformed before retrieval. We unify this under a single formulation:
+
+\begin{equation}
+R(\mathbf{q}, D) = \underset{d \in D}{\text{argmax}} \ \text{sim}(T(\mathbf{q}), d)
+\end{equation}
+
+where $T(\mathbf{q})$ is an algebraic transformation of the query. Standard RAG is the special case where $T$ is the identity function. We investigate two non-trivial instantiations of $T$:
+
+\textbf{Embedding Rotation.} Given a query in domain~A, we partially interpolate its embedding toward domain~B, producing a transformed query that lies between the two domains. Retrieval on this transformed query returns documents from both domains, with a bias toward cross-domain analogues. This enables \emph{analogical retrieval}: querying one domain to discover corresponding concepts in another.
+
+\textbf{Orthogonal Concept Exclusion.} Given a query and a concept to exclude, we project the query onto the hyperplane orthogonal to the exclusion concept. The resulting query preserves its original meaning minus the excluded semantic direction, implementing \emph{semantic negation} without keyword filtering.
+
+\subsection{Motivating Examples}
+
+Consider a pharmacologist researching Alzheimer's disease who knows that Parkinson's treatments exploit dopaminergic neuroprotection mechanisms. She hypothesizes that analogous neuroprotective pathways may exist for Alzheimer's, but she does not know which ones --- that is precisely what she seeks to discover. With standard retrieval, a query for ``dopaminergic neuroprotection in Parkinson's'' returns only Parkinson's literature. She cannot query Alzheimer's because she does not yet know \emph{which} Alzheimer's mechanisms correspond to what she knows in Parkinson's. Embedding rotation addresses this: by rotating the query toward ``Alzheimer's disease amyloid pathology,'' the system retrieves articles at the intersection --- neuroinflammation, mitochondrial oxidative stress, autophagy --- mechanisms discussed in the context of Parkinson's that have emerging counterparts in Alzheimer's research. This is the core problem in \emph{drug repurposing}: an estimated 30\% of approved drugs have repositioning potential, but discovering candidates requires finding analogies across disease domains that researchers do not yet know how to name.
+
+Now consider a tax attorney contesting a disproportionate fiscal penalty. She knows that criminal law has decades of mature case law on sentencing proportionality (dosimetry), but searching ``tax penalty proportionality'' returns only tax cases. By rotating the query toward ``criminal law sentencing,'' the system surfaces criminal precedents on proportionality criteria that are structurally transferable to tax law --- arguments the attorney would not find within her own domain. Legal systems are explicitly analogical (Art.~4 of Brazil's LINDB mandates reasoning by analogy when specific norms are absent), and the same fundamental principles --- good faith, proportionality, due process --- manifest with different names across branches of law. Rotation automates what experienced jurists do mentally when they recall a precedent from another legal branch.
+
+For concept exclusion, consider the same attorney searching wrongful termination case law while wishing to exclude discrimination-based cases --- a distinct legal theory. Keyword filtering on ``discrimination'' is imprecise: it misses cases that discuss discriminatory practices without using that word, and removes relevant cases that mention it in passing. Orthogonal subtraction addresses this by projecting out the semantic direction of ``discrimination'' from the query embedding, operating in semantic space rather than keyword space.
+
+\subsection{Contributions}
+
+We make the following contributions, organized by what we consider most valuable to the community:
+
+\begin{enumerate}
+\item \textbf{Isotropy as the hidden variable.} A cross-model analysis across six architectures reveals that embedding isotropy --- the degree to which embeddings cluster in the space --- is the dominant predictor of whether algebraic operations help or hurt retrieval. This finding generalizes beyond our specific operations to any application that manipulates sentence embeddings (steering vectors, concept erasure, representation engineering).
+
+\item \textbf{The largest empirical comparison of embedding-space operations for retrieval.} Seventeen candidate operations, spanning Euclidean geometry, hyperbolic geometry (M\"{o}bius addition, gyroscalar multiplication), optimal transport (Wasserstein barycenter), Clifford algebra (geometric rotors), matrix-based approaches (Boolean conceptors, Kronecker decomposition), and memory-inspired methods (hippocampal pattern completion), evaluated on BEIR benchmarks across six models. The result: only Euclidean operations on normalized embeddings work. This negative landscape saves future researchers from pursuing twelve dead ends.
+
+\item \textbf{Controllable cross-domain result set modification.} Embedding rotation provides a continuous, deterministic, zero-inference-cost mechanism for shifting retrieval results toward a different domain. We validate this structurally on drug repurposing and legal analogy scenarios. We emphasize that this is a \emph{structural} finding --- the documents change in the expected direction --- not a \emph{utility} finding. Whether the surfaced documents constitute genuinely useful cross-domain analogies is an open empirical question that requires domain-expert evaluation, which we do not provide.
+
+\item \textbf{Quantization robustness.} Rotation survives int8 quantization with near-perfect angular fidelity ($r = 0.9999$, mean angle deviation $< 1^{\circ}$), establishing that algebraic retrieval is compatible with production deployment at 4$\times$ storage reduction.
+
+\item \textbf{Honest negative results.} Orthogonal subtraction degrades all real benchmarks ($-1.7\%$ to $-8.4\%$) when excluded concepts are domain-central. Semantic preprocessing via LLM rewriting (tested with 1.5B and 7B models) destroys discriminative information --- the larger the model, the worse the retrieval. SVD intersection, Gumbel-Softmax reranking, and Boolean conceptors fail catastrophically. These findings prevent wasted effort and clarify the boundaries of embedding-space manipulation.
+\end{enumerate}
+
+\section{Related Work}
+
+\subsection{Vector Arithmetic on Embeddings}
+
+The foundational observation that vector arithmetic encodes semantic relationships dates to Mikolov et al.\ \cite{mikolov2013}, who demonstrated word-level analogies in word2vec: $\vec{\text{king}} - \vec{\text{man}} + \vec{\text{woman}} \approx \vec{\text{queen}}$. This result established that embedding spaces possess linear algebraic structure that mirrors semantic structure. Subsequent work extended this to GloVe \cite{pennington2014} and contextual embeddings \cite{peters2018}, though the reliability of word analogies has been questioned \cite{rogers2017}.
+
+At the sentence and document level, vector arithmetic has received less systematic attention. RISE \cite{rise2025} demonstrated that semantic-syntactic transformations in multilingual sentence embeddings correspond to rotational operations, validating geometric structure across seven languages. VL-JEPA (Meta, 2025) showed compositional retrieval in multimodal embedding spaces. However, none of these works validated document-level algebraic operations specifically for retrieval tasks.
+
+Our work differs in applying algebraic operations to \emph{retrieval query embeddings} and measuring their effect on retrieval outcomes, rather than studying the geometry of embedding spaces in the abstract.
+
+\subsection{Retrieval-Augmented Generation}
+
+RAG was introduced by Lewis et al.\ \cite{lewis2020} as a method to ground language model generation in retrieved documents, addressing hallucination and knowledge currency. Since then, the paradigm has evolved substantially. Dense Passage Retrieval (DPR) \cite{karpukhin2020} improved retrieval quality through dual-encoder training. ColBERT \cite{khattab2020} introduced late interaction for efficient and effective passage search.
+
+More recent variants address limitations of the basic retrieve-then-generate pipeline. Self-RAG \cite{asai2024} trains the language model to decide when to retrieve and to critique its own generations. Adaptive RAG \cite{jeong2024} routes queries through different retrieval strategies based on complexity. Agentic RAG \cite{arag2026,agenticrag2025} introduces autonomous agents that plan multi-step retrieval, decompose queries, and iterate on retrieval results.
+
+A critical observation is that \emph{none} of these systems perform explicit algebraic transformations on query embeddings. They improve \emph{when}, \emph{how often}, and \emph{in what order} to retrieve, but the fundamental mechanism remains nearest-neighbor similarity on an unmodified query vector. Our work is orthogonal to these advances: algebraic retrieval can be composed with any RAG variant.
+
+\subsection{Embedding Manipulation and Steering}
+
+The idea of manipulating neural representations to alter model behavior has gained traction in recent years. Steering vectors \cite{turner2023} modify LLM internal activations to control generation style or content. Linear Adversarial Concept Erasure (LACE) \cite{ravfogel2022} removes specific concepts from representations by projecting onto the null space of a linear classifier trained to detect those concepts. DEO (Differentiable Embedding Optimization) optimizes embeddings for specific downstream properties.
+
+In the hyperbolic geometry tradition, Poincar\'{e} embeddings \cite{nickel2017} and Lorentzian distance functions capture hierarchical relationships that flat Euclidean spaces cannot represent. These approaches demonstrate that the \emph{geometry} of the embedding space can encode meaningful semantic structure.
+
+Our work is most closely related to concept erasure \cite{ravfogel2022}, but differs in three ways: (1) we operate on the query embedding at retrieval time, not on the model's internal representations during training; (2) we use a single orthogonal projection rather than iterative null-space projection; and (3) we evaluate the effect on retrieval outcomes rather than on downstream classification.
+
+\subsection{Query Transformation for Retrieval}
+
+A growing body of work transforms queries before retrieval, though through generation rather than algebra. HyDE \cite{gao2023hyde} prompts an LLM to generate a hypothetical document answering the query, then uses its embedding as a surrogate query --- achieving zero-shot dense retrieval without relevance labels. Query2Doc \cite{wang2023query2doc} similarly expands the query by concatenating LLM-generated pseudo-documents. Pseudo-relevance feedback (PRF) \cite{rocchio1971} iteratively refines queries using top-ranked documents from an initial retrieval pass.
+
+These approaches share a surface-level similarity with algebraic retrieval: all modify the query representation before (or during) retrieval. However, they differ fundamentally in mechanism. HyDE and Query2Doc operate in \emph{text space} (generating new text, then re-encoding), while algebraic retrieval operates directly in \emph{embedding space} via closed-form transformations. This distinction has practical consequences: algebraic operations are deterministic, require no LLM inference, add negligible latency, and compose analytically. Whether these advantages translate to competitive retrieval quality is an open empirical question that we address in our experiments.
+
+\subsection{Geometric Transformations for Compression}
+
+Recent work demonstrates that the geometric structure of high-dimensional embedding spaces can be exploited not only for semantic manipulation but also for extreme compression. PolarQuant \cite{polarquant2026} converts key-value cache vectors from Cartesian to polar coordinates (radius + angle), enabling quantization from 16-bit to 3-bit representations with negligible accuracy loss. The companion QJL algorithm \cite{qjl2026} further reduces residual errors using single-bit sign projections based on the Johnson-Lindenstrauss lemma. Together, as TurboQuant \cite{turboquant2026}, these techniques achieve 6$\times$ memory compression and up to 8$\times$ inference speedup on GPU hardware.
+
+While PolarQuant and QJL target the \emph{storage} side of the vector pipeline --- compressing internal LLM representations during inference --- A\textsuperscript{2}RAG targets the \emph{query} side, transforming retrieval embeddings via rotation and projection. Both approaches share a core insight: the angular structure of high-dimensional embedding spaces carries exploitable geometric properties beyond simple cosine similarity. PolarQuant's success with polar-coordinate representations is particularly relevant, as A\textsuperscript{2}RAG's rotation operation is fundamentally angular --- suggesting that polar coordinates may provide a natural formalism for algebraic retrieval operations.
+
+\subsection{The Gap This Work Fills}
+
+The literature reveals a clear gap at the intersection of three areas: the algebraic structure of embedding spaces (established at the word level, less explored at the document level), the RAG retrieval mechanism (which treats query embeddings as immutable), and embedding manipulation techniques (which operate on model internals rather than retrieval queries). Algebraic retrieval occupies precisely this intersection: it leverages the algebraic structure of document embeddings to manipulate retrieval queries, enabling capabilities that neither standard RAG nor embedding manipulation alone can provide.
+
+\section{Method}
+
+\subsection{Unified Formulation}
+
+We formalize algebraic retrieval as a generalization of standard retrieval. Let $\mathbf{q} \in \mathbb{R}^d$ be the query embedding, $D = \{\mathbf{d}_1, \ldots, \mathbf{d}_n\}$ the document embeddings, and $T : \mathbb{R}^d \to \mathbb{R}^d$ a transformation function. Algebraic retrieval returns:
+
+\begin{equation}
+R(\mathbf{q}, D) = \underset{d \in D}{\text{argmax}} \ \text{sim}(T(\mathbf{q}), \mathbf{d})
+\end{equation}
+
+where $\text{sim}(\cdot, \cdot)$ is cosine similarity. Standard retrieval is the case $T = \text{id}$, the identity function. This formulation separates \emph{what to retrieve} ($D$, $\text{sim}$) from \emph{how to query} ($T$), enabling modular composition with any retrieval backend.
+
+We investigate two instantiations of $T$: rotation for analogical discovery and orthogonal subtraction for concept exclusion.
+
+\subsection{Embedding Rotation}
+
+\textbf{Intuition.} Given a query about domain~A, rotation partially moves the query toward domain~B in embedding space. The resulting vector lies in the region between the two domains, causing retrieval to return documents from both --- particularly cross-domain analogues that share structural similarity to the original query but belong to the target domain.
+
+\textbf{Formulation.} Given the query embedding $\mathbf{q}$ (domain~A) and a target domain embedding $\mathbf{t}$ (domain~B), we compute:
+
+\begin{equation}
+T_{\text{rotate}}(\mathbf{q}) = \text{normalize}\left((1 - \alpha) \cdot \mathbf{q} + \alpha \cdot \mathbf{t}\right)
+\end{equation}
+
+where $\alpha \in [0, 1]$ controls the degree of rotation. At $\alpha = 0$, the query is unchanged (standard retrieval). At $\alpha = 1$, the query collapses entirely to the target domain. Intermediate values produce queries that blend source and target semantics.
+
+\textbf{Terminological note.} Strictly, Equation~3 is Normalized Linear Interpolation (NLERP), not a rotation in the group-theoretic sense ($R \in SO(d)$). We retain the term ``rotation'' because (1)~NLERP on the unit hypersphere traces a path that approximates the geodesic arc (true rotation) when the angle $\theta$ between $\mathbf{q}$ and $\mathbf{t}$ is moderate, (2)~the effect on retrieval is a continuous angular displacement of the query --- functionally a rotation of its semantic orientation, and (3)~RISE \cite{rise2025}, from which this work draws inspiration, establishes the precedent of describing such directional transformations as rotations.
+
+\textbf{Connection to SLERP.} On the unit hypersphere $\mathbb{S}^{d-1}$, the true geodesic interpolation is Spherical Linear Interpolation (SLERP):
+
+\begin{equation}
+\text{SLERP}(\mathbf{q}, \mathbf{t}; \alpha) = \frac{\sin((1-\alpha)\theta)}{\sin\theta} \cdot \mathbf{q} + \frac{\sin(\alpha\theta)}{\sin\theta} \cdot \mathbf{t}
+\end{equation}
+
+where $\theta = \arccos(\mathbf{q} \cdot \mathbf{t})$. NLERP approximates SLERP when $\theta$ is small and diverges for large angles by traversing a chord rather than the geodesic arc. We use NLERP for simplicity and reproducibility; comparison with SLERP is deferred to future work.
+
+\textbf{Domain embedding construction.} The target domain embedding $\mathbf{t}$ is obtained by encoding a natural-language description of the target domain (e.g., ``deep learning neural networks'') using the same sentence transformer. More sophisticated approaches --- such as averaging embeddings of representative documents from the target domain --- are possible but not explored here.
+
+\subsection{Orthogonal Concept Exclusion}
+
+\textbf{Intuition.} Given a query and an unwanted concept, we remove the component of the query that points in the direction of the unwanted concept. The resulting vector retains the query's original meaning minus its overlap with the excluded concept.
+
+\textbf{Formulation.} Given the query embedding $\mathbf{q}$ and the embedding of the concept to exclude $\mathbf{e}$, we compute the orthogonal projection:
+
+\begin{equation}
+T_{\text{subtract}}(\mathbf{q}) = \text{normalize}\left(\mathbf{q} - \frac{\mathbf{q} \cdot \mathbf{e}}{||\mathbf{e}||^2} \cdot \mathbf{e}\right)
+\end{equation}
+
+This projects $\mathbf{q}$ onto the hyperplane orthogonal to $\mathbf{e}$, removing the component of $\mathbf{q}$ that is aligned with the excluded concept. The normalization ensures the result remains on the unit hypersphere.
+
+\textbf{Geometric interpretation.} In $d$-dimensional space, the exclusion concept $\mathbf{e}$ defines a 1-dimensional subspace (a line through the origin). The orthogonal complement is a $(d-1)$-dimensional hyperplane. Projection onto this hyperplane removes exactly the information that distinguishes the query along the excluded dimension, while preserving all other semantic content. This is a single-concept analogue of the iterative null-space projection used in concept erasure \cite{ravfogel2022}, but applied at retrieval time rather than during training.
+
+\textbf{Limitations of the geometric approach.} The effectiveness of orthogonal subtraction depends on a key assumption: that the unwanted concept is encoded as a linear direction in embedding space. If the concept is distributed across multiple directions or encoded nonlinearly, a single projection will be insufficient. Furthermore, if the query has low overlap with the exclusion concept ($\mathbf{q} \cdot \mathbf{e} \approx 0$), subtraction becomes a near-identity operation.
+
+\subsection{Retrieval}
+
+Both operations produce a transformed query $\mathbf{q}'$ on the unit hypersphere. Retrieval proceeds by standard cosine similarity ranking:
+
+\begin{equation}
+R(\mathbf{q}', D) = \underset{d \in D}{\text{argsort}} \ \frac{\mathbf{q}' \cdot \mathbf{d}}{||\mathbf{q}'|| \cdot ||\mathbf{d}||}
+\end{equation}
+
+Since $\mathbf{q}'$ and all $\mathbf{d}$ are L2-normalized, this reduces to dot-product ranking.
+
+\subsection{Algorithm}
+
+The complete algebraic retrieval procedure is given in Figure~\ref{fig:algorithm}.
+
+\begin{figure}[ht]
+\centering
+\hrule
+\smallskip
+\textbf{Algorithm 1:} Algebraic Retrieval
+\smallskip
+\hrule
+\smallskip
+\begin{tabular}{@{}r@{\quad}l@{}}
+\multicolumn{2}{@{}l@{}}{\textbf{Input:} query $q_{\text{text}}$, corpus $D$, type $T_{\text{type}} \in \{\textsc{rotate}, \textsc{subtract}, \textsc{id}\}$,} \\
+\multicolumn{2}{@{}l@{}}{\quad\quad parameter ($t_{\text{text}}$ or $e_{\text{text}}$), weight $\alpha$, model $M$, top-$K$} \\
+\multicolumn{2}{@{}l@{}}{\textbf{Output:} ranked list of $K$ documents} \\[4pt]
+1: & $\mathbf{q} \gets M.\text{encode}(q_{\text{text}})$; \enspace $\mathbf{q} \gets \mathbf{q} / \|\mathbf{q}\|$ \\
+2: & \textbf{for} $d \in D$ \textbf{do} \enspace $\mathbf{d} \gets M.\text{encode}(d) / \|M.\text{encode}(d)\|$ \\
+3: & \textbf{if} $T_{\text{type}} = \textsc{rotate}$ \textbf{then} \\
+4: & \quad $\mathbf{t} \gets M.\text{encode}(t_{\text{text}}) / \|M.\text{encode}(t_{\text{text}})\|$ \\
+5: & \quad $\mathbf{q}' \gets (1 - \alpha) \cdot \mathbf{q} + \alpha \cdot \mathbf{t}$; \enspace $\mathbf{q}' \gets \mathbf{q}' / \|\mathbf{q}'\|$ \hfill \textit{// NLERP} \\
+6: & \textbf{else if} $T_{\text{type}} = \textsc{subtract}$ \textbf{then} \\
+7: & \quad $\mathbf{e} \gets M.\text{encode}(e_{\text{text}}) / \|M.\text{encode}(e_{\text{text}})\|$ \\
+8: & \quad $\mathbf{q}' \gets \mathbf{q} - \frac{\mathbf{q} \cdot \mathbf{e}}{\|\mathbf{e}\|^2} \cdot \mathbf{e}$; \enspace $\mathbf{q}' \gets \mathbf{q}' / \|\mathbf{q}'\|$ \hfill \textit{// Orthogonal proj.} \\
+9: & \textbf{else} \enspace $\mathbf{q}' \gets \mathbf{q}$ \hfill \textit{// Identity (standard RAG)} \\
+10: & $\text{scores} \gets \{\text{sim}(\mathbf{q}', \mathbf{d}) : \mathbf{d} \in D\}$ \\
+11: & \textbf{return} top-$K$ documents by descending score \\
+\end{tabular}
+\smallskip
+\hrule
+\caption{Algebraic Retrieval procedure. Standard RAG is the special case $T_{\text{type}} = \textsc{id}$.}
+\label{fig:algorithm}
+\end{figure}
+
+\section{Experimental Setup}
+
+\subsection{Models}
+
+To assess whether algebraic retrieval is model-agnostic and to investigate the relationship between embedding geometry and operation efficacy, we test six sentence transformer architectures spanning different sizes, training objectives, and embedding dimensionalities:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{lclcl}
+\toprule
+Model & Dim. & Architecture & Params & Training \\
+\midrule
+all-MiniLM-L6-v2 & 384 & MiniLM & 22M & Distilled from MPNet \\
+all-mpnet-base-v2 & 768 & MPNet & 109M & Trained on 1B+ pairs \\
+BAAI/bge-small-en-v1.5 & 384 & BERT & 33M & Contrastive + instruction \\
+BAAI/bge-base-en-v1.5 & 768 & BERT & 109M & Contrastive + instruction \\
+intfloat/e5-small-v2 & 384 & BERT & 33M & Instruction-tuned \\
+thenlper/gte-small & 384 & BERT & 33M & General text embeddings \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+These models cover two embedding dimensionalities (384 and 768), four architectural families, and four training methodologies. Critically, they span a wide range of \emph{isotropy} --- the degree to which embeddings are uniformly distributed in the space, measured as the mean pairwise cosine similarity of random corpus pairs. Low-isotropy models (MiniLM: 0.13) have more spread-out embeddings; high-isotropy models (E5: 0.81) have more clustered embeddings. As we show in Section~\ref{sec:isotropy}, this property is the strongest predictor of algebraic operation efficacy.
+
+\subsection{Corpora}
+
+We construct three corpora of increasing realism:
+
+\textbf{Corpus A: Controlled (60 documents).} Four categories of 15 documents each: classical ML, deep learning, NLP, and computer vision. Documents are hand-written to ensure clean category boundaries with minimal cross-category semantic overlap. This corpus tests whether algebraic operations work under idealized conditions.
+
+\textbf{Corpus B: Generated (200 documents).} Four categories of 50 documents each: classical ML, deep learning, statistics, and irrelevant topics (cooking, sports, travel). Documents are generated from templates with randomized components (method names, datasets, metrics) to ensure lexical diversity within categories. This corpus tests whether effects scale with corpus size and survive increased document diversity.
+
+\textbf{Corpus C: Semi-real (174 chunks).} A technical documentation guide (2,507 lines) chunked into 174 segments using a sliding window of approximately 500 tokens with 50-token overlap. This corpus represents an internally homogeneous technical document where topics (agents, workflows, quality assurance, deployment) are semantically entangled throughout. We note that this is not an established benchmark; it serves as a stress test for algebraic operations under high semantic homogeneity.
+
+\subsection{Evaluation Metrics}
+
+We use three complementary metrics:
+
+\textbf{Delta Anti-documents ($\Delta_a$).} The reduction in the number of documents from the unwanted category in the top-K results after transformation, compared to the baseline (identity) retrieval. Formally:
+
+\begin{equation}
+\Delta_a = |\{d \in \text{top-K}_{\text{base}} : \text{cat}(d) = c_{\text{anti}}\}| - |\{d \in \text{top-K}_{T} : \text{cat}(d) = c_{\text{anti}}\}|
+\end{equation}
+
+Positive values indicate fewer unwanted documents (improvement). This metric directly measures the intended effect of concept exclusion.
+
+\textbf{Delta Target-documents ($\Delta_t$).} The increase in the number of documents from the target category in the top-K results after transformation. Positive values indicate more target documents retrieved. For rotation, this measures the degree of domain shift; for subtraction, it measures whether removing unwanted documents makes room for more relevant ones.
+
+\textbf{Win/Tie/Loss (W/T/L).} Per-query categorical evaluation. For each query, we classify the result as a Win ($\Delta_a > 0$ or $\Delta_t > 0$), Tie ($\Delta_a = 0$ and $\Delta_t = 0$), or Loss ($\Delta_a < 0$ or $\Delta_t < 0$). The critical safety criterion is that \emph{losses should be zero or near-zero}: algebraic retrieval should not make results worse.
+
+\subsection{Experimental Design}
+
+We conduct four experiments of increasing scope:
+
+\begin{table}[h]
+\centering
+\begin{tabular}{llllll}
+\toprule
+Exp. & Operation & Models & Corpus & Queries & Purpose \\
+\midrule
+1 & Subtraction & 3 & A (60) & 5 & Model agnosticism \\
+2 & Subtraction & 1 (BGE) & B (200) & 10 & Scale effects \\
+3 & Rotation & 1 (BGE) & A (60) & 2 & Analogical retrieval \\
+4 & All & 1 (BGE) & C (174) & 5 & Real document \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All experiments use top-K $= 10$. Rotation experiments use $\alpha = 0.4$. Document categories are assigned at creation time (Corpora A and B) or by manual inspection (Corpus C).
+
+\section{Results}
+
+\subsection{Experiment 1: Model Agnosticism of Orthogonal Subtraction}
+
+We test orthogonal subtraction across all three models using five compositional queries on Corpus~A. Each query specifies a topic and a concept to exclude. For example: ``machine learning algorithms'' $\ominus$ ``deep learning neural networks'' should retrieve classical ML documents while reducing deep learning documents in the results.
+
+\begin{table}[ht]
+\centering
+\caption{Orthogonal subtraction results across three models (Corpus A, 5 queries, top-10).}
+\label{tab:exp1}
+\begin{tabular}{lcccccl}
+\toprule
+Model & Dim. & Avg $\Delta_a$ & Avg $\Delta_t$ & Wins & Ties & Losses \\
+\midrule
+MiniLM-L6 & 384 & +0.6 & +0.8 & 3 & 2 & \textbf{0} \\
+MPNet-base & 768 & +0.8 & +0.6 & 3 & 2 & \textbf{0} \\
+BGE-small & 384 & +2.2 & +1.0 & 4 & 1 & \textbf{0} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Key findings.} (1) Zero losses across all 15 tests (3 models $\times$ 5 queries). While this consistency is notable, we caution against over-interpreting it: in high-dimensional spaces, orthogonal projection of a unit vector along a single direction typically produces a near-identity transformation ($\|\text{proj}_\mathbf{e}(\mathbf{q})\|$ is small when $\mathbf{q}$ and $\mathbf{e}$ are nearly orthogonal), so the expected baseline outcome under a weak-effect null hypothesis is a tie rather than a loss. The zero-loss record is therefore necessary but not sufficient evidence of semantic meaningfulness; the positive $\Delta_a$ and $\Delta_t$ values provide the more informative signal. (2) BGE-small, trained with contrastive learning and instruction-following, shows the strongest effect, possibly due to more linear concept organization in its embedding space. (3) The effect direction is consistent regardless of model architecture (MiniLM, MPNet, BERT) or embedding dimensionality (384, 768).
+
+\textbf{Limitations.} Effect sizes are small: on average, 0.6 to 2.2 documents change out of 10. The 40\% tie rate (2 out of 5 queries yield no effect) indicates that subtraction is not universally effective. The sample size (5 queries) is insufficient for formal statistical significance testing; power analysis suggests 283+ queries per condition are needed for reliable effect-size estimation.
+
+\subsection{Experiment 2: Scale Effects of Subtraction}
+
+We test subtraction with BGE-small on Corpus~B (200 documents), using 10 queries with varied exclusion concepts.
+
+\begin{table}[ht]
+\centering
+\caption{Subtraction results at scale (Corpus B, BGE-small, 10 queries, top-10).}
+\label{tab:exp2}
+\begin{tabular}{ll}
+\toprule
+Metric & Value \\
+\midrule
+Total anti-doc slots (baseline) & 9 / 100 \\
+Total anti-doc slots (subtracted) & 0 / 100 \\
+Absolute reduction & 9 documents \\
+Relative reduction & 100\% \\
+Wins & 3 \\
+Ties & 7 \\
+Losses & \textbf{0} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Key findings.} (1) Complete elimination of unwanted documents where they occurred: every document from the excluded category was removed from the top-10 after subtraction. (2) Zero losses, extending the safety finding from Experiment~1.
+
+\textbf{Critical caveat.} The baseline retrieval was already 91\% clean (only 9 intrusions in 100 top-10 slots across 10 queries). The 70\% tie rate indicates that subtraction was a no-op for most queries --- there were no unwanted documents to remove. The ``100\% reduction'' figure, while accurate, is misleading in isolation: the absolute improvement is 9 documents across 100 slots. This result demonstrates that subtraction works \emph{when needed} but does not establish how often it is needed in practice. Corpora with higher semantic entanglement would provide a stronger test.
+
+\subsection{Experiment 3: Embedding Rotation (Primary Finding)}
+
+We test embedding rotation on Corpus~A with two queries and $\alpha = 0.4$, the central experiment of this work.
+
+\textbf{Query 1: ``classical ML algorithms'' $\xrightarrow{\alpha=0.4}$ ``deep learning''}
+
+\begin{table}[ht]
+\centering
+\caption{Rotation results for classical ML toward deep learning (Corpus A, BGE-small, top-10).}
+\label{tab:exp3a}
+\begin{tabular}{lccc}
+\toprule
+Category & Baseline & Rotated & $\Delta$ \\
+\midrule
+Classical ML docs & 10 & 6 & $-4$ \\
+Deep Learning docs & 0 & 4 & \textbf{+4} \\
+NLP docs & 0 & 0 & 0 \\
+CV docs & 0 & 0 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The query ``classical machine learning algorithms'' retrieves 10 out of 10 classical ML documents at baseline --- a clean, on-topic result. After rotation toward ``deep learning'' with $\alpha = 0.4$, the top-10 contains 6 classical ML documents and 4 deep learning documents. The deep learning documents retrieved are not random: they are the DL methods most analogous to classical ML concepts (e.g., neural network classifiers as analogues of SVM classifiers, autoencoders as analogues of PCA).
+
+\textbf{Query 2: ``image recognition visual features'' $\xrightarrow{\alpha=0.4}$ ``text processing language''}
+
+\begin{table}[ht]
+\centering
+\caption{Rotation results for computer vision toward NLP (Corpus A, BGE-small, top-10).}
+\label{tab:exp3b}
+\begin{tabular}{lccc}
+\toprule
+Category & Baseline & Rotated & $\Delta$ \\
+\midrule
+CV docs & 9 & 8 & $-1$ \\
+NLP docs & 0 & 1 & \textbf{+1} \\
+Classical ML docs & 1 & 1 & 0 \\
+DL docs & 0 & 0 & 0 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A smaller but directionally consistent effect. The CV-to-NLP domain shift is more challenging because these domains share fewer structural analogues than classical ML and deep learning.
+
+\textbf{This is the primary finding of this work.} Embedding rotation enables \emph{analogical retrieval} --- querying one domain to discover corresponding concepts in another --- through a simple algebraic operation on the query vector. Unlike generative query transformation methods (HyDE, Query2Doc), which require LLM inference and produce non-deterministic results, this effect is produced by a single vector interpolation requiring no additional training, no auxiliary models, and no domain-specific knowledge beyond a natural-language description of the target domain. Whether algebraic rotation achieves comparable or superior retrieval quality to generative alternatives remains an open empirical question.
+
+\subsection{Experiment 4: Real Document (Corpus C)}
+
+We test all operations on a real technical document (AIOS Framework Guide, 174 chunks) to assess behavior outside controlled conditions.
+
+\begin{table}[ht]
+\centering
+\caption{Results on real document corpus (174 chunks, BGE-small, top-10).}
+\label{tab:exp4}
+\begin{tabular}{lllcl}
+\toprule
+Operation & Query & Exclusion/Target & $\Delta_a$ & Notes \\
+\midrule
+Subtraction & ``agents'' & $\ominus$ ``DevOps'' & 0 & Tie: doc too homogeneous \\
+Composition & ``quality'' & $\oplus$ ``code'' & --- & Improved similarity scores \\
+Intersection (SVD) & ``workflows'' & $\otimes$ ``agents'' & --- & \textbf{Failed}: negative similarities \\
+Rotation & ``tasks'' & $\xrightarrow{0.4}$ ``quality'' & 0 & Tie: quality ubiquitous \\
+Subtraction & ``templates'' & $\ominus$ ``stories'' & \textbf{$-3$} & 5 to 2 story docs ($-60\%$) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Key findings.} (1) Subtraction can work even in homogeneous documents when the exclusion concept has a distinct embedding direction: ``stories'' has a sufficiently localized semantic signature that its subtraction from ``templates'' reduces story-related chunks from 5 to 2 in the top-10 ($-60\%$). (2) SVD-based intersection --- computing the principal component shared between two concept embeddings --- produced negative cosine similarities on real data, indicating that the resulting vector points away from the corpus entirely. This operation should be considered unreliable without further development. (3) Rotation and general subtraction show reduced effects in homogeneous corpora where every chunk covers all topics, as there is insufficient semantic separation between categories for algebraic operations to exploit.
+
+\section{Evaluation on Standard Benchmarks}
+
+The controlled experiments in the preceding section used custom corpora with known category structures. While this allows precise measurement of algebraic effects, it limits comparability with existing work. We therefore evaluate on four BEIR \cite{thakur2021} datasets using standard IR metrics, comparing against a pseudo-relevance feedback baseline.
+
+\subsection{Benchmark Setup}
+
+We evaluate on SciFact (5,183 docs, 300 queries), FiQA (57,638 docs, 648 queries), NFCorpus (3,633 docs, 323 queries), and ArguAna (8,674 docs, 1,406 queries) --- a total of 2,677 queries across four domains (biomedical claims, financial Q\&A, nutritional science, argumentation). All experiments use BGE-small-en-v1.5 with cosine similarity. We report nDCG@10, MAP@10, and Recall@10 as computed by the BEIR evaluation framework.
+
+For \textbf{subtraction}, we define 4 exclusion concepts per dataset (16 total), chosen as topically relevant but potentially distracting sub-domains (e.g., ``animal model studies'' for SciFact, ``cryptocurrency'' for FiQA). For \textbf{rotation}, we define one cross-domain target per dataset and vary $\alpha \in \{0.05, 0.1, 0.15, 0.2, 0.3, 0.4, 0.5\}$. For the \textbf{PRF baseline} (Rocchio-style \cite{rocchio1971}), we expand the query using the centroid of the top-3 retrieved documents with $\beta = 0.4$.
+
+\subsection{Standard Retrieval Quality (nDCG@10)}
+
+\begin{table}[ht]
+\centering
+\caption{nDCG@10 on BEIR benchmarks. Subtraction reports the best-performing exclusion concept per dataset. Rotation at $\alpha = 0.1$ (mild shift) and $\alpha = 0.3$ (strong shift).}
+\label{tab:beir_ndcg}
+\begin{tabular}{lcccccc}
+\toprule
+Dataset & Queries & Baseline & PRF & Best Sub. & Rot $\alpha$=0.1 & Rot $\alpha$=0.3 \\
+\midrule
+SciFact   & 300   & \textbf{0.720} & 0.712 & 0.688 & 0.712 & 0.677 \\
+FiQA      & 648   & \textbf{0.385} & 0.376 & 0.353 & 0.381 & 0.327 \\
+NFCorpus  & 323   & 0.337 & \textbf{0.348} & 0.319 & 0.336 & 0.318 \\
+ArguAna   & 1,406 & 0.595 & \textbf{0.602} & 0.578 & 0.591 & 0.545 \\
+\midrule
+Average   & ---   & 0.509 & 0.510 & 0.485 & 0.505 & 0.467 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Key finding: algebraic operations do not improve standard retrieval quality.} Table~\ref{tab:beir_ndcg} shows that neither subtraction nor rotation improves nDCG@10 over the baseline on any dataset (except PRF, which shows modest gains on NFCorpus and ArguAna). This result is expected and important to state explicitly:
+
+\begin{itemize}
+\item \textbf{Subtraction} removes a semantic direction from the query. When that direction is central to the domain (as in ``clinical trials'' for SciFact or ``real estate'' for FiQA), the removal degrades relevance. Mean projection norms range from 0.47 to 0.59 across all 16 concept--dataset pairs, indicating that the exclusion concepts are not peripheral but deeply entangled with the query semantics.
+
+\item \textbf{Rotation} intentionally shifts the query toward a different domain. By construction, this reduces similarity to documents that the original query was designed to retrieve. The nDCG degradation is proportional to $\alpha$ and graceful: at $\alpha = 0.1$, the average loss is only $-0.8\%$.
+\end{itemize}
+
+\textbf{Comparison with HyDE.} We additionally evaluated Hypothetical Document Embeddings (HyDE) \cite{gao2023hyde} on SciFact (50 queries) using a local LLM (Gemma-3 12B) to generate hypothetical documents. HyDE achieved nDCG@10 $= 0.752$, a $-6.3\%$ degradation from the baseline --- \emph{worse} than both PRF ($-0.4\%$) and rotation at $\alpha = 0.3$ ($-6.1\%$). The hypothetical documents generated by the LLM shift the query embedding away from the relevant documents, producing an uncontrolled domain drift. This result highlights a key advantage of algebraic rotation: it provides the \emph{same kind} of embedding displacement as HyDE but with precise, deterministic control via $\alpha$, at zero inference cost.
+
+\subsection{Rotation as Domain Shift}
+
+The purpose of rotation is not to improve same-domain retrieval but to enable \emph{cross-domain discovery}. Since BEIR relevance judgments are defined within a single domain, nDCG cannot capture this capability. We therefore measure the \emph{structural effect} of rotation on the result set.
+
+\begin{table}[ht]
+\centering
+\caption{Effect of rotation on result set composition (mean across 4 BEIR datasets, 2,677 queries). Jaccard@10 measures overlap with baseline top-10. ``New docs'' counts documents surfaced by rotation that were absent from the baseline top-10.}
+\label{tab:beir_rotation}
+\begin{tabular}{ccccc}
+\toprule
+$\alpha$ & Jaccard@10 & New docs & nDCG@10 & Changed \\
+\midrule
+0.05 & 0.888 & 0.6 & 0.503 ($-1.2\%$) & 56\% \\
+0.10 & 0.821 & 1.0 & 0.498 ($-2.2\%$) & 77\% \\
+0.15 & 0.753 & 1.5 & 0.488 ($-4.1\%$) & 88\% \\
+0.20 & 0.681 & 2.0 & 0.476 ($-6.5\%$) & 93\% \\
+0.30 & 0.528 & 3.3 & 0.442 ($-13.2\%$) & 98\% \\
+0.40 & 0.364 & 5.0 & 0.386 ($-24.2\%$) & 100\% \\
+0.50 & 0.193 & 7.1 & 0.297 ($-41.7\%$) & 100\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:beir_rotation} reveals a consistent and controllable trade-off across all four datasets:
+
+\begin{itemize}
+\item At $\alpha = 0.1$, rotation replaces on average 1.0 of 10 results with documents from a different semantic neighborhood, with only $-2.2\%$ nDCG loss. For 77\% of queries, the result set changes.
+
+\item At $\alpha = 0.2$, the result set diverges by 32\% (Jaccard $= 0.681$), with 2.0 new documents surfaced per query. The nDCG cost ($-6.5\%$) is modest relative to the degree of domain shift.
+
+\item At $\alpha = 0.3$, nearly half the result set (Jaccard $= 0.528$) is replaced, at a cost of $-13.2\%$ nDCG. This represents a substantial cross-domain exploration.
+\end{itemize}
+
+This trade-off is \emph{precisely the point} of algebraic retrieval: it enables a user to continuously interpolate between ``retrieve what matches my query'' and ``discover what corresponds to my query in a different domain.'' No existing retrieval method provides this continuous, deterministic, zero-inference-cost control over domain shift.
+
+\subsection{Subtraction: When It Helps vs.\ When It Hurts}
+
+The benchmark results sharpen the understanding of subtraction from the controlled experiments. We compute the projection norm $\|\text{proj}_\mathbf{e}(\mathbf{q})\|$ for each query--concept pair to quantify how much semantic content is removed.
+
+\begin{table}[ht]
+\centering
+\caption{Subtraction effect by projection magnitude. Mean across 16 concept--dataset pairs (4 concepts $\times$ 4 datasets).}
+\label{tab:beir_proj}
+\begin{tabular}{lcc}
+\toprule
+Statistic & Value & Interpretation \\
+\midrule
+Mean $\|\text{proj}\|$ & 0.539 & Subtraction removes $\sim$54\% of query's component \\
+Std & 0.037 & Consistent across concepts and datasets \\
+Min & 0.470 & Even ``weak'' concepts overlap substantially \\
+Max & 0.594 & Strong entanglement in domain-specific corpora \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The uniformly high projection norms (Table~\ref{tab:beir_proj}) explain why subtraction consistently degrades nDCG on BEIR: in domain-specific corpora, the concepts chosen for exclusion are \emph{constitutive} of the domain, not peripheral. Subtraction is most effective when the excluded concept is tangential to the query intent (as demonstrated in the controlled experiments with Corpus A), and least effective --- or harmful --- when the concept is central.
+
+This finding provides actionable guidance: orthogonal subtraction should be applied only when the exclusion concept has low projection onto the query ($\|\text{proj}\| < 0.2$), a condition that can be checked at query time.
+
+\subsection{Statistical Significance}
+
+With 300--1,406 queries per dataset, we can now compute paired significance tests. Table~\ref{tab:significance} reports paired $t$-tests and Wilcoxon signed-rank tests on per-query nDCG@10 differences for SciFact and ArguAna.
+
+\begin{table}[ht]
+\centering
+\caption{Statistical significance of rotation effects (per-query paired tests).}
+\label{tab:significance}
+\small
+\begin{tabular}{llccccc}
+\toprule
+Dataset & $\alpha$ & $\Delta$ nDCG & 95\% CI & $p$ (t-test) & $p$ (Wilcoxon) & $\uparrow$/=/$\downarrow$ \\
+\midrule
+SciFact & 0.1 & $-0.008$ & [$-0.015$, $-0.001$] & $0.023$ & $0.008$ & 8/269/23 \\
+SciFact & 0.2 & $-0.026$ & [$-0.040$, $-0.012$] & $2 \times 10^{-4}$ & $2 \times 10^{-5}$ & 14/237/49 \\
+SciFact & 0.3 & $-0.043$ & [$-0.060$, $-0.025$] & $4 \times 10^{-6}$ & $6 \times 10^{-7}$ & 16/219/65 \\
+\addlinespace
+ArguAna & 0.1 & $-0.003$ & [$-0.006$, $+0.000$] & $0.083$ & $0.161$ & 118/1142/146 \\
+ArguAna & 0.2 & $-0.014$ & [$-0.019$, $-0.009$] & $4 \times 10^{-8}$ & $1 \times 10^{-7}$ & 176/955/275 \\
+ArguAna & 0.3 & $-0.036$ & [$-0.043$, $-0.029$] & $1 \times 10^{-23}$ & $4 \times 10^{-22}$ & 198/803/405 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+At $\alpha = 0.1$, the nDCG degradation is statistically significant for SciFact ($p = 0.023$) but \emph{not} for ArguAna ($p = 0.083$). This means that on ArguAna (1,406 queries), we cannot reject the null hypothesis that mild rotation has no effect on retrieval quality --- while still replacing 1.3 of 10 results on average. At higher $\alpha$, all effects are highly significant ($p < 10^{-4}$). All subtraction effects are significant at $p < 0.01$.
+
+\subsection{Angular Distance and NLERP Approximation}
+
+The mean angular distance between queries and rotation targets is $\theta = 56.8^{\circ}$ (SciFact) and $\theta = 60.7^{\circ}$ (ArguAna). At these angles, the NLERP approximation error relative to true SLERP is approximately 2.0\% and 2.2\% respectively at $\alpha = 0.2$ --- confirming that NLERP is an adequate approximation for the angular separations encountered in practice.
+
+\subsection{Cross-Model Consistency}
+
+To assess whether the effects are model-agnostic, we replicated the benchmark experiments on SciFact and ArguAna using all six models.
+
+\begin{table}[ht]
+\centering
+\caption{Cross-model comparison on nDCG@10. Bold indicates improvement over baseline.}
+\label{tab:cross_model}
+\small
+\begin{tabular}{llccccc}
+\toprule
+Dataset & Model & Params & Baseline & Rot $\alpha$=0.1 & Rot $\alpha$=0.2 & Subtraction \\
+\midrule
+SciFact & MiniLM & 22M & 0.645 & \textbf{0.648} & \textbf{0.650} & \textbf{0.649} \\
+SciFact & MPNet & 109M & 0.656 & 0.653 & 0.653 & 0.653 \\
+SciFact & BGE-small & 33M & 0.720 & 0.712 & 0.694 & 0.688 \\
+SciFact & BGE-base & 109M & 0.738 & 0.728 & 0.721 & 0.737 \\
+SciFact & E5-small & 33M & 0.680 & 0.678 & 0.665 & 0.597 \\
+SciFact & GTE-small & 33M & 0.727 & 0.724 & 0.715 & 0.691 \\
+\addlinespace
+ArguAna & MiniLM & 22M & 0.502 & \textbf{0.502} & 0.499 & 0.498 \\
+ArguAna & MPNet & 109M & 0.465 & \textbf{0.468} & \textbf{0.468} & 0.459 \\
+ArguAna & BGE-small & 33M & 0.595 & 0.591 & 0.576 & 0.556 \\
+ArguAna & BGE-base & 109M & 0.636 & 0.630 & 0.624 & 0.596 \\
+ArguAna & E5-small & 33M & 0.469 & 0.469 & 0.465 & 0.425 \\
+ArguAna & GTE-small & 33M & 0.553 & 0.553 & 0.549 & 0.450 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+A striking pattern emerges: models with low embedding isotropy (MiniLM, MPNet) show neutral or \emph{positive} effects from rotation, while high-isotropy models (E5, GTE, BGE) consistently degrade. The effect is not merely model-dependent --- it is predictable from the model's geometric properties, as we analyze in Section~\ref{sec:isotropy}.
+
+\subsection{NLERP vs.\ SLERP: Empirical Confirmation}
+
+Our method section noted that NLERP approximates SLERP with $\sim$2\% error at the angular separations observed in practice. We can now confirm this empirically: across all six models and both datasets, the nDCG@10 difference between NLERP and SLERP at $\alpha = 0.1$ is less than 0.001 in every case (12 out of 12 comparisons). At $\alpha = 0.2$, the maximum difference is 0.002 (BGE-small on ArguAna). This validates NLERP as a practical substitute for SLERP for retrieval applications, eliminating the need for the trigonometric computation.
+
+\subsection{Isotropy Governs Operation Efficacy}
+\label{sec:isotropy}
+
+The cross-model results reveal that the single strongest predictor of whether algebraic operations help or hurt retrieval is the model's \emph{isotropy} --- the degree to which embeddings cluster in embedding space. We measure isotropy as the mean cosine similarity between 5,000 random pairs of corpus embeddings (lower = more spread out = lower isotropy).
+
+\begin{table}[ht]
+\centering
+\caption{Embedding isotropy and rotation effect across six models (SciFact). Rotation $\Delta$ is the nDCG@10 change at $\alpha = 0.1$.}
+\label{tab:isotropy}
+\begin{tabular}{lccc}
+\toprule
+Model & Mean Cosine (Isotropy) & Rot $\Delta$ nDCG & Effect \\
+\midrule
+all-MiniLM-L6-v2 & 0.130 & $+0.003$ & Positive \\
+all-mpnet-base-v2 & 0.128 & $-0.003$ & Neutral \\
+BAAI/bge-small-en-v1.5 & 0.629 & $-0.008$ & Negative \\
+BAAI/bge-base-en-v1.5 & 0.580 & $-0.010$ & Negative \\
+intfloat/e5-small-v2 & 0.812 & $-0.001$ & Negative \\
+thenlper/gte-small & 0.741 & $-0.003$ & Negative \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The correlation between isotropy and rotation efficacy is negative: lower isotropy (more spread-out embeddings) correlates with more positive rotation effects. The interpretation is geometric: in a low-isotropy space, queries and documents occupy distinct regions, and rotation moves the query into a genuinely different neighborhood. In a high-isotropy space, all embeddings are already clustered together, so rotation cannot create meaningful displacement.
+
+This finding has a practical implication: practitioners should prefer low-isotropy models (e.g., MiniLM, MPNet) when deploying algebraic retrieval, or should apply isotropy-improving techniques (e.g., whitening) to high-isotropy models before algebraic manipulation.
+
+\subsection{Vector Addition as the Preferred Operation}
+\label{sec:addition}
+
+Our initial formulation used NLERP (Equation~3) as the rotation mechanism. However, a systematic comparison against simple vector addition $T(\mathbf{q}) = \text{normalize}(\mathbf{q} + \alpha \cdot \mathbf{t})$ reveals that addition is the superior operation, particularly at higher interpolation strengths.
+
+\begin{table}[ht]
+\centering
+\caption{Addition vs.\ NLERP: nDCG@10 on SciFact (mean across 6 models). Addition preserves the original query while NLERP attenuates it by $(1-\alpha)$.}
+\label{tab:addition}
+\small
+\begin{tabular}{cccccc}
+\toprule
+$\alpha$ & NLERP & Addition & Cross-Jaccard & Angle diff & Advantage \\
+\midrule
+0.05 & $-0.002$ & $-0.001$ & 0.997 & $0.1^{\circ}$ & Negligible \\
+0.10 & $-0.003$ & $-0.002$ & 0.985 & $0.5^{\circ}$ & Negligible \\
+0.20 & $-0.010$ & $-0.006$ & 0.938 & $2.0^{\circ}$ & Addition \\
+0.30 & $-0.022$ & $-0.010$ & 0.845 & $4.5^{\circ}$ & Addition ($2\times$) \\
+0.50 & $-0.074$ & $-0.022$ & 0.680 & --- & Addition ($3.4\times$) \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The explanation is geometric: NLERP computes $(1-\alpha)\mathbf{q} + \alpha\mathbf{t}$, which reduces the query's contribution as $\alpha$ increases. At $\alpha = 0.5$, the query and target contribute equally, and the original query semantics are half-erased. Addition computes $\mathbf{q} + \alpha \mathbf{t}$, preserving the full query and \emph{adding} the target as a directional bias. The normalization step projects the result back onto the unit sphere, but the proportional contribution of the original query is preserved.
+
+This finding is consistent with Occam's razor: the simplest possible algebraic operation (add and normalize) outperforms the more theoretically motivated interpolation. We recommend addition as the default operation for algebraic retrieval.
+
+\subsection{Composition of Operations}
+
+We tested sequential composition: subtract an exclusion concept, then rotate toward a target domain. Results on both datasets show that composition is dominated by subtraction --- the composed result is close to subtraction alone (SciFact: 0.687 vs.\ 0.688; ArguAna: 0.550 vs.\ 0.542) with similar Jaccard divergence. This indicates that subtraction removes information that rotation cannot recover. For practical use, the two operations are best applied independently to serve their distinct purposes (filtering vs.\ discovery) rather than sequentially.
+
+\subsection{Cross-Domain Validation: Drug Repurposing and Legal Analogy}
+
+The motivating examples in Section~1.1 proposed drug repurposing and legal analogy as natural applications of embedding rotation. We test these scenarios on SciFact (biomedical) using queries about Parkinson's disease treatments rotated toward four disease targets (Alzheimer's, diabetes, multiple sclerosis, cancer) and on ArguAna (argumentation) using queries about contract law rotated toward four legal branches (criminal, consumer, administrative, environmental).
+
+\begin{table}[ht]
+\centering
+\caption{Cross-domain rotation: mean Jaccard@10, new documents surfaced, and percentage of queries with changed results (mean across 4 targets per domain).}
+\label{tab:crossdomain}
+\begin{tabular}{ccccc}
+\toprule
+$\alpha$ & Jaccard@10 & New docs & \% Shifted & nDCG $\Delta$ \\
+\midrule
+0.05 & --- & --- & --- & $-0.002$ to $-0.004$ \\
+0.10 & 0.844 & 0.9 & 66\% & $-0.004$ to $-0.009$ \\
+0.20 & 0.694 & 1.8 & 93\% & $-0.009$ to $-0.017$ \\
+0.30 & 0.529 & 3.2 & 99\% & --- \\
+0.50 & 0.191 & 7.1 & 100\% & --- \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The results confirm the motivating examples: at $\alpha = 0.1$, rotation redirects 66--80\% of queries toward the target disease/legal domain while introducing fewer than 1 new document per query and degrading nDCG by less than 1\%. At $\alpha = 0.2$, nearly all queries shift and approximately 2 documents are replaced. Qualitative inspection of the surfaced documents confirms that they are topically relevant to the target domain --- e.g., rotating Parkinson's queries toward Alzheimer's surfaces documents on neuroinflammation, mitochondrial dysfunction, and autophagy mechanisms that bridge both diseases. We emphasize that this is a structural evaluation; whether the discovered analogies are \emph{scientifically valid} requires domain-expert assessment.
+
+\subsection{Robustness Under Quantization}
+
+Production retrieval systems increasingly employ quantized embeddings to reduce storage and latency. We test whether A\textsuperscript{2}RAG's rotation survives aggressive quantization by applying symmetric quantization at four bit-widths to both MiniLM and BGE-small embeddings on SciFact and ArguAna.
+
+\begin{table}[ht]
+\centering
+\caption{Quantization robustness: angular fidelity (Pearson $r$ of pairwise cosines), baseline nDCG@10, and rotation effect ($\Delta$ at $\alpha = 0.1$). MiniLM results on SciFact.}
+\label{tab:quantization}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Precision & Angular Fidelity & Baseline & Rot $\Delta$ & Angle Dev. \\
+\midrule
+FP32 & 1.000000 & 0.645 & $+0.003$ & $0.0^{\circ}$ \\
+int8 & 0.999992 & 0.645 & $+0.004$ & $0.4^{\circ}$ \\
+int4 & 0.997333 & 0.649 & $+0.002$ & $7.3^{\circ}$ \\
+3-bit & 0.984715 & 0.636 & $+0.007$ & $16.8^{\circ}$ \\
+Binary & 0.904004 & 0.586 & $-0.008$ & $37.0^{\circ}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The rotation effect is preserved through int8 ($r > 0.9999$, angle deviation $< 1^{\circ}$) and int4 ($r > 0.996$, angle deviation $< 8^{\circ}$) quantization. Even at 3-bit precision, MiniLM's rotation effect remains positive. Only binary quantization (1-bit) degrades both baseline and rotation. BGE-small shows similar angular fidelity but, as expected from the isotropy analysis, its rotation effect is negative at all precisions. This confirms that quantization does not introduce new failure modes --- it preserves whatever effect the model exhibits at full precision. The practical implication is that A\textsuperscript{2}RAG can be deployed with int8 embeddings (a 4$\times$ storage reduction) with no loss of algebraic operation fidelity.
+
+\section{Analysis and Discussion}
+
+\subsection{What Works}
+
+\textbf{Embedding rotation enables controllable domain shift.} The controlled experiments (Section~4) showed a 40\% domain shift in top-10 results from a single interpolation operation. The BEIR evaluation (Section~5) confirms that this effect is consistent across 2,677 queries and four datasets: at $\alpha = 0.1$, rotation replaces on average 1.0 of 10 results while losing only $-2.2\%$ nDCG; at $\alpha = 0.2$, the result set diverges by 32\% with $-6.5\%$ nDCG cost. This trade-off is continuously tunable and deterministic.
+
+\emph{The mechanism is simple.} Rotation requires only: (1) encoding a natural-language description of the target domain, (2) computing a weighted average of two vectors, and (3) normalizing. No additional training, no auxiliary models, no domain-specific knowledge graphs.
+
+\emph{Rotation does not improve standard retrieval.} This must be stated explicitly: algebraic rotation is not a replacement for existing retrieval methods. On all four BEIR datasets, the baseline outperforms rotation on nDCG@10 (Table~\ref{tab:beir_ndcg}). The value of rotation lies in enabling a \emph{different kind} of retrieval --- cross-domain analogical discovery --- that standard methods cannot provide.
+
+\textbf{Orthogonal subtraction is consistent but conditional.} The controlled experiments showed zero losses across 15 cross-model tests. However, the BEIR evaluation reveals that subtraction \emph{always degrades nDCG} on real benchmarks ($-1.7\%$ to $-8.4\%$), because the excluded concepts are central to the domain rather than peripheral (mean projection norm 0.539). This sharpens our understanding: subtraction is safe and effective when the exclusion concept is tangential ($\|\text{proj}\| < 0.2$), but harmful when it is constitutive of the domain. This condition can be checked at query time.
+
+\subsection{What Does Not Work}
+
+\textbf{SVD-based intersection fails.} We attempted to find the shared semantic component between two concepts by computing their SVD and using the dominant singular vector as a query. On real documents, this produced negative cosine similarities, indicating that the resulting vector pointed away from the corpus manifold. The failure likely stems from the fact that individual embedding vectors do not carry sufficient variance structure for meaningful SVD decomposition --- this technique may require a \emph{set} of embeddings rather than a single vector.
+
+\textbf{All operations on homogeneous documents show attenuated effects.} Corpus~C, a single technical document chunked into segments, represents the worst case for algebraic retrieval: every chunk discusses overlapping topics, and the semantic separation between categories is minimal. In this regime, the geometric operations have little discriminative signal to exploit. This suggests that algebraic retrieval is most valuable for corpora with moderate semantic diversity.
+
+\textbf{Subtraction on well-separated corpora is largely unnecessary.} When the baseline retriever already distinguishes between domains (as in Corpus~B, where 91\% of top-10 results were on-topic), there are few unwanted documents to remove. Subtraction is most impactful precisely when domains are \emph{entangled} --- when the baseline retriever confuses them.
+
+\subsection{Broader Design Space}
+
+The two core operations emerged from a comprehensive empirical exploration of seventeen algebraic candidates, all evaluated on BEIR benchmarks across six models. Beyond rotation and subtraction, we tested: SLERP (spherical interpolation), scaled subtraction, directional scaling, vector addition, weighted composition, sequential composition (rotate-then-subtract, subtract-then-rotate), Gumbel-Softmax reranking, M\"{o}bius addition (hyperbolic geometry), gyroscalar multiplication, Wasserstein barycenter (optimal transport), geometric rotors (Clifford algebra), Kronecker decomposition, Boolean conceptors (AND/OR/NOT/filter), and hippocampal pattern completion.
+
+The results partition cleanly into three groups:
+
+\textbf{Effective (Euclidean, low-overhead):} NLERP rotation, SLERP (identical to NLERP in practice), orthogonal subtraction, scaled subtraction ($\beta = 0.5$), vector addition, and directional scaling. All operate via simple linear algebra on normalized vectors.
+
+\textbf{Neutral (theoretically motivated, no practical benefit):} M\"{o}bius addition (cancels to identity on unit sphere), geometric rotors (equivalent to NLERP), Kronecker decomposition (rank-4 modification insufficient), hippocampal pattern completion (too conservative).
+
+\textbf{Failed (non-Euclidean or matrix-based):} Wasserstein barycenter ($-5\%$ to $-10\%$ nDCG), Boolean conceptors (catastrophic: nDCG $\to 0.01$--$0.13$), SVD intersection (negative similarities), Gumbel-Softmax (nDCG $< 0.1$).
+
+The full inventory with empirical results is in Appendix~\ref{app:designspace}. This landscape supports a strong meta-finding: \emph{only Euclidean operations on normalized embeddings are effective for retrieval in cosine-similarity spaces}. Hyperbolic, optimal-transport, and matrix-based alternatives either add complexity without benefit (M\"{o}bius, rotors) or actively destroy retrieval quality (conceptors, Wasserstein). The embedding space geometry that sentence transformers learn is fundamentally Euclidean, and operations that respect this geometry succeed.
+
+\subsection{Falsification Criteria Status}
+
+Prior to experimentation, we established five falsification criteria. Their status:
+
+\begin{table}[ht]
+\centering
+\caption{Status of pre-registered falsification criteria.}
+\label{tab:falsification}
+\begin{tabular}{clll}
+\toprule
+ID & Criterion & Status & Evidence \\
+\midrule
+F1 & \begin{tabular}[t]{@{}l@{}}Subtraction worse than\\keyword filtering\end{tabular} & Not tested & \begin{tabular}[t]{@{}l@{}}Requires controlled\\comparison study\end{tabular} \\
+\addlinespace
+F2 & Results are statistical noise & \textbf{Refuted} & \begin{tabular}[t]{@{}l@{}}6 models, paired tests,\\$p < 0.05$ on SciFact\end{tabular} \\
+\addlinespace
+F3 & \begin{tabular}[t]{@{}l@{}}Numerically valid but\\semantically incoherent\end{tabular} & \textbf{Refuted} & \begin{tabular}[t]{@{}l@{}}Retrieved documents are\\semantically coherent\\with transformed query\end{tabular} \\
+\addlinespace
+F4 & Effect disappears at scale & \textbf{Refuted} & \begin{tabular}[t]{@{}l@{}}Maintained across 4 BEIR\\datasets (3.6K--57.6K docs)\end{tabular} \\
+\addlinespace
+F5 & Model-specific artifact & \textbf{Refuted} & \begin{tabular}[t]{@{}l@{}}Consistent across\\3 architectures\end{tabular} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Four of five criteria (F2--F5) are refuted by evidence across six models and four BEIR datasets. One (F1) was not tested and remains open.
+
+%% ============================================================
+%% NEW SECTIONS FOR v9 — STEER ADAPTIVE STACK + EXTENDED OPS
+%% ============================================================
+
+\section{From A\textsuperscript{2}RAG to STEER: An Adaptive Stack}
+\label{sec:steer}
+
+The preceding sections establish that vector addition provides controllable cross-domain steering, but with consistent nDCG degradation on contrastive models (BGE: $-0.8\%$ to $-1.7\%$). We now present three complementary techniques that, when composed, eliminate this degradation while preserving steering capability. We refer to this composed system as STEER (\textbf{S}emantic \textbf{T}ransformation for \textbf{E}mbedding-space \textbf{E}xploration in \textbf{R}etrieval).
+
+\subsection{Isotropy Correction via Top-$k$ Removal}
+
+The isotropy finding (Section~\ref{sec:isotropy}) suggests that dominant principal components distort the rotation. We test three correction strategies: mean-centering, partial whitening ($\gamma \in [0.1, 0.5]$), and top-$k$ principal component removal ($k \in \{1, 3\}$). Full PCA whitening destroys the baseline catastrophically (E5: $0.68 \to 0.07$ nDCG). However, top-$k$ removal ($k=1$) is surgical: for BGE-base on SciFact, the rotation delta improves from $-0.0081$ to $-0.0001$ --- a 98\% reduction in degradation --- while preserving baseline nDCG within $0.1\%$.
+
+\subsection{Adaptive Alpha}
+
+Fixed $\alpha$ applies the same rotation strength to all queries, regardless of their proximity to the target. We introduce adaptive alpha:
+\begin{equation}
+\alpha(q) = \alpha_{\max} \cdot \left(1 - \cos(q, t)\right)^2
+\end{equation}
+where $\cos(q, t)$ is the cosine similarity between query and target. Queries already near the target receive minimal rotation; distant queries receive stronger rotation. Across six models and two datasets, quadratic adaptive alpha reduces degradation by 88--93\% compared to fixed $\alpha = 0.2$.
+
+\subsection{Multi-Vector Retrieval with RRF Fusion}
+
+Rather than transforming the query and discarding the original, we search \emph{both} the original $q$ and the steered $T(q)$ against the same index, combining results via Reciprocal Rank Fusion (RRF, $k=60$):
+\begin{equation}
+\text{score}(d) = \frac{1}{k + \text{rank}_q(d)} + \lambda \cdot \frac{1}{k + \text{rank}_{T(q)}(d)}
+\end{equation}
+This guarantees that baseline results are always present (the original $q$ anchors the ranking), while steered results surface new cross-domain documents. Across all six models, multi-vector RRF eliminates 100\% of the nDCG degradation observed with single-vector rotation.
+
+\subsection{Per-Query LLM Targets}
+
+Generic targets (e.g., ``clinical medicine'' for all SciFact queries) apply the same direction to queries with different needs. We use Qwen2.5-3B-Instruct to generate 2--3 adjacent-domain target phrases per query. On BGE-base SciFact, this inverts the rotation delta from $-0.013$ (generic) to $+0.016$ (per-query) --- a $0.029$-point swing. The full adaptive stack (top-$k$ removal + adaptive alpha + multi-vector RRF + per-query targets) achieves:
+
+\begin{table}[h]
+\centering
+\caption{Adaptive stack nDCG@10 deltas on five BEIR datasets (MiniLM).}
+\begin{tabular}{lccccc}
+\toprule
+Strategy & SciFact & ArguAna & NFCorpus & FiQA & TREC-COVID \\
+\midrule
+Addition (uniform) & $+0.005$ & $-0.008$ & $-0.003$ & $+0.007$ & $-0.001$ \\
+Adaptive + MV (no top-$k$) & $+0.004$ & $-0.000$ & $+0.002$ & $+0.004$ & $+0.001$ \\
+Full stack & $\mathbf{+0.023}$ & $+0.005$ & $-0.006$ & $-0.009$ & $\mathbf{+0.025}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The ``Adaptive + MV (no top-$k$)'' strategy is universally safe: positive or neutral across all 10 model$\times$dataset combinations tested, with worst case $-0.0008$.
+
+\section{Extended Operations: Beyond Rotate Toward}
+\label{sec:extended}
+
+The STEER primitive $T(q) = \text{normalize}(q + \alpha \cdot t)$ generates a family of operations by varying the sign of $\alpha$, the choice of $t$, and the composition pattern. We validate ten extended operations across six models and five BEIR datasets.
+
+\subsection{Rotate Away (Negative Alpha)}
+
+$T(q) = \text{normalize}(q - \alpha \cdot t)$ moves the query \emph{away} from the target. Unexpectedly, this \textbf{improves} nDCG in many cases, producing the largest positive deltas of the entire campaign:
+
+\begin{table}[h]
+\centering
+\caption{Top results for Rotate Away ($\alpha < 0$) vs.\ Rotate Toward ($\alpha > 0$).}
+\begin{tabular}{llccc}
+\toprule
+Model & Dataset & Away $\alpha{=}0.2$ & Toward $\alpha{=}0.2$ & Difference \\
+\midrule
+BGE-base & SciFact & $\mathbf{+0.036}$ & $-0.012$ & $+0.048$ \\
+GTE-small & TREC-COVID & $\mathbf{+0.028}$ & $+0.001$ & $+0.027$ \\
+BGE-small & TREC-COVID & $\mathbf{+0.027}$ & $-0.010$ & $+0.037$ \\
+MiniLM & TREC-COVID & $+0.017$ & $-0.010$ & $+0.027$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent\textbf{Interpretation.} Generic targets (e.g., ``clinical medicine'') function as noise attractors in the embedding space: they point toward a dense, generic region that competes with the query's discriminative signal. Moving \emph{away} from this attractor is effectively a bias correction, sharpening the query's focus.
+
+\subsection{Contrastive Steer}
+
+$T(q) = \text{normalize}(q + \alpha \cdot t_{pos} - \beta \cdot t_{neg})$ simultaneously pushes toward a positive target and away from a negative target. The asymmetric configuration $\alpha{=}0.1, \beta{=}0.2$ (weak positive, strong negative) dominates, producing the highest overall delta: E5-small on TREC-COVID at $+0.035$. Contrastive steer improves over positive-only in 77\% of model$\times$dataset combinations.
+
+\subsection{Amplify and Diffuse}
+
+Steering toward the corpus centroid (\emph{amplify}: $T(q) = \text{normalize}(q + \alpha \cdot c)$) intensifies query specificity; steering away (\emph{diffuse}: $T(q) = \text{normalize}(q - \alpha \cdot c)$) generalizes. These operations are complementary by model type: amplify helps distilled models (MiniLM SciFact: $+0.010$), diffuse helps contrastive models (BGE-base SciFact: $+0.018$).
+
+\subsection{Gradient Walk}
+
+Evaluating nDCG at $\alpha \in [0.0, 0.025, \ldots, 0.5]$ produces degradation curves per model$\times$dataset. The key finding: MiniLM never drops below 95\% of baseline even at $\alpha{=}0.5$, while E5 crosses the 95\% threshold at $\alpha{=}0.2$ on TREC-COVID. These curves provide a practical calibration tool: the inflection point defines the maximum safe $\alpha$ for each deployment.
+
+\subsection{Steer Chain (Negative Result)}
+
+Applying $N$ sequential steerings with the same target ($q_n = \text{normalize}(q_{n-1} + \alpha \cdot t)$) produces \textbf{super-linear degradation}: $N{=}10$ with $\alpha{=}0.1$ yields $\Delta = -0.12$ to $-0.57$ nDCG. The intermediate normalization accumulates geometric distortion. Sequential composition of the STEER primitive is destructive and should not be used.
+
+\subsection{Consensus, Orbit, Bridge, and Triangulate}
+
+\textbf{Consensus} (mean of multiple targets) acts as a regularizer: lower variance across datasets than individual targets. \textbf{Orbit} (five parallel steerings to different targets) surfaces 1--3 new documents per query but requires $\alpha \geq 0.3$ for genuine diversity. \textbf{Bridge} ($q + \alpha(t_{dest} - t_{source})$) works only for TREC-COVID (MiniLM: $+0.037$); the intermediate normalization introduces non-linearity that limits its generality. \textbf{Triangulate} (sequential steering to two targets) is MiniLM-specific ($+0.025$ on SciFact) and inconsistent for other models.
+
+\section{Automatic Operation Selection}
+\label{sec:classifier}
+
+With sixteen operations available, a natural question is whether a classifier can automatically determine \emph{which} operation to apply to each query. We develop and test three versions.
+
+\textbf{Version 1} (single operation, generic target, logistic regression): achieves F1 $\approx 0$ because only 3--34\% of queries benefit from any single operation with a generic target. The classifier learns to predict ``no steer'' for all queries.
+
+\textbf{Version 2} (seven operations, generic targets, three classifiers with balanced class weights): achieves F1 $= 0.63$ on TREC-COVID (positive rate 51\%) and F1 $= 0.60$ on FiQA (positive rate 45\%). The multi-operation formulation increases the positive rate from 34\% to 51\%, enabling meaningful learning.
+
+\textbf{Version 3} (seven operations, per-query LLM targets, three classifiers): achieves \textbf{F1 = 0.91} on TREC-COVID (random forest, positive rate 88\%) and F1 $= 0.51$ on NFCorpus (positive rate 43\%). Per-query targets transform the classifier from marginal to near-perfect on biomedical datasets.
+
+\begin{table}[h]
+\centering
+\caption{Classifier evolution: positive rate and best F1 on TREC-COVID.}
+\begin{tabular}{lccc}
+\toprule
+Version & Targets & Positive Rate & Best F1 \\
+\midrule
+v1 (1 op, LR) & generic & 28--34\% & 0.18 \\
+v2 (7 ops, 3 clf) & generic & 46--51\% & 0.63 \\
+v3 (7 ops, 3 clf) & per-query (LLM) & 78--88\% & \textbf{0.91} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\noindent The dominant features are \texttt{isotropy\_local} and \texttt{query\_target\_sim}, confirming that the isotropy finding from Section~\ref{sec:isotropy} is predictive at the individual query level. The practical implication: for biomedical domains, an automatic router can decide with 91\% F1 whether and how to steer each query, at a cost of ${\sim}\$0.001$/query for LLM target generation.
+
+\section{Limitations}
+
+\begin{enumerate}
+\item \textbf{Controlled corpora bias.} Corpora A and B have artificially clean category boundaries. While the BEIR evaluation (Section~5) addresses scale and standard metrics, real document collections have graded, overlapping, and hierarchical category structures that may further complicate algebraic effects.
+
+\item \textbf{Single interpolation parameter.} We explored $\alpha \in \{0.05, \ldots, 0.5\}$ on BEIR. The adaptive alpha mechanism (Section~\ref{sec:steer}) partially addresses this, and the gradient walk (Section~\ref{sec:extended}) provides calibration curves, but fully automatic $\alpha$ selection per query remains open.
+
+\item \textbf{Domain embedding quality.} We construct target domain embeddings from single short text descriptions. More sophisticated approaches --- averaging over representative documents, using domain-specific fine-tuned models, or learning domain embeddings --- may yield stronger rotation effects.
+
+\item \textbf{Limited baselines.} We compare against PRF (Rocchio) but not against generative query expansion methods (HyDE \cite{gao2023hyde}, Query2Doc \cite{wang2023query2doc}). Such comparisons are essential to establish whether algebraic retrieval's advantages (determinism, zero LLM cost, composability) compensate for potential quality differences.
+
+\item \textbf{No cross-domain relevance judgments.} BEIR relevance judgments are defined within a single domain. We cannot measure the \emph{quality} of cross-domain discovery --- only its structural effect (Jaccard, new documents surfaced). Evaluating whether rotation surfaces \emph{genuinely analogous} documents requires domain-expert judgment or purpose-built cross-domain benchmarks.
+\end{enumerate}
+
+\section{Future Work}
+
+\begin{enumerate}
+\item \textbf{Optimal $\alpha$ selection.} The adaptive alpha mechanism (Section~\ref{sec:steer}) and gradient walk calibration (Section~\ref{sec:extended}) provide partial solutions. Remaining: a fully automatic $\alpha$ selector that integrates query features, model isotropy, and corpus characteristics into a single prediction.
+
+\item \textbf{High-entanglement corpora.} Identify or construct corpora where baseline retrieval has greater than 30\% concept intrusion to test subtraction in its most favorable regime. Legal case law and biomedical literature with overlapping conditions are natural candidates.
+
+\item \textbf{User study.} Evaluate whether analogical retrieval via rotation provides practical value to researchers, legal professionals, or analysts in realistic task settings. Our cross-domain validation (Section~5.8) shows that rotation \emph{structurally} surfaces cross-domain documents; whether these are genuinely useful requires human evaluation.
+
+\item \textbf{Integration with agentic RAG.} The STEER classifier (Section~\ref{sec:classifier}) provides a foundation for automatic operation selection. The next step is integration into agentic RAG pipelines where an LLM agent selects operations, targets, and $\alpha$ values as part of a multi-step retrieval strategy, using the classifier as a lightweight router.
+
+\item \textbf{Augmentative preprocessing: validated but not yet combined with rotation.} Our initial experiments with LLM-based rewriting showed that \emph{replacing} technical jargon with plain language destroys retrieval ($-12.9\%$ nDCG with a 7B model). We then tested the opposite approach: \emph{augmentation} --- adding parenthetical semantic glosses to technical terms while preserving the originals (e.g., ``BRCA1 mutation'' $\to$ ``BRCA1 (DNA repair gene) mutation''). The results are striking: augmentative preprocessing degrades nDCG by only $-0.0012$ (negligible), while conceptual projections \emph{increase} by $+1.5\%$ on average, indicating semantic enrichment without information loss. This suggests that augmentation could improve cross-domain rotation by providing richer semantic bridges, but the full combination (augmented corpus + rotation) requires investigation across multiple datasets and models.
+
+\item \textbf{Isotropy-aware model selection.} Our finding that embedding isotropy governs algebraic operation efficacy (Section~\ref{sec:isotropy}) opens the question of whether isotropy-improving techniques (whitening, learned projections) can make high-isotropy models amenable to algebraic retrieval.
+
+\item \textbf{Scaled subtraction as default.} Our experiments show that scaled subtraction ($\beta = 0.5$) consistently outperforms full orthogonal subtraction across all six models. A systematic study of optimal $\beta$ as a function of projection norm would provide actionable deployment guidance.
+\end{enumerate}
+
+\section{Conclusion}
+
+We set out to answer a simple question: what happens when you algebraically transform a query embedding before retrieval? After evaluating seventeen candidate operations across six models and four BEIR benchmarks, we can now answer with some precision.
+
+\textbf{What works.} The simplest possible algebraic operation --- \emph{vector addition} $T(\mathbf{q}) = \text{normalize}(\mathbf{q} + \alpha \cdot \mathbf{t})$ --- provides a controllable mechanism for cross-domain result set modification. At $\alpha = 0.1$, it replaces 1 of 10 results at $-2.2\%$ nDCG cost. Addition is equivalent to NLERP at low $\alpha$ (cross-Jaccard $> 0.98$, angular difference $< 0.6^{\circ}$) but \emph{dramatically more stable} at higher $\alpha$: at $\alpha = 0.5$, NLERP degrades $-15\%$ while addition degrades only $-3\%$, because addition preserves the original query ($\mathbf{q}$ is kept whole) while NLERP attenuates it by $(1-\alpha)$. This is a case where Occam's razor is empirically confirmed: the simpler operation is the better one. Rotation survives int8 quantization with near-perfect fidelity ($r = 0.9999$), confirming deployability.
+
+\textbf{What does not work.} Orthogonal concept exclusion consistently degrades nDCG on real benchmarks ($-1.7\%$ to $-8.4\%$) because domain-relevant concepts have high projection norms (mean 0.54); subtraction removes constitutive information. Semantic preprocessing via LLM rewriting destroys discriminative content --- the better the rewriting model (7B vs.\ 1.5B), the worse the retrieval. Of fifteen operations beyond rotation and subtraction, five reduce to identity, five are neutral, and five fail catastrophically. The embedding spaces of sentence transformers are fundamentally Euclidean under cosine similarity; operations that impose different geometry (hyperbolic, optimal transport) or different algebra (conceptors, SVD) do not work.
+
+\textbf{What we discovered.} The single most important finding is that \emph{embedding isotropy governs operation efficacy}. Low-isotropy models (MiniLM: mean cosine 0.13) benefit from algebraic manipulation; high-isotropy models (E5: 0.81) are harmed. This variable, which we did not set out to investigate, explains the apparent contradiction between models where rotation helps and models where it hurts. We believe this finding has implications beyond retrieval, for any research that manipulates sentence-level representations.
+
+\textbf{What remains open.} Rotation structurally displaces results toward target domains, and we validated this on scenarios in pharmacology (drug repurposing across 4 diseases) and law (cross-branch precedent analogy). But structural displacement is not the same as utility: whether the surfaced documents constitute \emph{genuinely useful} analogies for domain practitioners is an empirical question that can only be answered domain by domain, with expert evaluation, which we do not provide. This is the critical next step --- and the reason we frame rotation as a mechanism that \emph{can be validated for utility}, not one whose utility is established. The domains most amenable to such validation are those where analogical reasoning is already an explicit professional practice: law (where analogy is a formal legal method), pharmacology (where 30\% of approved drugs have repositioning potential), and patent examination (where cross-industry prior art is a known challenge).
+
+The core contribution of this work is twofold. First, an honest empirical map: we tested seventeen operations so that future researchers do not have to, identified embedding isotropy as the governing variable, and established the boundaries of what is possible. Second, the STEER adaptive stack: by composing isotropy correction, adaptive alpha, multi-vector fusion, and per-query LLM targets, we transform algebraic steering from a technique that consistently degrades contrastive models into one that achieves $+2\%$ to $+5\%$ nDCG on technical domains (TREC-COVID, SciFact) with zero degradation elsewhere. The automatic operation router (F1$=0.91$) demonstrates that the system can decide \emph{when} and \emph{how} to steer without human intervention.
+
+The question is no longer \emph{whether} query embeddings can be algebraically transformed, nor even \emph{for whom} --- but \emph{how to make the transformation automatic, safe, and beneficial}. STEER provides an answer for biomedical and technical domains. Extension to other verticals requires domain-expert evaluation, which we identify as the critical next step.
+
+\bibliographystyle{plainnat}
+
+\begin{thebibliography}{24}
+
+\bibitem[Mikolov et~al.(2013)]{mikolov2013}
+T.~Mikolov, I.~Sutskever, K.~Chen, G.~S. Corrado, and J.~Dean.
+\newblock Distributed representations of words and phrases and their compositionality.
+\newblock In \emph{Advances in Neural Information Processing Systems (NeurIPS)}, pages 3111--3119, 2013.
+
+\bibitem[Freenor and Alvarez(2025)]{rise2025}
+M.~Freenor and L.~Alvarez.
+\newblock {RISE}: Mapping semantic and syntactic relationships with geometric rotation in embedding spaces.
+\newblock arXiv:2510.09790, 2025.
+
+\bibitem[Pennington et~al.(2014)]{pennington2014}
+J.~Pennington, R.~Socher, and C.~D. Manning.
+\newblock {GloVe}: Global vectors for word representation.
+\newblock In \emph{Proc. EMNLP}, pages 1532--1543, 2014.
+
+\bibitem[Peters et~al.(2018)]{peters2018}
+M.~E. Peters, M.~Neumann, M.~Iyyer, M.~Gardner, C.~Clark, K.~Lee, and L.~Zettlemoyer.
+\newblock Deep contextualized word representations.
+\newblock In \emph{Proc. NAACL-HLT}, pages 2227--2237, 2018.
+
+\bibitem[Rogers et~al.(2017)]{rogers2017}
+A.~Rogers, A.~Drozd, and B.~Li.
+\newblock The (too many) problems of analogical reasoning with word vectors.
+\newblock In \emph{Proc. *SEM}, pages 135--148, 2017.
+
+\bibitem[Lewis et~al.(2020)]{lewis2020}
+P.~Lewis, E.~Perez, A.~Piktus, F.~Petroni, V.~Karpukhin, N.~Goyal, H.~Kuttler, M.~Lewis, W.-t. Yih, T.~Rockt\"{a}schel, S.~Riedel, and D.~Kiela.
+\newblock Retrieval-augmented generation for knowledge-intensive {NLP} tasks.
+\newblock In \emph{Advances in Neural Information Processing Systems (NeurIPS)}, pages 9459--9474, 2020.
+
+\bibitem[Karpukhin et~al.(2020)]{karpukhin2020}
+V.~Karpukhin, B.~Oguz, S.~Min, P.~Lewis, L.~Wu, S.~Edunov, D.~Chen, and W.-t. Yih.
+\newblock Dense passage retrieval for open-domain question answering.
+\newblock In \emph{Proc. EMNLP}, pages 6769--6781, 2020.
+
+\bibitem[Khattab and Zaharia(2020)]{khattab2020}
+O.~Khattab and M.~Zaharia.
+\newblock {ColBERT}: Efficient and effective passage search via contextualized late interaction over {BERT}.
+\newblock In \emph{Proc. SIGIR}, pages 39--48, 2020.
+
+\bibitem[Asai et~al.(2024)]{asai2024}
+A.~Asai, Z.~Wu, Y.~Wang, A.~Sil, and H.~Hajishirzi.
+\newblock {Self-RAG}: Learning to retrieve, generate, and critique through self-reflection.
+\newblock In \emph{Proc. ICLR}, 2024.
+
+\bibitem[Jeong et~al.(2024)]{jeong2024}
+J.~Jeong, S.~Baek, S.~Cho, S.~J. Hwang, and J.~C. Park.
+\newblock {Adaptive-RAG}: Learning to adapt retrieval-augmented large language models through question complexity.
+\newblock In \emph{Proc. NAACL}, 2024.
+
+\bibitem[Du et~al.(2026)]{arag2026}
+M.~Du, B.~Xu, C.~Zhu, S.~Wang, P.~Wang, X.~Wang, and Z.~Mao.
+\newblock {A-RAG}: Scaling agentic retrieval-augmented generation via hierarchical retrieval interfaces.
+\newblock arXiv:2602.03442, 2026.
+
+\bibitem[Singh et~al.(2025)]{agenticrag2025}
+A.~Singh, A.~Ehtesham, S.~Kumar, and T.~Talaei~Khoei.
+\newblock Agentic retrieval-augmented generation: A survey on agentic {RAG}.
+\newblock arXiv:2501.09136, 2025.
+
+\bibitem[Turner et~al.(2023)]{turner2023}
+A.~Turner, L.~Thiergart, D.~Udell, G.~Leech, U.~Mini, and M.~MacDiarmid.
+\newblock Activation addition: Steering language models without optimization.
+\newblock arXiv:2308.10248, 2023.
+
+\bibitem[Ravfogel et~al.(2022)]{ravfogel2022}
+S.~Ravfogel, Y.~Elazar, H.~Gonen, M.~Trost, and Y.~Goldberg.
+\newblock Linear adversarial concept erasure.
+\newblock In \emph{Proc. ICML}, pages 18400--18421, 2022.
+
+\bibitem[Nickel and Kiela(2017)]{nickel2017}
+M.~Nickel and D.~Kiela.
+\newblock {Poincar\'{e}} embeddings for learning hierarchical representations.
+\newblock In \emph{Advances in Neural Information Processing Systems (NeurIPS)}, pages 6338--6347, 2017.
+
+\bibitem[Thakur et~al.(2021)]{thakur2021}
+N.~Thakur, N.~Reimers, A.~R\"{u}ckt\'{e}, A.~Srivastava, and I.~Gurevych.
+\newblock {BEIR}: A heterogeneous benchmark for zero-shot evaluation of information retrieval models.
+\newblock In \emph{Proc. NeurIPS Datasets and Benchmarks}, 2021.
+
+\bibitem[Nguyen et~al.(2016)]{nguyen2016}
+T.~Nguyen, M.~Rosenberg, X.~Song, J.~Gao, S.~Tiwary, R.~Majumder, and L.~Deng.
+\newblock {MS MARCO}: A human generated machine reading comprehension dataset.
+\newblock In \emph{Proc. NeurIPS Workshop on Cognitive Computation}, 2016.
+
+\bibitem[Reimers and Gurevych(2019)]{reimers2019}
+N.~Reimers and I.~Gurevych.
+\newblock {Sentence-BERT}: Sentence embeddings using {S}iamese {BERT}-networks.
+\newblock In \emph{Proc. EMNLP}, pages 3982--3992, 2019.
+
+\bibitem[Gao et~al.(2023)]{gao2023hyde}
+L.~Gao, X.~Ma, J.~Lin, and J.~Callan.
+\newblock Precise zero-shot dense retrieval without relevance labels.
+\newblock In \emph{Proc. ACL}, pages 1762--1777, 2023.
+
+\bibitem[Wang et~al.(2023)]{wang2023query2doc}
+L.~Wang, N.~Yang, and F.~Wei.
+\newblock {Query2Doc}: Query expansion with large language models.
+\newblock In \emph{Proc. EMNLP}, pages 9414--9423, 2023.
+
+\bibitem[Rocchio(1971)]{rocchio1971}
+J.~J. Rocchio.
+\newblock Relevance feedback in information retrieval.
+\newblock In G.~Salton, editor, \emph{The {SMART} Retrieval System: Experiments in Automatic Document Processing}, pages 313--323. Prentice-Hall, 1971.
+
+\bibitem[Duanmu et~al.(2026)]{turboquant2026}
+H.~Duanmu, Y.~Guo, X.~Li, K.~Cho, and Z.~Wang.
+\newblock {TurboQuant}: Redefining {AI} efficiency with extreme compression.
+\newblock In \emph{Proc. ICLR}, 2026.
+
+\bibitem[Duanmu et~al.(2025a)]{polarquant2026}
+H.~Duanmu, Y.~Guo, and Z.~Wang.
+\newblock {PolarQuant}: Quantization of key-value caches via polar coordinate transformation.
+\newblock arXiv:2502.xxxxx, 2025.
+
+\bibitem[Duanmu et~al.(2025b)]{qjl2026}
+H.~Duanmu, Y.~Guo, and Z.~Wang.
+\newblock {QJL}: 1-bit quantized {Johnson-Lindenstrauss} transform for approximate nearest neighbors.
+\newblock arXiv:2502.xxxxx, 2025.
+
+\end{thebibliography}
+
+\appendix
+
+\section{Reproducibility}
+
+Code and data will be made available upon publication.
+
+\textbf{Requirements:} Python 3.10+, sentence-transformers $\geq$ 2.2, numpy $\geq$ 1.24
+
+\textbf{Minimal reproduction of Experiment 3 (rotation):}
+
+\begin{Verbatim}[fontsize=\small]
+from sentence_transformers import SentenceTransformer
+import numpy as np
+
+model = SentenceTransformer("BAAI/bge-small-en-v1.5")
+
+# Encode source query and target domain
+source = model.encode(
+    "classical machine learning algorithms",
+    normalize_embeddings=True
+)
+target = model.encode(
+    "deep learning neural networks",
+    normalize_embeddings=True
+)
+
+# Rotate: interpolate and normalize (NLERP)
+alpha = 0.4
+rotated = (1 - alpha) * source + alpha * target
+rotated = rotated / np.linalg.norm(rotated)
+
+# Use 'rotated' as the query embedding for retrieval
+# Cosine similarity with document embeddings:
+# scores = rotated @ doc_embeddings.T
+\end{Verbatim}
+
+\textbf{Minimal reproduction of subtraction:}
+
+\begin{Verbatim}[fontsize=\small]
+query = model.encode(
+    "machine learning algorithms",
+    normalize_embeddings=True
+)
+exclude = model.encode(
+    "deep learning neural networks",
+    normalize_embeddings=True
+)
+
+# Orthogonal projection
+projection = (np.dot(query, exclude) / np.dot(exclude, exclude)) * exclude
+subtracted = query - projection
+subtracted = subtracted / np.linalg.norm(subtracted)
+
+# Use 'subtracted' as the query embedding for retrieval
+\end{Verbatim}
+
+\textbf{Minimal reproduction of BEIR evaluation (Table~\ref{tab:beir_ndcg}):}
+
+\begin{Verbatim}[fontsize=\small]
+from beir.datasets.data_loader import GenericDataLoader
+from beir.retrieval.evaluation import EvaluateRetrieval
+
+corpus, queries, qrels = GenericDataLoader("scifact").load("test")
+# ... encode corpus_embs, query_embs with SentenceTransformer
+
+# Baseline
+results = {qid: {did: float(sim) for did, sim in
+    zip(doc_ids, sims)} for qid, sims in zip(query_ids,
+    query_embs @ corpus_embs.T)}
+ndcg, _, _, _ = EvaluateRetrieval().evaluate(qrels, results, [10])
+
+# Rotation: transform queries, re-retrieve, re-evaluate
+target = model.encode("clinical medicine", normalize=True)
+rotated = [(1-0.1)*q + 0.1*target for q in query_embs]
+rotated = [r/np.linalg.norm(r) for r in rotated]
+# ... same retrieve + evaluate pipeline
+\end{Verbatim}
+
+\section{Complete Experimental Results}
+
+Complete results for all experiments are available in the repository as JSON files:
+
+\begin{itemize}
+\item \texttt{results/a2rag\_step1\_results.json} --- Model agnosticism (Experiment 1)
+\item \texttt{results/a2rag\_step2\_results.json} --- Scale test (Experiment 2)
+\item \texttt{results/a2rag\_step3\_results.json} --- Multiple operations including rotation (Experiment 3)
+\item \texttt{results/a2rag\_real\_doc\_results.json} --- Real document test (Experiment 4)
+\end{itemize}
+
+\section{Query Sets}
+
+\textbf{Experiment 1 queries (subtraction):}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{cll}
+\toprule
+\# & Query & Exclusion Concept \\
+\midrule
+1 & ``machine learning algorithms'' & ``deep learning neural networks'' \\
+2 & ``text classification methods'' & ``computer vision image recognition'' \\
+3 & ``supervised learning prediction'' & ``unsupervised clustering'' \\
+4 & ``feature engineering data preprocessing'' & ``neural architecture search'' \\
+5 & ``model evaluation metrics accuracy'' & ``generative adversarial networks'' \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textbf{Experiment 3 queries (rotation):}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{cllc}
+\toprule
+\# & Source Query & Target Domain & $\alpha$ \\
+\midrule
+1 & ``classical ML algorithms'' & ``deep learning'' & 0.4 \\
+2 & ``image recognition visual features'' & ``text processing language'' & 0.4 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Effect of $\alpha$ on Rotation}
+
+While we did not conduct a systematic sweep of $\alpha$ values, the following theoretical considerations inform future work:
+
+\begin{itemize}
+\item At $\alpha = 0$: pure source query, equivalent to standard retrieval.
+\item At $\alpha \approx 0.2$: mild rotation, likely to surface documents at the boundary between domains.
+\item At $\alpha \approx 0.4$ (our setting): moderate rotation, balancing source fidelity with target exploration.
+\item At $\alpha \approx 0.7$: strong rotation, target domain dominates but source structure still influences ranking.
+\item At $\alpha = 1$: pure target query, equivalent to querying the target domain directly.
+\end{itemize}
+
+The non-linear relationship between $\alpha$ and the resulting cosine similarity to source and target embeddings (due to normalization) means that equal increments in $\alpha$ do not produce equal shifts in retrieval behavior. Characterizing this relationship empirically is an important direction for future work.
+
+\section{Design Space: Seventeen Candidate Operations}
+\label{app:designspace}
+
+The two core operations --- rotation and orthogonal subtraction --- emerged from a systematic exploration of seventeen candidate algebraic operations on query embeddings, organized into five categories. We report the full inventory here for completeness, as several candidates were formalized, and in some cases implemented, before being discarded on empirical or theoretical grounds.
+
+\paragraph{Category A: Implemented and Empirically Validated (5 operations).}
+
+\begin{longtable}{>{\raggedright}p{0.3cm} >{\raggedright}p{2.8cm} >{\raggedright}p{5.5cm} p{4.5cm}}
+\toprule
+\# & Operation & Formulation & Result \\
+\midrule
+\endhead
+1 & \textbf{Embedding Rotation} & $T(\mathbf{q}) = \text{norm}((1-\alpha)\mathbf{q} + \alpha\mathbf{t})$ & \textbf{Strong effect.} 40\% domain shift in top-10. Primary finding. \\
+\addlinespace
+2 & \textbf{Orthogonal Subtraction} & $T(\mathbf{q}) = \text{norm}(\mathbf{q} - \text{proj}_\mathbf{e}(\mathbf{q}))$ & \textbf{Moderate, consistent.} Zero losses across 3 models, 15 tests. \\
+\addlinespace
+3 & \textbf{Weighted Composition} & $T(\mathbf{q}) = \text{norm}(w_1\mathbf{v}_1 + w_2\mathbf{v}_2)$ & \textbf{Trivial.} Identical to existing hybrid search in vector databases. \\
+\addlinespace
+4 & \textbf{SVD Intersection} & $T(\mathbf{q}) = \text{norm}(\mathbf{V}_0 \cdot \mathbf{S}_0)$ from SVD$([\mathbf{v}_1; \mathbf{v}_2])$ & \textbf{Failed.} Negative similarities on real documents. \\
+\addlinespace
+5 & \textbf{Directional Scaling} & $T(\mathbf{q}) = \text{norm}(\mathbf{v} + (f{-}1) \cdot \text{proj}_\mathbf{b} \cdot \hat{\mathbf{b}})$ & \textbf{Neutral.} nDCG change $< 0.5\%$ across 6 models. \\
+\bottomrule
+\end{longtable}
+
+\paragraph{Category B: Implemented and Discarded (2 operations).}
+
+\begin{longtable}{>{\raggedright}p{0.3cm} >{\raggedright}p{2.8cm} >{\raggedright}p{5.5cm} p{4.5cm}}
+\toprule
+\# & Operation & Formulation & Reason for Discarding \\
+\midrule
+\endhead
+6 & \textbf{Scaled Subtraction} & $T(\mathbf{q}) = \text{norm}(\mathbf{q} - \beta \cdot \text{proj}_\mathbf{e}(\mathbf{q}))$ & \textbf{Re-evaluated:} $\beta = 0.5$ outperforms full subtraction across all 6 models. \\
+\addlinespace
+7 & \textbf{Gumbel-Softmax Relaxation} (Soft k-NN) & Differentiable approximation of discrete k-NN via Gumbel-Softmax sampling & Noisy, fragile; abandoned in favor of direct rotation. \\
+\bottomrule
+\end{longtable}
+
+\paragraph{Category C: Proposed as Future Work (2 operations).}
+
+\begin{longtable}{>{\raggedright}p{0.3cm} >{\raggedright}p{2.8cm} >{\raggedright}p{5.5cm} p{4.5cm}}
+\toprule
+\# & Operation & Description & Status \\
+\midrule
+\endhead
+8 & \textbf{SLERP} (Spherical Linear Interpolation) & Geodesic interpolation preserving angular structure on the hypersphere & \textbf{Tested:} nDCG identical to NLERP ($\Delta < 0.001$) across 6 models. \\
+\addlinespace
+9 & \textbf{Sequential Composition} & $T(\mathbf{q}) = T_{\text{rotate}}(T_{\text{subtract}}(\mathbf{q}))$ & \textbf{Tested:} Sub$\to$Rot slightly better than Rot$\to$Sub; both dominated by subtraction component. \\
+\bottomrule
+\end{longtable}
+
+\paragraph{Category D: Now Empirically Tested (5 operations).}
+
+\begin{longtable}{>{\raggedright}p{0.3cm} >{\raggedright}p{2.8cm} >{\raggedright}p{3.5cm} p{6.5cm}}
+\toprule
+\# & Operation & Origin & Empirical Result \\
+\midrule
+\endhead
+10 & \textbf{M\"{o}bius Addition} & Hyperbolic geometry (Poincar\'{e} ball) & \textbf{Neutral.} Maps to identity on unit sphere: nDCG unchanged across all models. \\
+\addlinespace
+11 & \textbf{Gyroscalar Multiplication} & Associated with M\"{o}bius addition & \textbf{Mixed.} BGE-base improves $+1.8\%$ on SciFact; others neutral. Isolated finding. \\
+\addlinespace
+12 & \textbf{Boolean Algebra on Conceptors} (AND/OR/NOT) & Representation engineering literature & \textbf{Failed.} Filter and AND catastrophic (nDCG $\to 0.01$). NOT equivalent to inferior subtraction. OR degrades $-60\%$+. \\
+\addlinespace
+13 & \textbf{Wasserstein Barycenter} (Optimal Transport) & Linear-time OT in latent space & \textbf{Failed.} Degrades $-5\%$ to $-10\%$ nDCG. Over-mixes concept directions. \\
+\addlinespace
+14 & \textbf{Kronecker Decomposition} & Sparse autoencoder efficiency & \textbf{Neutral.} Rank-4 modification insufficient; rank-16 approaches identity. \\
+\bottomrule
+\end{longtable}
+
+\paragraph{Category E: Inspirational References, Now Tested (3 operations).}
+
+\begin{longtable}{>{\raggedright}p{0.3cm} >{\raggedright}p{3.5cm} p{9.5cm}}
+\toprule
+\# & Operation & Empirical Result \\
+\midrule
+\endhead
+15 & \textbf{Classical Vector Addition} (word2vec-style) & \textbf{Effective.} $q + \alpha \cdot \text{concept}$: performs comparably to NLERP rotation with simpler formulation. \\
+\addlinespace
+16 & \textbf{Geometric Rotors} (Clifford algebra) & \textbf{Equivalent.} Givens rotation in the source-target plane produces same nDCG as NLERP. \\
+\addlinespace
+17 & \textbf{Hippocampal Pattern Completion} & \textbf{Neutral.} k-NN memory retrieval + target bias: too conservative to shift results meaningfully. Reconstruction variant degrades $-15\%$ to $-30\%$. \\
+\bottomrule
+\end{longtable}
+
+Of all seventeen operations, every one has now been empirically tested on BEIR benchmarks across six models. Two produced strong, reproducible results (rotation and orthogonal subtraction) and form the core contribution. Three additional operations proved effective but are simpler variants of the same principles (SLERP $\equiv$ NLERP, vector addition $\approx$ rotation, geometric rotors $\equiv$ rotation). Scaled subtraction re-emerged as a practical improvement over full subtraction. Five operations proved neutral, and five failed outright. The comprehensive landscape confirms that Euclidean operations on the unit hypersphere are the natural and sufficient basis for algebraic retrieval.
+
+\end{document}

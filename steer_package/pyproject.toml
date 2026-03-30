@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.backends._legacy:_Backend"
+
+[project]
+name = "steer-retrieval"
+version = "0.1.0"
+description = "STEER: Semantic Transformation for Embedding-space Exploration in Retrieval"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+authors = [
+    {name = "Renato Aparecido Gomes", email = "renatoapgomes@gmail.com"},
+]
+keywords = ["retrieval", "embeddings", "semantic-search", "steering", "RAG", "information-retrieval"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Text Processing :: Indexing",
+]
+dependencies = [
+    "numpy>=1.24",
+    "sentence-transformers>=3.0",
+    "scikit-learn>=1.3",
+]
+
+[project.urls]
+Homepage = "https://github.com/RAG7782/steer"
+Paper = "https://arxiv.org/abs/XXXX.XXXXX"
+Documentation = "https://github.com/RAG7782/steer#readme"
+
+[tool.setuptools.packages.find]
+include = ["steer*"]
