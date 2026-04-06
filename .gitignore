@@ -26,3 +26,5 @@ HANDOFF-*.md
 
 # Experimental results (large data files)
 results_modal/
+*.aux
+*.out
